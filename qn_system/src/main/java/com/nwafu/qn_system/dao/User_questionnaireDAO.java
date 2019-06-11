@@ -33,20 +33,6 @@ public interface User_questionnaireDAO {
 	@Select("select * from user_questionnaire where user_id = #{user_id}") 
 	public List<User_questionnaire> getAllByUserId(int user_id);
 	
-		/*
-	 * 按照用户id查询该用户参与过的所有问卷
-	 * param；用户id
-	 * return List<User_questionnaire>
-	 */
-	@Results({	//联合查询
-		@Result(property = "user",javaType=User.class,column="user_id",
-			one=@One(select="com.nwafu.qn_system.dao.UserDAO.getByUser_id")),
-		@Result(property = "questionnaire",javaType=Questionnaire.class,column="questionnaire_id",
-			one=@One(select="com.nwafu.qn_system.dao.QuestionnaireDAO.getQuestionnaireByQuestionnaire_id"))
-	})
-	@Select("select * from user_questionnaire where user_id = #{user_id}") 
-	public List<User_questionnaire> getAllByUserId(int user_id);
-	
 	
 	
 	/*
