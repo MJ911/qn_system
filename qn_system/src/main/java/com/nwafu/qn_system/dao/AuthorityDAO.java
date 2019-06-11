@@ -7,6 +7,13 @@ import org.apache.ibatis.annotations.Select;
 import com.nwafu.qn_system.entity.Authority;
 
 public interface AuthorityDAO {
+
+	/**
+	 *实现authority单表查询.
+	 * @author lwy
+	 */
+	@Select("select * from authority where authority_id=#{authority_id}")
+	public Authority getByAuthority_id(int authority_id);
 	/**
 	 * 实现根据authority_id，查询记录。
 	 * @author 宋明桂
@@ -30,4 +37,5 @@ public interface AuthorityDAO {
 	 */
 	@Select("select * from authority where authority_id=#{authority_id}")
 	public Authority getAllByAuthority_id(int authority_id);
+	
 }
