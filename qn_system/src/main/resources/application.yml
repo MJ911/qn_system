@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost/qn_system?serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://localhost/qnsystem?serverTimezone=UTC&useSSL=false&characterEncoding=utf8
     username: root
 
   mvc:
