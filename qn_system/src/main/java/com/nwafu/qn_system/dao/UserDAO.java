@@ -1,5 +1,7 @@
 package com.nwafu.qn_system.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Result;
@@ -27,6 +29,16 @@ public interface UserDAO {
 	})
 	@Select("select * from user where `user`.user_name=#{user_name} and `user`.user_password=#{user_password}")
 	public User getAllByNamePassword(User user);
+	
+	/**
+	 * 获得整张user表，包括联合role的结果
+	 * @return
+	 */
+	@Results({
+		@Result(column="role_id", property="role", one=@One(select="com.nwafu.qn_system.dao.RoleDAO.getAllByRole_id"))
+	})
+	@Select("select * from user")
+	public List<User> getAll();
 	
 	/**
 	 * 插入数据.

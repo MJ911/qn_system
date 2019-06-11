@@ -1,5 +1,6 @@
 package com.nwafu.qn_system.dao;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import com.nwafu.qn_system.entity.Role;
@@ -13,4 +14,12 @@ public interface RoleDAO {
 	 */
 	@Select("select * from role where role_id=#{role_id}")
 	public Role getAllByRole_id(int role_id);
+	
+	/**
+	 * 插入role记录.
+	 * @author xdx
+	 * @param role
+	 */
+	@Insert("insert into role(role_name) values(#{role_name})")
+	public void add(Role role);
 }
