@@ -53,7 +53,7 @@ public class IndexController {
 		//进入创建问卷界面 create_questionnaire.jsp
 		//把model_qn_id的model问卷对象放入session里
 		//问卷对象的名字属性要清空
-		return "create_questionnaire";
+		return "create_questionnaire_many";
 	}
 	
 	@GetMapping("login")
