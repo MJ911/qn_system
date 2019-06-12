@@ -22,4 +22,11 @@ public interface RoleDAO {
 	 */
 	@Insert("insert into role(role_name) values(#{role_name})")
 	public void add(Role role);
+	
+	/**
+	 * select role by name
+	 * @author 宋明桂
+	 */
+	@Select("select * from role where role.role_name=#{role_name}")
+	public Role getRoleByName(String rolename);
 }

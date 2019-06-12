@@ -1,5 +1,7 @@
 package com.nwafu.qn_system.entity;
 
+import java.util.List;
+
 /**
  * 用户类.
  * @author xdx
@@ -11,6 +13,13 @@ public class User {
 	private String user_password;
 	private String user_mail;
 	private Role role;
+	/**
+	 * 在User实体类中增加List<Authority>属性
+	 * @author 宋明桂
+	 * 2019-6-12
+	 */
+	private List<Authority> authorityList;
+	
 	public int getUser_id() {
 		return user_id;
 	}
@@ -41,6 +50,10 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-	
+	public List<Authority> getAuthorityList() {
+		return authorityList;
+	}
+	public void setAuthorityList(List<Authority> authorityList) {
+		this.authorityList = authorityList;
+	}
 }
