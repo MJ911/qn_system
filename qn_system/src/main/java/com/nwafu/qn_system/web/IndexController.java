@@ -25,7 +25,7 @@ public class IndexController {
 	@Autowired
 	private QnService qnService;
 	
-	@GetMapping("index")
+	@GetMapping("/index")
 	public String index(){
 		//返回主页 index.jsp
 		return "index";
@@ -57,7 +57,7 @@ public class IndexController {
 	
 	
 	
-	@GetMapping("model_list")
+	@GetMapping("/model_list")
 	public String model_list() {
 		//返回模板列表 model_list.jsp
 		return "model_list";
@@ -85,12 +85,12 @@ public class IndexController {
 		return "create_questionnaire_many";
 	}
 	
-	@GetMapping("login")
+	@GetMapping("/login")
 	public String login() {
 		//主页上点击登录注册按钮 进入注册界面login.jsp
 		return "login";
 	}
-	@GetMapping("personal")
+	@GetMapping("/personal")
 	public String personal() {
 		return "personal";
 	}
