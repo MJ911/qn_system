@@ -13,7 +13,7 @@ import com.nwafu.qn_system.entity.Questionnaire;
 import com.nwafu.qn_system.entity.User;
 
 public interface QuestionnaireDAO {
-	/**
+	/*
 	 * 实现返回qustionnaire所有记录；（包括user_id、user_name）
 	 *
 	 * @author sgf，修改xdx.
@@ -80,7 +80,7 @@ public interface QuestionnaireDAO {
 	@Select("select * from questionnaire where user_id=#{user.user_id} and questionnaire_cdate=#{questionnaire_cdate}")
 	public Questionnaire getQuestionnaireByUser_idCdate(Questionnaire questionnaire);
 	
-	/**
+	/*
 	 * 根据用户id查询所创建的问卷列表.
 	 * @author xdx
 	 * @param user
@@ -91,5 +91,15 @@ public interface QuestionnaireDAO {
 	})
 	@Select("select * from questionnaire where user_id=#{user_id}")
 	public List<Questionnaire> getQnsByUser_id(int user_id);
-
+	
+	/*
+	 * 根据questionnaire_type返回qustionnaire对应所有记录；
+	 * @author MJJ
+	 * @param questionnaire_type
+	 * @return List
+	 */
+	@Results({
+		@Result(column = "user_id", property = "user", one = @One(select = "com.nwafu.qn_system.dao.UserDAO.getByUser_id")) })
+	@Select("select * from questionnaire where questionnaire_type=#{questionnaire_type}")
+	public List<Questionnaire> getAllByquestionnaire_type(int questionnaire_type);
 }

@@ -16,13 +16,6 @@ import com.nwafu.qn_system.entity.User_authority;
 @RequestMapping("qn_system")
 public class AdministratorController {
     
-	@GetMapping("questionnaire_list")
-	public String questionnaire_list() {
-		//管理员点击问卷集
-		//跳转到questionnaire_list.jsp
-		
-		return "questionnaire_list";
-	}
 	
 	@GetMapping("/delete_questionnaire/{qn_id}")
 	public String delete_questionnaire(int qn_id) {

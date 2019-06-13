@@ -56,4 +56,10 @@ public class User {
 	public void setAuthorityList(List<Authority> authorityList) {
 		this.authorityList = authorityList;
 	}
+	@Override
+	public String toString() {
+		return "User [user_id=" + user_id + ", user_name=" + user_name + ", user_password=" + user_password
+				+ ", user_mail=" + user_mail + ", role=" + role + ", authorityList=" + authorityList + "]";
+	}
+	
 }
