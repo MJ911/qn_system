@@ -55,7 +55,11 @@ public class IndexController {
 		
 	}
 	
-	
+	@GetMapping("create_choice")
+	public String create_choice(){
+		//跳转到create_choice.jsp
+		return "create_choice";
+	}
 	
 	@GetMapping("/model_list")
 	public String model_list() {
@@ -72,8 +76,8 @@ public class IndexController {
 		return "model";
 	}
 	
-	@GetMapping("/create_questionnaire/{model_qn_id}")
-	public String create_questionnaire(@PathVariable int model_qn_id,Model model,HttpSession session) {
+	@GetMapping("/create_questionnaireFrommodel/{model_qn_id}")
+	public String create_questionnaireFrommodel(@PathVariable int model_qn_id,Model model,HttpSession session) {
 		//进入创建问卷界面 create_questionnaire.jsp
 		//把model_qn_id的model问卷对象放入session里
 		//问卷对象的名字属性要清空

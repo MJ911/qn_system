@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>Home</title>
+<title>create_choice</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31,6 +31,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location.href="/qn_system/create_choice";
 	}function Topersonal() {
 		location.href = "/qn_system/personal";
+	}function Tocreate(index) {
+		location.href = "/qn_system/create_questionnaire/"+index;
 	}
 </script>
 <!-- //for-mobile-apps -->
@@ -43,6 +45,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- js -->
 <script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
+<link href="../css/css1.css" rel="stylesheet" />
+<link id="ctl01_cssdefault" rel="stylesheet" type="text/css" href="../css/css2.css" />
+<link id="ctl01_cssmaster" rel="stylesheet" type="text/css" href="../css/css3.css" /> 
+<link rel="stylesheet" type="text/css" href="../css/css4.css" />
+<script type="text/javascript" src="../js/jquer-1.8.3.min.js" ></script>
 <!-- //js -->
 <!-- cart -->
 	<script src="../js/simpleCart.min.js"></script>
@@ -60,9 +67,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#right{margin-left:30px;margin-right:100px;margin-top:50px;width:25%;height:100%;float:left;}
 		#foot{margin-top:750px;width:100%;height:150px;background-color: rgba(0,0,0,0.15);}
 		#list{list-style:none;margin-left:80px;margin-top:10px;font-size:20pt;}
-		#div_left{width:30%;height:750px;float:left;}
-        #div_middle{text-align:center;width:40%;height:750px;float:left;background-color:rgba(255,255,255,0.00);border-radius:30px;}
-		#div_right{width:30%;height:750px;float:left;}
+		#div_left{width:33%;height:750px;float:left;}
+        #div_middle{text-align:center;width:47%;height:750px;float:left;background-color:rgba(255,255,255,0.00);border-radius:30px;}
+		#div_right{width:20%;height:750px;float:left;}
 		#footer{margin-top:0px;text-align:center;weight:100%;height:20px;}
 		#footer ul{list-style-type:none;overflow: hidden;}
 		#footer ul li{display:inline;list-style:none;font-size:10pt;margin-left:30px;font-color:orange;}
@@ -145,27 +152,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div id="div_left">
     </div>
     <div id="div_middle">
-	    <div id="div_label1">
-	        <ul style="list-style-type:none">
-			     <div id="div_label2">
-					 <li>
-					    <font size="10px" color="white">不止问卷调查 / 在线考试</font>
-					 </li>			
-			     <div id="div_label2">
-				 <div id="div_label2">
-					 <li>
-					    <font size="5px" color="orange">4,125 28.35</font>
-						<font size="5px" color="white"> 万用户已在问卷强上回收或作答</font>
-						<font size="5px" color="orange">28.35</font>
-						<font size="5px" color="white">亿份答卷</font>
-					 </li>			
-			     <div id="div_label2">
-				     <li align="center">
-				         <input type="submit" id="button" value="立即使用" style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size=6px" onclick="Tocreate_choice()"/>
-					</li>
-				 </div>
-			</ul>
-	    </div>
+	   <form name="aspnetForm" method="post" action="choosetype.aspx?tttt=636960410375897968" id="aspnetForm">     
+      <div class="section main-wrapper">
+        <div class="module-box clearfix" id="divModule">
+			<div  class="figure" style="background-color:rgba(255,255,255,0.65);margin-top:200px ">
+                <div class="pic-box icon survey-icon pull-left"></div>
+                <div class="details-wrapper pull-left">
+                    <div class="details-title">
+                        <span class="pull-left">问卷</span>
+                        <a class="btn btn-blue-frame details__more pull-left">了解更多</a>
+                    </div>
+                    <div class="details-info">丰富题型，强大逻辑</div>
+                    <div class="details-info">问卷密码，红包抽奖</div>
+                </div>
+                <div class="clear dotted-line--solid"></div>
+               
+                    <a class="btn btn-blue-frame main__btn--new" onclick="Tocreate(0)">创建</a>
+               
+                <input type="checkbox" style="position:absolute;right:20px;bottom:25px;width:18px;height:18px;display:none;" />
+            </div>
+
+            <div  class="figure" style="background-color:rgba(255,255,255,0.65);margin-top:200px">
+                <div class="pic-box icon vote-icon pull-left"></div>
+                <div class="details-wrapper pull-left">
+                    <div class="details-title">
+                        <span class="pull-left">投票</span>
+                        <a href="javascript:void(0)" class="btn btn-blue-frame details__more pull-left">了解更多</a>
+                    </div>
+                    <div class="details-info">图文视频，选项随机</div>
+                    <div class="details-info">实时排行，微信投票</div>
+                </div>
+                <div class=" clear dotted-line--solid"></div>
+               
+                    <a class="btn btn-blue-frame main__btn--new" onclick="Tocreate(1)">创建</a>
+               
+                 <input type="checkbox" style="position:absolute;right:20px;bottom:25px;width:18px;height:18px;display:none;" />
+            </div>
+                  
+        </div>
+    </div>
+     </form>
     </div>
     <div id="div_right">
     </div>
@@ -222,7 +248,109 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="../loginSpecial/js/Particleground.js" type="text/javascript"></script>
 <script src="../loginSpecial/js/Treatment.js" type="text/javascript"></script>
 <script src="../loginSpecial/js/controlLogin.js" type="text/javascript"></script>
-
+<script  type="text/javascript">
+                 var currentApps="";
+                 var qType=1;
+                 var setCustom=false;
+                 var isOpenUser=0;
+                 // 判断浏览器是否为IE8 改变鼠标hover效果上
+                 $create_figure = $(".main-wrapper .create-box .figure");
+                 var $module_figure = $(".main-wrapper .module-box .figure");
+                 $module_figure.first().addClass("clicked"); //进入选择问卷默认选中创建空白问卷
+                 $module_figure.click(function() {
+                         if(setCustom)
+                             return;
+                     $(this).addClass("clicked").siblings(".figure").removeClass("clicked");
+                 });
+                 $module_figure.mouseover(function(){
+                     if(setCustom)
+                         return;
+                     $(this).addClass("clicked").siblings(".figure").removeClass("clicked");
+                 })
+                 $module_figure.eq(qType-1).click();
+                 $("#hrefCustom").click(function(){
+                     if(this.isConfirm){
+                         var selCount=0;
+                         var newApp="";
+                         $("#divModule input").each(function(index){
+                             if(index>0)
+                                 newApp+=",";
+                             if(this.checked){
+                                 newApp+="1";
+                                 selCount++;
+                             }
+                             else
+                                 newApp+="0";
+                         });
+                         if(selCount==0){
+                             alert("请至少选择一种问卷类型！");
+                             return;
+                         }
+                         var that = this;
+                         lconfirm("确认操作吗？", function () {
+                             that.isConfirm=false;
+                             if(newApp==currentApps){
+                                 setSuc(newApp);
+                                 return;
+                             }
+                             var url="/handler/setuserapp.ashx?apps="+encodeURIComponent(newApp);
+                             $.get(url,function(data){
+                                 if(data=="1"){
+                                     setSuc(newApp);
+                                 }
+                                 else
+                                     alert("未设置成功！");
+                             });
+                         })
+                         
+                     }
+                     else{
+                         $(this).removeClass("custom__btn").addClass("confirm__btn").html("<i class='confirm__icon'></i>确定");
+                         $("#divModule input").show();
+                         setCustom=true;
+                         $module_figure.removeClass("clicked");
+                         $module_figure.each(function(index){
+                             $(this).show();
+                         });
+                         var apps=currentApps.split(",");
+                         $("#divModule input").each(function(index){
+                             if(apps[index]=="1")
+                                 this.checked=true;
+                         });
+                         this.isConfirm=true;
+                     }
+                     
+                 });
+                 function setSuc(newApp){
+                     $("#hrefCustom").removeClass("confirm__btn").addClass("custom__btn").html("<i class='custom__icon'></i>自定义问卷类型");
+                     initApps(newApp);
+                     setCustom=false;
+                     $("#divModule input").hide();
+                 }
+                 $("#divCustom").click(function(){
+                     $(this).hide();
+                     $("#hrefCustom").show();
+                     $("#hrefCustom").trigger("click");
+                 });
+                 function initApps(capps){
+                     currentApps=capps;
+                     var apps=capps.split(",");var hasHideApp=false;
+                     $module_figure.each(function(index){
+                         if(apps[index]=="0"){
+                             $(this).hide();
+                             hasHideApp=true;
+                         }
+                     });
+                     if(hasHideApp){
+                         if(!isOpenUser)
+                             $("#divCustom").show();
+                         $("#hrefCustom").hide();
+                     }
+                     else
+                         $("#hrefCustom").show();
+                 }
+                 initApps(currentApps);
+</script>
 </body>
 
 </html>

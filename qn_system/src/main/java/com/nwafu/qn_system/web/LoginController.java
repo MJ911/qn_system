@@ -30,17 +30,18 @@ public class LoginController {
 		User one = new User();
 		one.setUser_name(user_name);
 		one.setUser_password(user_password);
+		System.out.println(one);
 		User user = userService.login(one);
 		session.setAttribute("user", user);
 		if(user != null) {
 			//成功
+			System.out.println("登录成功！");
 			return "index";
 		}
 		else
 			return "login?message=登录错误";
 	}
 	
-	@SuppressWarnings("unused")
 	@PostMapping("register")
 	public String register(String user_name,String user_password,String user_mail,HttpSession session) {
 		/*
