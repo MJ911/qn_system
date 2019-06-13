@@ -4,8 +4,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.nwafu.qn_system.dao.UserDAO;
+import com.nwafu.qn_system.dao.User_authorityDAO;
+import com.nwafu.qn_system.entity.Authority;
 import com.nwafu.qn_system.entity.User;
+import com.nwafu.qn_system.entity.User_authority;
 import com.nwafu.qn_system.service.UserService;
 
 @Service
@@ -13,6 +18,8 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userdao;
+	@Autowired
+	private User_authorityDAO user_authoritydao;
 
 	@Override
 	public User login(User user) {
@@ -25,6 +32,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public int register(User user) {
 		// TODO Auto-generated method stub
 		Pattern pName = Pattern.compile("[a-zA-Z]\\S{5,14}");
@@ -45,6 +53,14 @@ public class UserServiceImpl implements UserService {
 						if (userdao.getByUser_mail(user.getUser_mail()) == null) {
 
 							userdao.add(user);
+							User_authority user_authority=new User_authority();
+							user_authority.setUser(userdao.getByUser_name(user.getUser_name()));
+							Authority authority =new Authority();
+							for(int i=1;i<=5;i++){
+								authority.setAuthority_id(i);
+								user_authority.setAuthority(authority);;
+								user_authoritydao.insertUserAuthority(user_authority);
+							}
 							return 0;
 						} else {
 							return 5;
