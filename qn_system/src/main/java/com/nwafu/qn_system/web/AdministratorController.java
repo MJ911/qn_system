@@ -24,7 +24,7 @@ import com.nwafu.qn_system.entity.User;
 import com.nwafu.qn_system.entity.User_authority;
 import com.nwafu.qn_system.service.AuthorityService;
 
-@RestController
+@Controller
 @RequestMapping("qn_system")
 public class AdministratorController {
 	@Autowired
