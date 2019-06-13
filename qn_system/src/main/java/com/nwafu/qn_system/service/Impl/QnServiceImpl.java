@@ -190,18 +190,32 @@ public class QnServiceImpl implements QnService {
 	 * @param questionnaire_id
 	 * @return
 	 */
-//	public Questionnaire getAnseredQn(User user, int questionnaire_id) {
-//		Questionnaire qn_result = new Questionnaire();
-//		
-//		User_questionnaire user_qn = new User_questionnaire();
-//		Questionnaire qn = new Questionnaire();
-//		qn.setQuestionnaire_id(questionnaire_id);
-//		
-//		user_qn.setQuestionnaire(qn);
-//		user_qn.setUser(user);
-//		
-//		User_questionnaire user_qn_got = user_qndao.getUser_qnByUser_idQn_id(user_qn);
-//		
-//		
-//	}
+	public Questionnaire getAnseredQn(User user, int questionnaire_id) {
+		Questionnaire qn_result = getQn(questionnaire_id);  //此处问卷的题目中不含答案.
+		
+		User_questionnaire user_qn = new User_questionnaire();
+		Questionnaire qn = new Questionnaire();
+		qn.setQuestionnaire_id(questionnaire_id);
+		
+		user_qn.setQuestionnaire(qn);
+		user_qn.setUser(user);
+		
+		User_questionnaire user_qn_got = user_qndao.getUser_qnByUser_idQn_id(user_qn);
+		
+		/*****接下来获取user_qn_got在answer表中的查询answerList*/
+		List<Answer> answer_list = answerdao.getAnswersByUser_qn_id(user_qn_got.getUser_questionnaire_id());
+		
+		/****接下来把答案依次放到qn_reuslt中的每个question中***************/
+		for(int j = 0;j<answer_list.size();j++) {
+			for(int i = 0;i<qn_result.getQuestion_list().size();i++) {
+				//将answer加入对应题目
+				if(qn_result.getQuestion_list().get(i).getQuestion_number()==answer_list.get(j).getQuestion().getQuestion_number())
+				{
+					qn_result.getQuestion_list().get(i).setAnswer(answer_list.get(j));
+				}
+			}
+		}
+		
+		return qn_result;
+	}
 }

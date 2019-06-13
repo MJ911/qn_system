@@ -58,5 +58,5 @@ public interface QnService {
 	 * @param questionnaire_id
 	 * @return
 	 */
-	//public Questionnaire getAnseredQn(User user, int questionnaire_id);
+	public Questionnaire getAnseredQn(User user, int questionnaire_id);
 }

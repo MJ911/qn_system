@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.nwafu.qn_system.dao.AuthorityDAO;
 import com.nwafu.qn_system.dao.RoleDAO;
@@ -34,6 +35,7 @@ public class AuthorityServiceImpl implements AuthorityService{
 	private UserDAO userDAO;
 	
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public boolean createRole(Role role) {
 		// TODO Auto-generated method stub
 		try {
@@ -47,7 +49,7 @@ public class AuthorityServiceImpl implements AuthorityService{
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
-			return false;
+			throw e;
 		}
 	}
 

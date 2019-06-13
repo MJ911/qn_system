@@ -45,11 +45,7 @@
 			<version>2.0.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.5.1</version>
-		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -86,12 +82,12 @@
 			<version>4.12</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-			<version>5.1.7.RELEASE</version>
-		</dependency>
+<!-- 		 https://mvnrepository.com/artifact/org.springframework/spring-tx -->  
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework</groupId> -->
+<!-- 			<artifactId>spring-tx</artifactId> -->
+<!-- 			<version>5.1.7.RELEASE</version> -->
+<!-- 		</dependency> -->
 
 	</dependencies>
 

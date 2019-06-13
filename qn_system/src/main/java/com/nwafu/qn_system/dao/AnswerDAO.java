@@ -60,4 +60,16 @@ public interface AnswerDAO {
 			+ "#{user_questionnaire.user_questionnaire_id}, #{answer_info})")
 	public void insertIntoAnswer(Answer answer);
 	
+	/**
+	 * 根据user_questionnaire_id查询所有answer表中的记录，联合查询.
+	 * @author xdx
+	 * @param user_qn_id
+	 * @return
+	 */
+	@Results({
+		@Result(column="user_questionnaire_id",property="user_questionnaire", one=@One(select="com.nwafu.qn_system.dao.User_questionnaireDAO.getQuestionnaireByUser_questionnaire_id")),
+		@Result(column="question_id",property="question", one=@One(select="com.nwafu.qn_system.dao.QuestionDAO.getQuestionByid"))
+	})
+	@Select("select * from answer where user_questionnaire_id=#{user_qn_id}")
+	public List<Answer> getAnswersByUser_qn_id(int user_qn_id);
 }
