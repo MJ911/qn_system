@@ -234,7 +234,7 @@ public class StatisticsServiceImpl implements StatisticsService{
 
 	@Override
 	public Questionnaire exportQn(int qn_id) {
-		Questionnaire qn = qnService.getQn(1);
+		Questionnaire qn = qnService.getQn(qn_id);
 		List<Question> question_list = qn.getQuestion_list();
 		for(int i=0;i<question_list.size();i++) {
 			Question question = question_list.get(i);
