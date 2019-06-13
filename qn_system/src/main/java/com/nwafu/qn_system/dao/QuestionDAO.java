@@ -69,4 +69,13 @@ public interface QuestionDAO {
 	 */
 	@Select("select * from question where question_id=#{question_id}")
 	public Question getQuestionByid(int question_id);
+	
+	/**
+	 * 根据questionnaire_id和question_number查询返回question记录.
+	 * @author xdx
+	 * @param question
+	 * @return
+	 */
+	@Select("select * from question where questionnaire_id=#{questionnaire.questionnaire_id} and question_number=#{question_number}")
+	public Question getQuestionByQn_idQ_number(Question question);
 }

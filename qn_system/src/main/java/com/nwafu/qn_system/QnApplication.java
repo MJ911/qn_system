@@ -3,6 +3,7 @@ package com.nwafu.qn_system;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 //(scanBasePackages ="com.example.Controller") 扫描的包
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //Service:体现业务逻辑，事务的边界
 //View：SpringMVC
 //下一层直接调用上一层 不要跨层调用
+@EnableTransactionManagement
 @SpringBootApplication
 @MapperScan(basePackages="com.nwafu.qn_system.dao")
 public class QnApplication {

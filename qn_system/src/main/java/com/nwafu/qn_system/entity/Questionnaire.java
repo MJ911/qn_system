@@ -1,6 +1,7 @@
 package com.nwafu.qn_system.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 问卷类，其中的user代表创建问卷者.
@@ -13,8 +14,23 @@ public class Questionnaire {
 	private Date questionnaire_cdate;
 	private Date questionnaire_fdate;
 	private boolean questionnaire_state;
-	private User user;
+	private int questionnaire_type; //0代表调查、1代表投票
 	
+	private User user; //创建者或回答者
+	private List<Question> question_list;
+	
+	public List<Question> getQuestion_list() {
+		return question_list;
+	}
+	public void setQuestion_list(List<Question> question_list) {
+		this.question_list = question_list;
+	}
+	public int getQuestionnaire_type() {
+		return questionnaire_type;
+	}
+	public void setQuestionnaire_type(int questionnaire_type) {
+		this.questionnaire_type = questionnaire_type;
+	}
 	public int getQuestionnaire_id() {
 		return questionnaire_id;
 	}

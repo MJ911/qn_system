@@ -1,5 +1,7 @@
 package com.nwafu.qn_system.entity;
 
+import java.util.List;
+
 /**
  * 问题类.
  * @author xdx
@@ -12,7 +14,41 @@ public class Question {
 	private int question_number;
 	
 	private Questionnaire questionnaire;
+	private Answer answer; 
+	private List<Options> options_list;
+	private List<Answer> question_answer;
+
 	
+	public Answer getAnswer() {
+		return answer;
+	}
+
+
+	public void setAnswer(Answer answer) {
+		this.answer = answer;
+	}
+
+
+	public List<Answer> getQuestion_answer() {
+		return question_answer;
+	}
+
+
+	public void setQuestion_answer(List<Answer> question_answer) {
+		this.question_answer = question_answer;
+	}
+
+
+	public List<Options> getOptions_list() {
+		return options_list;
+	}
+
+
+	public void setOptions_list(List<Options> options_list) {
+		this.options_list = options_list;
+	}
+
+
 	public int getQuestion_id() {
 		return question_id;
 	}

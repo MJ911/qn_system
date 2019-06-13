@@ -69,4 +69,13 @@ public interface User_questionnaireDAO {
 	 */
 	@Select("select * from user_questionnaire where user_questionnaire_id = #{user_questionnaire_id}")
 	public User_questionnaire getQuestionnaireByUser_questionnaire_id(int user_questionnaire_id);
+	
+	/**
+	 * 根据user_id和questionnaire_id查询记录.
+	 * @author xdx.
+	 * @param user_qn
+	 * @return
+	 */
+	@Select("select * from user_questionnaire where user_id=#{user.user_id} and questionnaire_id=#{questionnaire.questionnaire_id}")
+	public User_questionnaire getUser_qnByUser_idQn_id(User_questionnaire user_qn);
 }

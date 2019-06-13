@@ -53,10 +53,11 @@ public interface AnswerDAO {
 	
 	/**
 	 * 插入记录（user_questionnaire_id、question_id、answer_info）。
-	 * @author 宋明桂
+	 * @author 宋明桂，xdx修改
 	 * test pass
 	 */
-	@Insert("insert into answer(question_id,user_questionnaire_id,"
-			+"answer_info")
+	@Insert("insert into answer(question_id,user_questionnaire_id,answer_info) values(#{question.question_id}, "
+			+ "#{user_questionnaire.user_questionnaire_id}, #{answer_info})")
 	public void insertIntoAnswer(Answer answer);
+	
 }
