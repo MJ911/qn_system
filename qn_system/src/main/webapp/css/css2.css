@@ -363,7 +363,7 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
 }
 
 /**
- * input-placeholder 居中
+ * input-placeholder 灞呬腑
  */
 input::-ms-input-placeholder, input::-webkit-input-placeholder {
  text-align: center;
@@ -383,7 +383,7 @@ input::-ms-input-placeholder, input::-webkit-input-placeholder {
 }
 
 /*
-隐藏IE浏览器自带的文本删除按钮和密码查看按钮�?
+闅愯棌IE娴忚鍣ㄨ嚜甯︾殑鏂囨湰鍒犻櫎鎸夐挳鍜屽瘑鐮佹煡鐪嬫寜閽�?
 */
 input::-ms-clear, input::-ms-reveal {
  display:none;
@@ -661,7 +661,7 @@ a.sumitbutton:hover
 }
 .clearfix {
 	zoom: 1;
- *zoom:1; /* 为了兼容ie6 */
+ *zoom:1; /* 涓轰簡鍏煎ie6 */
 }
 /*
   show
@@ -734,7 +734,7 @@ button.close {
 	border-left: 4px solid transparent;
 }
 /* 
-  带边框的三角�?
+  甯﹁竟妗嗙殑涓夎褰?
   ========================================================================== 
 */
 .caret-lf {
@@ -804,7 +804,7 @@ button.close {
     border-width: 0 5px 4px 5px;
 }
 /*
-  带阴影的三角�?
+  甯﹂槾褰辩殑涓夎褰?
   ==========================================================================
 */
 .caret-shadow:before, .caret-shadow:after {
@@ -866,7 +866,7 @@ button.close {
 }
 }
 /*
-  图标默认样式
+  鍥炬爣榛樿鏍峰紡
   ==========================================================================
 */
 .icon {
@@ -929,14 +929,14 @@ button.close {
 .drop-box li:last-child a {
 	margin-bottom: 1px;
 }
-/* 警告 */
+/* 璀﹀憡 */
 .must {
 	color: #ff6161;
 }
 .cut {
 	color: #39b895;
 }
-/* 强调 */
+/* 寮鸿皟 */
 .emphasize {
 	color: #ff941a;
 }
@@ -1059,7 +1059,7 @@ background: url("/Images/newimg/first1-new@2x.png") no-repeat center;
 	text-align: center;
 }
 /* 
-  下拉列表2 
+  涓嬫媺鍒楄〃2 
   ==========================================================================  
 */
 .spinner-list {
@@ -1125,7 +1125,7 @@ background: url("/Images/newimg/first1-new@2x.png") no-repeat center;
 	color: #1ea0fa;
 }
 /* 
-  满屏 
+  婊″睆 
   ==========================================================================
   */
 .fp-enabled, .fp-viewing {
@@ -1134,7 +1134,7 @@ background: url("/Images/newimg/first1-new@2x.png") no-repeat center;
 	height: 100%;
 }
 /* 
-  分割高度 
+  鍒嗗壊楂樺害 
   ==========================================================================
   */
 .division-50 {
@@ -1144,14 +1144,14 @@ background: url("/Images/newimg/first1-new@2x.png") no-repeat center;
 	margin: 30px 0;
 }
 /* 
-  分割虚线 
+  鍒嗗壊铏氱嚎 
   ==========================================================================
   */
 .dotted-line {
 	border-bottom: 1px dashed #d7d8d9;
 }
 /* 
-  分割虚线 
+  鍒嗗壊铏氱嚎 
   ==========================================================================    
 */
 .dotted-line--solid {
@@ -1183,7 +1183,7 @@ background: url("/Images/newimg/first1-new@2x.png") no-repeat center;
 }
 
 /* 
-  遮罩�?
+  閬僵灞?
   ==========================================================================
   */
 .mask {
@@ -1200,7 +1200,7 @@ background: url("/Images/newimg/first1-new@2x.png") no-repeat center;
  *display: inline;
 }
 /*
-  对齐
+  瀵归綈
   ==========================================================================
 */
 .text-left {
@@ -1213,7 +1213,7 @@ background: url("/Images/newimg/first1-new@2x.png") no-repeat center;
 	text-align: center;
 }
 /*
-  清除浮动
+  娓呴櫎娴姩
   ==========================================================================
 */
 .divclear {
@@ -1226,7 +1226,7 @@ background: url("/Images/newimg/first1-new@2x.png") no-repeat center;
 	clear: both;
 }
 /* 
-  提示栏：
+  鎻愮ず鏍忥細
   ========================================================================== 
 */
 .prompt-box {
@@ -1269,7 +1269,7 @@ background: url("/Images/newimg/first1-new@2x.png") no-repeat center;
 	background-color: #30a6f5;
 }
 /*  
-  公共样式
+  鍏叡鏍峰紡
   ==========================================================================
 */
 .main-wrapper {
@@ -1282,7 +1282,7 @@ background: url("/Images/newimg/first1-new@2x.png") no-repeat center;
 	color: #0987db;
 }
 /* 
-  表格
+  琛ㄦ牸
   ========================================================================== 
 */
  .fillet-content {
@@ -1290,7 +1290,7 @@ background: url("/Images/newimg/first1-new@2x.png") no-repeat center;
 	border-radius: 8px;
 	border-spacing: 0;
 	border: 1px solid #d7d8d9 \9;
-	border: none \0;  /* 只针对IE10 */
+	border: none \0;  /* 鍙拡瀵笽E10 */
 	border-bottom: none \9;
 	border-left: none \9;
 	border-top: 1px solid #d7d8d9 \9;/*IE8, 9, 10*/
@@ -1326,7 +1326,7 @@ background: url("/Images/newimg/first1-new@2x.png") no-repeat center;
 	border-bottom: 0;
 }
 @media screen\0 {
-/* 这里写在IE 8 9 10 11下起作用的样�? */
+/* 杩欓噷鍐欏湪IE 8 9 10 11涓嬭捣浣滅敤鐨勬牱寮? */
  .fillet-content tr:first-child th.fillet-header {
 	border-bottom: 1px solid #d7d8d9;
 }

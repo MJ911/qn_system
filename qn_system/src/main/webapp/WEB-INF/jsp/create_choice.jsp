@@ -46,8 +46,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- js -->
 <script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
 <link href="../css/css1.css" rel="stylesheet" />
-<link id="ctl01_cssdefault" rel="stylesheet" type="text/css" href="../css/css2.css" />
-<link id="ctl01_cssmaster" rel="stylesheet" type="text/css" href="../css/css3.css" /> 
+<!-- <link id="ctl01_cssdefault" rel="stylesheet" type="text/css" href="../css/css2.css" /> -->
+<link id="ctl01_cssmaster" rel="stylesheet" type="text/css"
+	href="../css/css3.css" />
 <link rel="stylesheet" type="text/css" href="../css/css4.css" />
 <script type="text/javascript" src="../js/jquer-1.8.3.min.js" ></script>
 <!-- //js -->
@@ -76,6 +77,52 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#div_label1{margin-top:250px;}
 		#div_label2{margin-top:25px;}
 
+.btn-blue-frame {
+	color: #1ea0fa;
+	border: 1px solid #1ea0fa;
+	background-color: #fff;
+}
+
+.btn, .btnnew {
+	display: inline-block;
+	padding: 0 10px;
+	margin-bottom: 0;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 6px;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus,
+	.btn.active.focus, .btnnew:focus, .btnnew:active:focus, .btnnew.active:focus,
+	.btnnew.focus, .btnnew:active.focus, .btnnew.active.focus {
+	outline: none;
+	outline-offset: -2px;
+}
+
+.btn:hover, .btn:focus, .btn.focus, .btnnew:hover, .btnnew:focus,
+	.btnnew.focus {
+	/*color: #333;*/
+	text-decoration: none;
+}
+
+.btn:active, .btn.active, .btnnew:active, .btnnew.active {
+	background-image: none;
+	outline: 0; /*-webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);*/
+}
 </style>
     <link href="../loginSpecial/css/demo.css" rel="stylesheet" type="text/css" />
     <link href="../loginSpecial/css/loaders.css" rel="stylesheet" type="text/css" />
