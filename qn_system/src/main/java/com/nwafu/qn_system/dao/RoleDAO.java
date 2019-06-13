@@ -29,4 +29,11 @@ public interface RoleDAO {
 	 */
 	@Select("select * from role where role.role_name=#{role_name}")
 	public Role getRoleByName(String rolename);
+	
+	/**
+	 * select all
+	 * @author sgf
+	 */
+	@Select("select * from role ")
+	public Role getAll();
 }

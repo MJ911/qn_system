@@ -37,5 +37,13 @@ public interface AuthorityDAO {
 	 */
 	@Select("select * from authority where authority_id=#{authority_id}")
 	public Authority getAllByAuthority_id(int authority_id);
+	/**
+	 * 获取全部权限
+	 * @author sgf
+	 * @param authority_id
+	 * @return
+	 */
+	@Select("select * from authority" )
+	public List<Authority> getAll();
 	
 }

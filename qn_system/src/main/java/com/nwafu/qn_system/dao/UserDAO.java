@@ -68,7 +68,7 @@ public interface UserDAO {
 	/**
 	 * 根据user_mail单表查询user表
 	 * @author sgf
-	 * @param user_id
+	 * @param user_mail
 	 * @return   
 	 */
 	@Select("select * from user where user_mail=#{user_mail}")
@@ -82,4 +82,6 @@ public interface UserDAO {
 	 */
 	@Select("select * from user where user_name=#{user_name}")
 	public User getByUser_name(String user_name);
+	
+	
 }
