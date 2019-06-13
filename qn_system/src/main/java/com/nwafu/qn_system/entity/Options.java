@@ -10,7 +10,14 @@ public class Options {
 	private int option_number;
 	private String option_name;
 	private Question question;
+	private double option_rate;//表示某一问题的各个选项出现的频率
 	
+	public double getOption_rate() {
+		return option_rate;
+	}
+	public void setOption_rate(double option_rate) {
+		this.option_rate = option_rate;
+	}
 	public int getOption_id() {
 		return option_id;
 	}

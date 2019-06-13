@@ -1,6 +1,8 @@
 package com.nwafu.qn_system.service.Impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -96,6 +98,38 @@ public class QnServiceImpl implements QnService {
 			question_list.get(i).setOptions_list(options_list);
 		}
 		questionnaire.setQuestion_list(question_list);
+		
+		//对问卷中的问题按照题目顺序，由低到高排序
+		Collections.sort(questionnaire.getQuestion_list(), new Comparator<Question>(){
+			@Override
+			public int compare(Question q1, Question q2) {
+				// TODO Auto-generated method stub
+				if(q1.getQuestion_number()>q2.getQuestion_number()) {
+					return 1;
+				}
+				if(q1.getQuestion_number()==q2.getQuestion_number()) {
+					return 0;
+				}
+				return -1;
+			}	
+		});
+
+		for(int i = 0;i<questionnaire.getQuestion_list().size();i++) {
+			//对选项在问题中出现的顺序，由低到高排序
+			Collections.sort(questionnaire.getQuestion_list().get(i).getOptions_list(), new Comparator<Options>(){
+				@Override
+				public int compare(Options op1, Options op2) {
+					// TODO Auto-generated method stub
+					if(op1.getOption_number()>op2.getOption_number()) {
+						return 1;
+					}
+					if(op1.getOption_number()==op2.getOption_number()) {
+						return 0;
+					}
+					return -1;
+				}	
+			});
+		}
 		
 		return questionnaire;
 	}
