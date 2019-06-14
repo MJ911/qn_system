@@ -113,6 +113,7 @@
 	float: left;
 	background-color: rgba(255, 255, 255, 0.9);
 	border-radius: 30px;
+	display:none;
 }
 
 #div_right {
@@ -140,7 +141,7 @@
 <script type="text/javascript">
 
 	$(function() {
-		$("#div_middle_rig").hide();
+// 		$("#div_middle_rig").hide();
 		$("#button_log").click(function() {
 			$("#div_middle").show();
 			$("#div_middle_rig").hide();
@@ -256,32 +257,35 @@
 					    <font size="5px"color="orange">欢迎注册问卷强</font>
 					 </li>	
 				 </div>
+				 
+				 
+				 
 				 <div id="div_label2">
 					 <li>
 
 					    <font size="5px"color="black">用户名：</font>
-						<input type="text" height="10"/>
+						<input type="text" height="10" style="color:black"/>
 					 </li>	
 				</div>
 				<div id="div_label2">
 					 <li>
 
 					    <font size="5px" color="black">密&nbsp;&nbsp;&nbsp;码：</font>
-						<input type="text" height="10"/>
+						<input type="password" height="10" style="color:black"/>
 					 </li>	
 				</div>
 				<div id="div_label2">
 					 <li>
 
 					    <font size="5px" color="black">确认密码：</font>
-						<input type="text" height="10" color="black"/>
+						<input type="password" height="10" style="color:black"/>
 					 </li>	
 				</div>
 				<div id="div_label2">
 					 <li>
 
 					    <font size="5px" color="black">邮&nbsp;&nbsp;&nbsp;箱：</font>
-						<input type="text" height="10"/>
+						<input type="text" height="10" style="color:black"/>
 					 </li>	
 				</div>
 					<div id="div_label2">
@@ -310,17 +314,20 @@
 					 </li>			
 			     </div>
 				 
+				 <form action="/qn_system/login" method="post">
+				 
 				 <div id="div_label2">
+				 
 					 <li>
-					    <font size="5px"color="black">用户名：</font>
-						<input type="text" height="10"/>
+					    <font size="5px" color="black">用户名：</font>
+						<input name="user_name" "type="text" height="10" style="color:black"/>
 					 </li>	
 				</div>
 				<div id="div_label2">
 					 <li>
 
 					    <font size="5px" color="black">密&nbsp;&nbsp;&nbsp;码：</font>
-						<input type="password" height="10" style="color:black"/>
+						<input name="user_password" type="password" height="10" style="color:black"/>
 					 </li>	
 				</div>
 				<div id="div_label2" >
@@ -340,7 +347,9 @@
 								style="border:none;width:200px;height:50px;border-radius:30px;background:white;color:orange;size=6px" />
 							</li>
 						</div>
-					</form>
+					
+				</form>
+					
 					<div id="div_label2">
 						<listyle"text-decoration:underline">
 						<font size="1px" color="black">忘记用户名/密码?</font>

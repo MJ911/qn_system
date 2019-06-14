@@ -1,5 +1,7 @@
 package com.nwafu.qn_system.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -35,5 +37,5 @@ public interface RoleDAO {
 	 * @author sgf
 	 */
 	@Select("select * from role ")
-	public Role getAll();
+	public List<Role> getAll();
 }

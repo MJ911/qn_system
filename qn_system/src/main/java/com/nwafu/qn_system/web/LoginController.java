@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ public class LoginController {
 		 * 成功返回到index 登录成功 往session里加入user属性
 		 * 失败返回登录界面 附带错误信息
 		 */
-		//System.out.println(user_name+user_password);
+		System.out.println(user_name+user_password);
 		
 		User one = new User();
 		one.setUser_name(user_name);
@@ -76,5 +77,9 @@ public class LoginController {
 		}
 	}
 	
-	
+	@GetMapping("quit")
+	public String quit(HttpSession session) {
+		
+		return "index";
+	}
 }

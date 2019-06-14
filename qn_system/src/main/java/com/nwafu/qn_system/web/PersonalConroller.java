@@ -31,10 +31,17 @@ public class PersonalConroller {
 		 */
 		//if判断返回不同的创建页面 调查为0 & 投票为1 创建页面
 		if(questionnaire_type==0) {
+			System.out.println("强哥!");
 			return "create_questionnaire_many";
 		}
 		return "create_questionnaire_one";
 	}
+	
+	@GetMapping("/createSerch")
+	public String createSerch() {
+		return "createSerch";
+	}
+	
 	@GetMapping("myquestionnaire_list")
 	public String myquestionnaire_list(HttpSession session,Model model) {
 		/*

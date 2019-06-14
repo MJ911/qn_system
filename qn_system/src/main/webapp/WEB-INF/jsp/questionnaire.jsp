@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#foot{margin-top:750px;width:100%;height:150px;background-color: rgba(0,0,0,0.15);}
 		#list{list-style:none;margin-left:80px;margin-top:10px;font-size:20pt;}
 		#div_left{width:20%;height:750px;float:left;}
-        #div_middle{text-align:center;width:60%;height:750px;float:left;background-color:rgba(255,255,255,0.40);border-radius:30px;}
+        #div_middle{text-align:center;width:60%;height:880px;float:left;background-color:rgba(255,255,255,0.40);border-radius:30px;}
 		#div_right{width:20;height:750px;float:left;}
 		#footer{margin-top:0px;text-align:center;weight:100%;height:20px;}
 		#footer ul{list-style-type:none;overflow: hidden;}
@@ -170,55 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div id="div_right">
     </div>
-    <div id="foot">  
-	    <div id="footer">
-	    <ul>
-		    <li style="color:white">京网文[2018]6767-101号</li>
-			<li style="color:white">中国互联网诚信联盟</li>
-			<li style="color:white">出版物经营许可证</li>
-			<li style="color:white">信息网络传播视听节目许可证088433号</li>
-			<li style="color:white">广播电视节目制作经营许可(京)字第1763号</li>
-			<li style="color:white">京ICP证12138号</li>
-			<li style="color:white">经营性网站备案信息</li>
-		
-		</ul>
-	    </div>
-
-        <div id="footer">
-	    <ul >
-		    <li style="color:white">京公网备126487212号</li>
-			<li style="color:white">增值电信业务经营许可证B2-212212138</li>
-			<li style="color:white">互联网药品信息服务证书(京)2014-3-04</li>
-			<li style="color:white">食品经营许可证JY1176668382008</li>
-		</ul>
-	    </div>
-	    <div id="footer">
-	    <ul >
-		    <li style="color:white">中国互联网举报中心</li>
-			<li style="color:white">网络举报app下载</li>
-			<li style="color:white">反盗版和反盗链权利声明</li>
-			<li style="color:white">违法和不良信息举报电话400-923-7171</li>
-			<li style="color:white">举报邮箱jubao@qiyi.com</li>
-				
-		</ul>
-	    </div>
-
-	    <div id="footer">
-	    <ul>
-		    
-			<li style="color:white">版权所有，盗版必究</li>
-		
-		</ul>
-	    </div>
-
-	    <div id="footer" style="opacity: 1; right: -5px;top: -3px;">
-	    <ul>
-			<li><font color="orange">Copyright©2019 第三组 All Rights Reserved</font></li>
-		
-		</ul>
-	
-	    </div>
-    </div>
+    
 </div>
 <script src="/loginSpecial/js/Particleground.js" type="text/javascript"></script>
 <script src="/loginSpecial/js/Treatment.js" type="text/javascript"></script>
