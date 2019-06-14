@@ -21,8 +21,8 @@ public class QuestionnaireController {
 	
 	@PostMapping("questionnaire_list")
 	public String questionnaire(@PathVariable Questionnaire questionnaire) {
-		
-		qnService.answerQn(questionnaire);
+		System.out.println(questionnaire);
+//		qnService.answerQn(questionnaire);
 		return "questionnaire_list";
 	}
 }

@@ -14,7 +14,7 @@ public class Question {
 	private int question_number;
 	
 	private Questionnaire questionnaire;
-	private Answer answer; 
+	private Answer answer;
 	private List<Options> options_list;
 	private List<Answer> question_answer;
 

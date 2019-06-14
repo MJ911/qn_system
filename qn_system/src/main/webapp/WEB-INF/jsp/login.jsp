@@ -189,7 +189,7 @@
 									class="icon-bar"></span>
 							</button>
 						</div>
-						<!-- µ¼º½-->
+						<!-- ï¿½ï¿½ï¿½ï¿½-->
 						<div class="collapse navbar-collapse menu--shylock"
 							id="bs-example-navbar-collapse-1">
 
@@ -198,23 +198,23 @@
 								<ul class="nav navbar-nav menu__list">
 									<li style="color:white"
 										class="active menu__item menu__item--current"><a
-										class="menu__link" onclick="Toindex()">Ê×Ò³<span
+										class="menu__link" onclick="Toindex()">ä¸»é¡µ<span
 											class="sr-only">(current)</span></a></li>
 									<li id="qn" style="color:white" class=" menu__item"><a
-										class="menu__link" onclick="Toquestionnaire_list(1)">Í¶Æ±¼¯</a></li>
+										class="menu__link" onclick="Toquestionnaire_list(1)">æŠ•ç¥¨é›†</a></li>
 									<li style="color:white" class=" menu__item"><a
-										class="menu__link" onclick="Toquestionnaire_list(0)">ÎÊ¾í¼¯</a></li>
+										class="menu__link" onclick="Toquestionnaire_list(0)">é—®å·é›†</a></li>
 									<li style="color:white" class=" menu__item"><a
-										class="menu__link" onclick="Tomodel_list()">ÎÊ¾íÄ£°å</a></li>
+										class="menu__link" onclick="Tomodel_list()">é—®å·æ¨¡æ¿</a></li>
 									<li style="color:white" class=" menu__item"><a
-										class="menu__link" onclick="Toindex()">°ïÖú</a></li>
+										class="menu__link" onclick="Toindex()">å¸®åŠ©</a></li>
 
 								</ul>
 							</div>
 							<div style="float:left; height:1px;width:390px">
 								<div class='validation'
 									style="opacity: 1; right: -5px;top: -3px;">
-									<canvas class="J_codeimg" id="myCanvas" onclick="Code();">¶Ô²»Æð£¬ÄúµÄä¯ÀÀÆ÷²»Ö§³Öcanvas£¬ÇëÏÂÔØ×îÐÂ°æä¯ÀÀÆ÷!</canvas>
+									<canvas  class="J_codeimg" id="myCanvas" onclick="Code();">å¯¹ä¸èµ·ï¼Œæ‚¨çš„æµè§ˆå™¨ä¸æ”¯æŒcanvasï¼Œè¯·ä¸‹è½½æœ€æ–°ç‰ˆæµè§ˆå™¨!</canvas>
 								</div>
 
 							</div>
@@ -224,16 +224,16 @@
 							<div width="10%" style="float:left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">µÇÂ¼</a></li>
+										onclick="Tologin()">ç™»å½•</a></li>
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">×¢²á</a></li>
+										onclick="Tologin()">æ³¨å†Œ</a></li>
 								</ul>
 							</div>
 							<%} else{%>
 							<div width="10%" style="float:left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Topersonal()">¸öÈËÖ÷Ò³</a></li>
+										onclick="Topersonal()">ä¸ªäººä¸»é¡µ</a></li>
 								</ul>
 							</div>							
 							<% } %>
@@ -251,33 +251,48 @@
 				<ul style="list-style-type:none">
 
 					<div id="div_label2">
-						<li><font size="5px" color="orange">»¶Ó­×¢²áÎÊ¾íÇ¿</font></li>
-					</div>
-					<div id="div_label2">
-						<li><font size="5px" color="black">ÓÃ»§Ãû£º</font> <input
-							type="text" height="10" style="color:black"/></li>
-					</div>
-					<div id="div_label2">
-						<li><font size="5px" color="black">ÃÜ&nbsp;&nbsp;&nbsp;Âë£º</font>
-							<input type="password" height="10" style="color:black"/></li>
-					</div>
-					<div id="div_label2">
-						<li><font size="5px" color="black">È·ÈÏÃÜÂë£º</font> <input
-							type="password" height="10" style="color:black"/></li>
-					</div>
-					<div id="div_label2">
-						<li><font size="5px" color="black">ÓÊ&nbsp;&nbsp;&nbsp;Ïä£º</font>
-							<input type="text" height="10" style="color:black"/></li>
-					</div>
+					 <li>
+
+					    <font size="5px"color="orange">æ¬¢è¿Žæ³¨å†Œé—®å·å¼º</font>
+					 </li>	
+				 </div>
+				 <div id="div_label2">
+					 <li>
+
+					    <font size="5px"color="black">ç”¨æˆ·åï¼š</font>
+						<input type="text" height="10"/>
+					 </li>	
+				</div>
+				<div id="div_label2">
+					 <li>
+
+					    <font size="5px" color="black">å¯†&nbsp;&nbsp;&nbsp;ç ï¼š</font>
+						<input type="text" height="10"/>
+					 </li>	
+				</div>
+				<div id="div_label2">
+					 <li>
+
+					    <font size="5px" color="black">ç¡®è®¤å¯†ç ï¼š</font>
+						<input type="text" height="10" color="black"/>
+					 </li>	
+				</div>
+				<div id="div_label2">
+					 <li>
+
+					    <font size="5px" color="black">é‚®&nbsp;&nbsp;&nbsp;ç®±ï¼š</font>
+						<input type="text" height="10"/>
+					 </li>	
+				</div>
 					<div id="div_label2">
 						<li align="center"><input type="submit" id="button_rig"
-							value="Á¢¼´×¢²á"
+							value="ç«‹å³æ³¨å†Œ"
 							style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size=6px" />
 						</li>
 					</div>
 					<div id="div_label3">
 						<li align="center"><input type="submit" id="button_log"
-							value="ÒÑÓÐÕËºÅ"
+							value="å·²æœ‰è´¦å·"
 							style="border:none;width:200px;height:50px;border-radius:30px;background:white;color:orange;size=6px" />
 						</li>
 					</div>
@@ -290,37 +305,45 @@
 			<div id="div_label1">
 				<ul style="list-style-type:none">
 					<div id="div_label2">
-						<li><font size="5px" color="orange">»¶Ó­µÇÂ¼ÎÊ¾íÇ¿</font></li>
-					</div>
-					<form action="/qn_system/login" method="post">
-						<div id="div_label2">
-							<li><font size="5px" color="black">ÓÃ»§Ãû£º</font> <input
-								type="text" height="10" name="user_name" style="color:black"/></li>
-						</div>
-						<div id="div_label2">
-							<li><font size="5px" color="black">ÃÜ&nbsp;&nbsp;&nbsp;Âë£º</font>
-								<input type="password" style="color:black" height="10" name="user_password" /></li>
-						</div>
-						<div id="div_label2">
-							<li><input name="Fruit" type="checkbox" value="" /><font
-								size="1px" color="black">ÏÂ´Î×Ô¶¯µÇÂ¼</font></li>
-						</div>
+					 <li>
+					    <font size="5px" color="orange">æ¬¢è¿Žç™»å½•é—®å·å¼º</font>
+					 </li>			
+			     </div>
+				 
+				 <div id="div_label2">
+					 <li>
+					    <font size="5px"color="black">ç”¨æˆ·åï¼š</font>
+						<input type="text" height="10"/>
+					 </li>	
+				</div>
+				<div id="div_label2">
+					 <li>
+
+					    <font size="5px" color="black">å¯†&nbsp;&nbsp;&nbsp;ç ï¼š</font>
+						<input type="password" height="10" style="color:black"/>
+					 </li>	
+				</div>
+				<div id="div_label2" >
+					 <li>
+						 <input name="Fruit" type="checkbox" value="" /><font size="1px" color="black">ä¸‹æ¬¡è‡ªåŠ¨ç™»å½•</font>
+					 </li>	
+				</div>
 						<div id="div_label2">
 							<li align="center"><input type="submit" id="button_login"
-								value="Á¢¼´µÇÂ¼"
+								value="ç«‹å³ç™»å½•"
 								style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size=6px" />
 							</li>
 						</div>
 						<div id="div_label3">
 							<li align="center"><input type="button" id="button_rigester"
-								value="Á¢¼´×¢²á"
+								value="ç«‹å³æ³¨å†Œ"
 								style="border:none;width:200px;height:50px;border-radius:30px;background:white;color:orange;size=6px" />
 							</li>
 						</div>
 					</form>
 					<div id="div_label2">
 						<listyle"text-decoration:underline">
-						<font size="1px" color="black">Íü¼ÇÓÃ»§Ãû/ÃÜÂë?</font>
+						<font size="1px" color="black">å¿˜è®°ç”¨æˆ·å/å¯†ç ?</font>
 						</li>
 					</div>
 				</ul>
