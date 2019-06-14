@@ -252,4 +252,34 @@ public class QnServiceImpl implements QnService {
 		
 		return qn_result;
 	}
+	
+	/**
+	 * 删除指定问卷，获取问卷的创建者、然后获得user_questionnaire_id的List，获得questionList，去answer表中删除对应的记录，options表中删除options，question表中删除,questionnaire表中删除.
+	 * @author xdx
+	 * @param questionnaire_id
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteQn(int questionnaire_id) {
+		Questionnaire questionnaire = getQn(questionnaire_id);
+		List<User_questionnaire> qn_list = user_qndao.getAllByQnId(questionnaire_id);
+		
+		/****删除answer表中相应记录*****/
+		for(int i = 0;i<qn_list.size();i++) {
+			answerdao.deleteAnswers(qn_list.get(i).getUser_questionnaire_id());
+		}
+		
+		/****删除options表*****/
+		for(int i = 0;i<questionnaire.getQuestion_list().size();i++) {
+			optionsdao.deleteByQuestionId(questionnaire.getQuestion_list().get(i).getQuestion_id());
+		}
+		
+		/****删除question表中的相应记录*****/
+		questiondao.deleteQuestionByQn_id(questionnaire.getQuestionnaire_id());
+		
+		/****删除questionnaire表中的相应记录*****/
+		qndao.delete(questionnaire.getQuestionnaire_id());
+		
+		/****删除user_questionnaire表中的相应记录*****/
+		user_qndao.delete(questionnaire.getQuestionnaire_id());
+	}
 }

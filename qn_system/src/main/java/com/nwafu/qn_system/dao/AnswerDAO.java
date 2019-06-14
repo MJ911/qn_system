@@ -2,6 +2,7 @@ package com.nwafu.qn_system.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Result;
@@ -72,4 +73,12 @@ public interface AnswerDAO {
 	})
 	@Select("select * from answer where user_questionnaire_id=#{user_qn_id}")
 	public List<Answer> getAnswersByUser_qn_id(int user_qn_id);
+	
+	/**
+	 * 根据user_qn_id删除answer表中的
+	 * @author xdx
+	 * @param user_qn_id
+	 */
+	@Delete("delete from answer where user_questionnaire_id=#{user_qn_id}")
+	public void deleteAnswers(int user_qn_id);
 }

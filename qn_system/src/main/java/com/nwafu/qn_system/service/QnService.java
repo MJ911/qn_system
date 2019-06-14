@@ -59,4 +59,11 @@ public interface QnService {
 	 * @return
 	 */
 	public Questionnaire getAnseredQn(User user, int questionnaire_id);
+	
+	/**
+	 * 删除指定问卷，获取问卷的创建者、然后获得user_questionnaire_id的List，获得questionList，去answer表中删除对应的记录，options表中删除options，question表中删除,questionnaire表中删除.
+	 *@author xdx
+	 * @param questionnaire_id
+	 */
+	public void deleteQn(int questionnaire_id);
 }

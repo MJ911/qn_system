@@ -38,8 +38,18 @@ public class IndexController {
 		 * 往model里面加调查或者投票的List
 		 * questionnaire_type为0视为调查
 		 * questionnaire_type为1视为投票
+		 * questionnaire_type为2为管理问卷列表
 		 */
-		List<Questionnaire> questionnairelist = questionnaireDAO.getAllByquestionnaire_type(questionnaire_type);
+		List<Questionnaire> questionnairelist = null;
+		if(questionnaire_type==2) {
+			questionnairelist = questionnaireDAO.getAll();
+			model.addAttribute("questionnairelist", questionnairelist);
+			return "questionnaire_listAdmin";
+		}
+		else {
+			questionnairelist = questionnaireDAO.getAllByquestionnaire_type(questionnaire_type);
+		}
+		
 		model.addAttribute("questionnairelist", questionnairelist);
 		return "questionnaire_list";
 	}

@@ -23,6 +23,7 @@ import com.nwafu.qn_system.entity.Role;
 import com.nwafu.qn_system.entity.User;
 import com.nwafu.qn_system.entity.User_authority;
 import com.nwafu.qn_system.service.AuthorityService;
+import com.nwafu.qn_system.service.QnService;
 
 @Controller
 @RequestMapping("qn_system")
@@ -39,16 +40,19 @@ public class AdministratorController {
 	private AuthorityService authorityService;
 	@Autowired
 	private RoleDAO roledao;
-
+	@Autowired
+	private QnService qnservice;
+	
 	@GetMapping("/delete_questionnaire/{qn_id}")
 	public String delete_questionnaire(@PathVariable int qn_id, Model model) {
 		/*
 		 * 管理员删除问卷 从questionnaire.jsp跳转 或questionnaire_list.jsp跳转过来
 		 * 跳转到啊questionnaire_list.jsp
 		 * 
-		 * @auhtor sgf
+		 * @auhtor sgf，修改xdx
 		 */
-		questionnairedao.delete(qn_id);
+		qnservice.deleteQn(qn_id);
+//		questionnairedao.delete(qn_id);
 		model.addAttribute("questionnairelist", questionnairedao.getAll());
 
 		return "questionnaire_list";

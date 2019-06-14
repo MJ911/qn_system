@@ -78,4 +78,12 @@ public interface QuestionDAO {
 	 */
 	@Select("select * from question where questionnaire_id=#{questionnaire.questionnaire_id} and question_number=#{question_number}")
 	public Question getQuestionByQn_idQ_number(Question question);
+	
+	/**
+	 * 根据问卷id删除问题表中的相应记录.
+	 * @author xdx
+	 * @param questionnaire_id
+	 */
+	@Delete("delete from question where questionnaire_id=#{questionnaire_id}")
+	public void deleteQuestionByQn_id(int questionnaire_id);
 }
