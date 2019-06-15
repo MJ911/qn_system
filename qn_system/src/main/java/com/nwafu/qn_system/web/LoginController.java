@@ -79,7 +79,7 @@ public class LoginController {
 	
 	@GetMapping("quit")
 	public String quit(HttpSession session) {
-		
+		session.removeAttribute("user");
 		return "index";
 	}
 }

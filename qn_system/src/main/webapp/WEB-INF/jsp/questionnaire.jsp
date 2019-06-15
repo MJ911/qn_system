@@ -147,25 +147,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div id="div_middle" >
 	   <h1>${questionnaire.questionnaire_name }</h1>
-	   <form action="../../../qn_system/questionnaire_list">
+	   <form action="/qn_system/questionnaire_list" method="post">
+	   
 	   	<c:forEach items="${questionnaire.question_list}" var="question">
 	   		<h3>题目${question.question_number }&nbsp;.${question.question_name}</h3>
- 	   		<c:if test="${question.question_type == '0'}"><%--当前为单选题 --%>
+ 	   		<c:if test="${question.question_type == '1'}"><%--当前为单选题 --%>
 	   			<c:forEach items="${question.options_list }" var="option">
-	   				<input id="questionnaire.question_list[${question.question_number-1 }].answer.answer_info" type="radio" name="${question.question_number }" value="${option.option_number }"/>${option.option_number }&nbsp;.${option.option_name}<br>
+	   				<input name="question_list[${question.question_number-1 }].answer.answer_info" type="radio" value="${option.option_number }"/>${option.option_number }&nbsp;.${option.option_name}<br>
+	   				<input name="question_list[${question.question_number-1 }].question_type" type="hidden" value="${question.question_type }">
+	   				<input name="question_list[${question.question_number-1 }].answer.question.question_id" type="hidden" value="${question.question_id }">
 	   			</c:forEach>
 	   		</c:if>
-	   		<c:if test="${question.question_type == '1'}"><%--当前为多选题 --%>
+	   		<c:if test="${question.question_type == '2'}"><%--当前为多选题 --%>
 	   			<c:forEach items="${question.options_list }" var="option">
-	   				<input id="questionnaire.question_list[${question.question_number-1 }].answer.answer_info" type="checkbox" name="${question.question_number }" value="${option.option_number }"/>${option.option_number }&nbsp;.${option.option_name}<br>
+	   				<input name="question_list[${question.question_number-1 }].answer.answer_info" type="checkbox" value="${option.option_number }"/>${option.option_number }&nbsp;.${option.option_name}<br>
+	   				<input name="question_list[${question.question_number-1 }].question_type" type="hidden" value="${question.question_type }">
+	   				<input name="question_list[${question.question_number-1 }].answer.question.question_id" type="hidden" value="${question.question_id }">
+	   				<input name="question_list[${question.question_number-1 }].options_list[${option.option_number-1 }].option_number" type="hidden" value="${option.option_number }">
 	   			</c:forEach>
 	   		</c:if>
-	   		<c:if test="${question.question_type == '2'}"><%--当前为填空题 --%>
-	   			<input id="questionnaire.question_list[${question.question_number-1 }].answer.answer_info" type="text" />${option.option_number }&nbsp;.${option.option_name}<br>
+	   		<c:if test="${question.question_type == '3'}"><%--当前为填空题 --%>
+	   			<input name="question_list[${question.question_number-1 }].answer.answer_info" type="text" />${option.option_number }&nbsp;.${option.option_name}<br>
+	   			<input name="question_list[${question.question_number-1 }].question_type" type="hidden" value="${question.question_type }">
+	   			<input name="question_list[${question.question_number-1 }].answer.question.question_id" type="hidden" value="${question.question_id }">
 	   		</c:if>
 	   	</c:forEach><br>
+	   	<input name="questionnaire_id" type="hidden" value="${questionnaire.questionnaire_id }">
+	   	<input name="user.user_id" type="hidden" value="${sessionScope.user.user_id}">
 	   	<input type="submit" value="提交">
 	   	<input type="reset" value="清除" />
+	   	
 	   </form>
     </div>
     <div id="div_right">

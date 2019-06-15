@@ -35,6 +35,11 @@ public class Answer {
 	public void setUser_questionnaire(User_questionnaire user_questionnaire) {
 		this.user_questionnaire = user_questionnaire;
 	}
+	@Override
+	public String toString() {
+		return "Answer [answer_id=" + answer_id + ", answer_info=" + answer_info + ", question=" + question
+				+ ", user_questionnaire=" + user_questionnaire + "]";
+	}
 	
 	
 }

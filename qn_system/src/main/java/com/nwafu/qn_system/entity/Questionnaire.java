@@ -71,8 +71,8 @@ public class Questionnaire {
 	public String toString() {
 		return "Questionnaire [questionnaire_id=" + questionnaire_id + ", questionnaire_name=" + questionnaire_name
 				+ ", questionnaire_cdate=" + questionnaire_cdate + ", questionnaire_fdate=" + questionnaire_fdate
-				+ ", questionnaire_state=" + questionnaire_state + ", user=" + user + "]";
-	}
-	
+				+ ", questionnaire_state=" + questionnaire_state + ", questionnaire_type=" + questionnaire_type
+				+ ", user=" + user + ", question_list=" + question_list + "]";
+	}	
 	
 }

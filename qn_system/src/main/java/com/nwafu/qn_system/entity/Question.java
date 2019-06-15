@@ -102,9 +102,8 @@ public class Question {
 	@Override
 	public String toString() {
 		return "Question [question_id=" + question_id + ", question_type=" + question_type + ", question_name="
-				+ question_name + ", question_number=" + question_number + ", questionnaire=" + questionnaire + "]";
-	}
-	
-	
-	
+				+ question_name + ", question_number=" + question_number + ", questionnaire=" + questionnaire
+				+ ", answer=" + answer + ", options_list=" + options_list + ", question_answer=" + question_answer
+				+ "]";
+	}	
 }
