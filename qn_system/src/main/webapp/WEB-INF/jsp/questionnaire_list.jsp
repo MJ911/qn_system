@@ -167,9 +167,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <table cellpadding="0" cellspacing="0" border="0"  width="100%" style="color:black;">
             <tr>
             <th>问卷/投票 名称</th>
-            <th>问卷创建时间</th>
-            <th>问卷失效时间</th>
-            <th>问卷创建人</th>
+            <th>问卷/投票 创建时间</th>
+            <th>问卷/投票 失效时间</th>
+            <th>问卷/投票 创建人</th>
             </tr>
             
             <c:forEach items="${questionnairelist }" var="questionnaire">

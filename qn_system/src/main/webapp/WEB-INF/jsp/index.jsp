@@ -34,25 +34,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 </script>
 <!-- //for-mobile-apps -->
-<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- pignose css -->
-<link href="../css/pignose.layerslider.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/css/pignose.layerslider.css" rel="stylesheet" type="text/css" media="all" />
 
 
 <!-- //pignose css -->
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- js -->
-<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
 <!-- cart -->
-	<script src="../js/simpleCart.min.js"></script>
+	<script src="/js/simpleCart.min.js"></script>
 <!-- cart -->
 <!-- for bootstrap working -->
-	<script type="text/javascript" src="../js/bootstrap-3.1.1.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap-3.1.1.min.js"></script>
 <!-- //for bootstrap working -->
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
-<script src="../js/jquery.easing.min.js"></script>
+<script src="/js/jquery.easing.min.js"></script>
 <style type="text/css">
         #top{background-color:#213d90;background-color: rgba(255,255,255,0.05);}
         #main{left:0;top:0;margin-top=0px;width:100%;height:980px;background:white;background-image:url(./images/ssss.jpg);background-size:100%,100%;background-repeat:none;background:rgba(255,255,255,0.1);position:fixed;}
@@ -70,8 +70,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#div_label2{margin-top:25px;}
 
 </style>
-    <link href="../loginSpecial/css/demo.css" rel="stylesheet" type="text/css" />
-    <link href="../loginSpecial/css/loaders.css" rel="stylesheet" type="text/css" />
+    <link href="/loginSpecial/css/demo.css" rel="stylesheet" type="text/css" />
+    <link href="/loginSpecial/css/loaders.css" rel="stylesheet" type="text/css" />
 	<script text="text/javascript">
 	    
 	</script>
@@ -219,9 +219,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    </div>
     </div>
 </div>
-<script src="../loginSpecial/js/Particleground.js" type="text/javascript"></script>
-<script src="../loginSpecial/js/Treatment.js" type="text/javascript"></script>
-<script src="../loginSpecial/js/controlLogin.js" type="text/javascript"></script>
+<script src="/loginSpecial/js/Particleground.js" type="text/javascript"></script>
+<script src="/loginSpecial/js/Treatment.js" type="text/javascript"></script>
+<script src="/loginSpecial/js/controlLogin.js" type="text/javascript"></script>
 
 </body>
 
