@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService {
 	private User_authorityDAO user_authoritydao;
 
 	/**
-	 * @author ËÎÃ÷¹ğ
-	 * Ìí¼ÓÁËÓÃ»§µÇÂ¼µÄÅĞ¶Ï,ÓÃ»§ÊÇ·ñ¼¤»î
+	 * @author å®‹æ˜æ¡‚
+	 * æ·»åŠ äº†ç”¨æˆ·ç™»å½•çš„åˆ¤æ–­,ç”¨æˆ·æ˜¯å¦æ¿€æ´»
 	 */
 	@Override
 	public User login(User user) {
