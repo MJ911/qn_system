@@ -14,6 +14,13 @@ public class User {
 	private String user_mail;
 	private Role role;
 	/**
+	 * 在User实体类中添加了两个属性
+	 * user_state(0,1) user_activecode
+	 * @author 宋明桂
+	 */
+	private boolean user_state;
+	private String user_activecode;
+	/**
 	 * 在User实体类中增加List<Authority>属性
 	 * @author 宋明桂
 	 * 2019-6-12
@@ -56,10 +63,23 @@ public class User {
 	public void setAuthorityList(List<Authority> authorityList) {
 		this.authorityList = authorityList;
 	}
+	public boolean isUser_state() {
+		return user_state;
+	}
+	public void setUser_state(boolean user_state) {
+		this.user_state = user_state;
+	}
+	public String getUser_activecode() {
+		return user_activecode;
+	}
+	public void setUser_activecode(String user_activecode) {
+		this.user_activecode = user_activecode;
+	}
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", user_name=" + user_name + ", user_password=" + user_password
-				+ ", user_mail=" + user_mail + ", role=" + role + ", authorityList=" + authorityList + "]";
+				+ ", user_mail=" + user_mail + ", role=" + role + ", user_state=" + user_state + ", user_activecode="
+				+ user_activecode + ", authorityList=" + authorityList + "]";
 	}
 	
 }

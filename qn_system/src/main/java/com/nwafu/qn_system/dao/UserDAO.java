@@ -44,8 +44,14 @@ public interface UserDAO {
 	 * 插入数据.
 	 * @author xdx
 	 * @param user
+	 * 
 	 */
-	@Insert("insert into user(user_name, user_password, user_mail) values(#{user_name}, #{user_password}, #{user_mail})")
+	/**
+	 * 加入user_activecod user_state属性   注意加入user_headurl
+	 * @author 宋明桂
+	 * @param user
+	 */
+	@Insert("insert into user(user_name, user_password, user_mail,user_state,user_activecode) values(#{user_name}, #{user_password}, #{user_mail},#{user_state},#{user_activecode})")
 	public void add(User user);
 	
 	/**
@@ -83,5 +89,23 @@ public interface UserDAO {
 	@Select("select * from user where user_name=#{user_name}")
 	public User getByUser_name(String user_name);
 	
+	/**
+	 * 修改用户状态
+	 * @author 宋明桂
+	 */
+	@Update("update user set user_state=#{user_state},user_activecode=#{user_activecode} where user_name=#{user_name}")
+	public void updateUserstate_activecode(User user);
 	
+	/**
+	 * 修改用户头像
+	 * @author 宋明桂
+	 */
+	@Update("update user set user_headurl=#{user_headurl} where user_name=#{user_name}")
+	public void updateUserheadurl(User user);
+	/**
+	 * 通过激活码获取用户的信息
+	 * @author 宋明桂
+	 */
+	@Select("select * from user where user_activecode=#{active_code}")
+	public User getByActivecode(String active_code);
 }
