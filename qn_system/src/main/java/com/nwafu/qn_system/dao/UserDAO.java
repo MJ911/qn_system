@@ -44,7 +44,6 @@ public interface UserDAO {
 	 * 插入数据.
 	 * @author xdx
 	 * @param user
-	 * 
 	 */
 	/**
 	 * 加入user_activecod user_state属性   注意加入user_headurl

@@ -80,6 +80,14 @@ public interface QuestionnaireDAO {
 	@Select("select * from questionnaire where user_id=#{user.user_id} and questionnaire_cdate=#{questionnaire_cdate}")
 	public Questionnaire getQuestionnaireByUser_idCdate(Questionnaire questionnaire);
 	
+	/**
+	 * 根据user_id和questionnaire_name，查找questionnaire记录.
+	 * @author xdx
+	 * @param questionnaire
+	 * @return
+	 */
+	@Select("select * from questionnaire where user_id=#{user.user_id} and questionnaire_name=#{questionnaire_name}")
+	public Questionnaire getQuestionnaireByUser_idQ_name(Questionnaire questionnaire);
 	/*
 	 * 根据用户id查询所创建的问卷列表.
 	 * @author xdx

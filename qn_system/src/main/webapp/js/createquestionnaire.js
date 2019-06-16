@@ -1,13 +1,25 @@
 ﻿$(document).ready(function(e) {
-			 $('#addquerstions').change(function() {
-
+			 $('#button_xdx').click(function() {
+				 
 		            // debugger
-		            var index = $(this).val(); //选择添加问题的类型
+				 	
+		            var index = $('#addquerstions').val(); //选择添加问题的类型
 		            if (index == "-1") {
 		                return;
 		            }
 		            var movie_box = '<div class="movie_box" style="border: 1px solid rgb(255, 255, 255);"></div>';
 		            var Grade = $(".yd_box").find(".movie_box").length + 1;
+		            var question_num = Grade-1;
+		            
+		            movie_box = $(movie_box).append(' <input class="q_name" type="hidden" name="question_list[' + question_num + '].question_name" value="xdx"/> ');
+		            movie_box = $(movie_box).append(' <input class="q_num" type="hidden" name="question_list[' + question_num + '].question_number" value="' + Grade + '"/> ');
+                    if (index == "0") {
+                    	movie_box = $(movie_box).append(' <input class="q_type" type="hidden" name="question_list[' + question_num + '].question_type" value="1"/> ');
+                    } else if (index == "1") {
+                    	movie_box = $(movie_box).append(' <input class="q_type" type="hidden" name="question_list[' + question_num + '].question_type" value="2"/> ');
+                    } else if (index == "2") {
+                    	movie_box = $(movie_box).append(' <input class="q_type" type="hidden" name="question_list[' + question_num + '].question_type" value="3"/> ');
+                    }
 		            switch (index) {
 		                case "0": //单选
 		                case "1": //多选
@@ -23,6 +35,8 @@
 		                    }
 		                    
 		                    wjdc_list = $(wjdc_list).append(' <li><div class="tm_btitlt"><i class="nmb">' + Grade + '</i>. <i class="btwenzi">请编辑问题？</i><span class="tip_wz">' + danxuan + '</span></div></li>');
+		                    
+		                    //var texte_bt_val = $(this).parent(".kzqy_czbut").parent(".movie_box").find(".wjdc_list").children("li").eq(0).find(".tm_btitlt").children(".btwenzi").text();
 		                    if (index == "2") {
 		                        wjdc_list = $(wjdc_list).append('<li>  <label> <textarea name="" cols="" rows="" class="input_wenbk btwen_text btwen_text_dx" ></textarea></label> </li>');
 		                    }
@@ -53,7 +67,7 @@
 		                    "border": "1px solid #fff"
 		                });
 		                $(this).children(".kzqy_czbut").remove();
-		                //$(this).children(".dx_box").hide(); 
+		                //$('#addquerstions').children(".dx_box").hide(); 
 		            });
 		            $(".yd_box").append(movie_box);
 
@@ -67,8 +81,8 @@
 
 				$(".leftbtwen_text").val("例子：CCTV1，CCTV2，CCTV3");
 				$(".xxk_title li").click(function() {
-					var xxkjs = $(this).index();
-					$(this).addClass("on").siblings().removeClass("on");
+					var xxkjs = $('#addquerstions').index();
+					$('#addquerstions').addClass("on").siblings().removeClass("on");
 					$(".xxk_conn").children(".xxk_xzqh_box").eq(xxkjs).show().siblings().hide();
 				});*/
 
@@ -102,6 +116,9 @@
 						//序号
 						czxx.children(".wjdc_list").find(".nmb").text(dqgs + 1);
 						czxx.next().children(".wjdc_list").find(".nmb").text(dqgs + 2);
+						//修改题号input值
+						czxx.find(".q_num").val(dqgs + 1);
+						czxx.next().find(".q_num").val(dqgs + 2);
 					} else {
 						alert("到底了");
 					}
@@ -120,7 +137,9 @@
 						//序号
 						czxx.children(".wjdc_list").find(".nmb").text(dqgs + 1);
 						czxx.prev().children(".wjdc_list").find(".nmb").text(dqgs);
-
+						//修改题号input值
+						czxx.find(".q_num").val(dqgs + 1);
+						czxx.prev().find(".q_num").val(dqgs);
 					} else {
 						alert("到头了");
 					}
@@ -128,15 +147,18 @@
 				//删除
 				$(".del").live("click", function() {
 					var czxx = $(this).parent(".kzqy_czbut").parent(".movie_box");
-					var zgtitle_gs = czxx.parent(".yd_box").find(".movie_box").length;
+					czxx.remove();
+					var zgtitle_gs = $(".yd_box").find(".movie_box").length;
 					var xh_num = 1;
 					//重新编号
-					czxx.parent(".yd_box").find(".movie_box").each(function() {
-						$(".yd_box").children(".movie_box").eq(xh_num).find(".nmb").text(xh_num);
+					$(".yd_box").find(".movie_box").each(function() {
+						$(".yd_box").children(".movie_box").eq(xh_num-1).find(".nmb").text(xh_num);
+						//修改题号input值
+						$(".yd_box").children(".movie_box").eq(xh_num-1).find(".q_num").val(xh_num);
 						xh_num++;
 						//alert(xh_num);
 					});
-					czxx.remove();
+//					czxx.remove();
 				});
 
 				//编辑
@@ -273,7 +295,7 @@
 							//题目标题
 							var texte_bt_val_bj = jcxxxx.find(".btwen_text").val(); //获取问题题目
 							jcxxxx.parent(".movie_box").children(".wjdc_list").children("li").eq(0).find(".tm_btitlt").children(".btwenzi").text(texte_bt_val_bj); //将修改过的问题题目展示
-
+							jcxxxx.parent(".movie_box").find(".q_name").val(texte_bt_val_bj);
 							//删除选项
 							for(var toljs = xmtit_length; toljs > 0; toljs--) {
 								jcxxxx.parent(".movie_box").children(".wjdc_list").children("li").eq(toljs).remove();
@@ -283,6 +305,13 @@
 							jcxxxx.children(".title_itram").children(".kzjxx_iteam").each(function() {
 								//题目选项
 								var texte_val_bj = $(this).find(".input_wenbk").val(); //获取填写信息
+								//设置input选项value值
+								var question_num = jcxxxx.parent(".movie_box").index();
+								var option_number = bjjs_bj+1;
+//								jcxxxx.parent(".movie_box").append('<input type="hidden" name="question_list[' + question_num + '].options_list[' + bjjs_bj + '].option_number"/>');
+								jcxxxx.parent(".movie_box").append(' <input type="hidden" name="question_list[' + question_num + '].options_list[' + bjjs_bj + '].option_number" value="'+ option_number +'"/>  ');
+								jcxxxx.parent(".movie_box").append(' <input type="hidden" name="question_list[' + question_num + '].options_list[' + bjjs_bj + '].option_name" value="'+ texte_val_bj +'"/>  ');
+								
 								var inputType = 'radio';
 								//jcxxxx.parent(".movie_box").children(".wjdc_list").children("li").eq(bjjs_bj + 1).find("span").text(texte_val_bj);
 								if(querstionType == "1") {
@@ -306,6 +335,7 @@
 						case "2":
 							var texte_bt_val_bj = jcxxxx.find(".btwen_text").val(); //获取问题题目
 							jcxxxx.parent(".movie_box").children(".wjdc_list").children("li").eq(0).find(".tm_btitlt").children(".btwenzi").text(texte_bt_val_bj); //将修改过的问题题目展示
+							jcxxxx.parent(".movie_box").find(".q_name").val(texte_bt_val_bj);
 							break;
 
 						case "3": //矩阵

@@ -11,30 +11,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <title>createquestionnaire</title>
     <link rel="stylesheet" type="text/css" href="/css/questionnaire.css">
     <script src="/js/jquery.min2.js"></script>
-<!--     <script src="/js/jquery.min.js"></script> -->
     <script src="/js/createquestionnaire.js"></script>
-<!-- 	<link rel="stylesheet" type="text/css" href="/css/wui.min.css"> -->
-<!-- 	<script type="text/javascript" src="/js/angular.js" charset="utf-8"></script> -->
-<!-- 	<script type="text/javascript" src="/js/wui-date.js" charset="utf-8"></script> -->
 </head>
 
-
 <body>
-<!--   	<form action="/qn_system/create_questionnaire" method="post"> -->
-<!--   		<input name="questionnaire_name" type="hidden" value="xdxxxxx" /> -->
-<!-- <!--   		<input name="question_list[0].question_name" type="hidden" value="xdxxxxx" /> -->
-<!--   		<input type="submit" value="test"/> -->
-<!--   	</form> -->
-
-<!--   	<input type="hidden" name="question_list[0].question_number" value="1"/> -->
-<!--   	<input type="hidden" name="question_list[1].question_number" value="2"/> -->
-<!--   	<input type="submit" value="test"/> -->
-<!--   </form> -->
-  <form action="/qn_system/create_questionnaire" method="post">
-    <input type="hidden" name="questionnaire_state" value="1"/>
-    <input type="hidden" name="questionnaire_type" value="0"/>
-    <center>问卷名：<input type="text" name="questionnaire_name"/></center>
-
     <div class=" all_660">
         <div class="yd_box"></div>
         <div class="but" style="padding-top: 20px">
@@ -45,15 +25,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <option value="2">填空</option>
                 <option value="3">矩阵</option>
             </select>
-            <input type="button" id="button_xdx" value="添加问题"/>
+            <button id="button_xdx">提交问题</button>
         </div>
-        <!--选项卡区域  模板区域---------------------------------------------------------------------------------------------------------------------------------------->
+        <!--选项卡区域  模板区域	---------------------------------------------------------------------------------------------------------------------------------------->
         <div class="xxk_box">
             <div class="xxk_conn hide">
                 <!--单选----------------------------------------------------------------------------------------------------------------------------------------->
                 <div class="xxk_xzqh_box dxuan ">
-                
-                    <textarea cols="" rows="" class="input_wenbk btwen_text btwen_text_dx" placeholder="单选题目"></textarea>
+                    <textarea name="" cols="" rows="" class="input_wenbk btwen_text btwen_text_dx" placeholder="单选题目"></textarea>
                     <div class="title_itram">
                         <div class="kzjxx_iteam">
                             <input name="" type="radio" value="" class="dxk">
@@ -72,9 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <!--多选----------------------------------------------------------------------------------------------------------------------------------------->
                 <div class="xxk_xzqh_box duoxuan hide">
-                    
-<%--                 	<input type="hidden" name="question_list[<%=question_num%>].question_num" value=<%=question_num %>/> --%>
-                    <textarea cols="" rows="" class="input_wenbk btwen_text btwen_text_duox" placeholder="多选题目"></textarea>
+                    <textarea name="" cols="" rows="" class="input_wenbk btwen_text btwen_text_duox" placeholder="多选题目"></textarea>
                     <div class="title_itram">
                         <div class="kzjxx_iteam">
                             <input name="" type="checkbox" value="" class="dxk">
@@ -93,9 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <!-- 填空----------------------------------------------------------------------------------------------------------------------------------------->
                 <div class="xxk_xzqh_box tktm hide">
-                   
-<%--                 	<input type="hidden" name="question_list[<%=question_num%>].question_num" value=<%=question_num %>/> --%>
-                    <textarea cols="" rows="" class="input_wenbk btwen_text btwen_text_tk" placeholder="答题区"></textarea>
+                    <textarea name="" cols="" rows="" class="input_wenbk btwen_text btwen_text_tk" placeholder="答题区"></textarea>
                     <!--完成编辑-->
                     <div class="bjqxwc_box">
                         <a href="javascript:void(0);" class="qxbj_but">取消编辑</a>
@@ -156,9 +131,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 	<div class="xxk_xzqh_box dxuan"  align="center">
 		 <input type="submit" id="button" value="生成问卷" style="border:none;width:200px;height:50px;border-radius:30px;background:blue;color:white;size=9px" />
-		 <input type="button" id="button" value="重置问卷" style="border:none;width:200px;height:50px;border-radius:30px;background:red;color:white;size=9px" />
+		 <input type="submit" id="button" value="重置问卷" style="border:none;width:200px;height:50px;border-radius:30px;background:red;color:white;size=9px" />
     </div>
-  </form>
 </body>
 
 </html>
