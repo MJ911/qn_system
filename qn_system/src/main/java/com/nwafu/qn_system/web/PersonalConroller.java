@@ -239,8 +239,24 @@ public class PersonalConroller {
 	@GetMapping("/join/{questionnaire_id}")
 	public String join(@PathVariable int questionnaire_id, Model model, HttpSession session) {
 		/*
-		 * 用户从join_list.jsp点击查看所参与的该问卷的信息 返回到用户的该问卷详细信息 问卷题目+答案 暂时搁置
+		 * 用户从join_list.jsp点击查看所参与的该问卷的信息
+		 * 返回到用户的该问卷详细信息 问卷题目+答案
+		 * 暂时搁置
 		 */
+		
+		Questionnaire questionnaire = qnService.getAnseredQn((User)session.getAttribute("user"),questionnaire_id);
+		System.out.println(questionnaire.getQuestion_list().get(0).getAnswer().getAnswer_info());
+		String str = null;
+		List<Question> options=new ArrayList<>();
+		for (Question question : questionnaire.getQuestion_list()) {
+			if(question.getQuestion_type() == '2'){
+				str=Integer.toBinaryString(Integer.parseInt(question.getAnswer().getAnswer_info()));
+				question.getAnswer().setAnswer_info(str);	
+			}
+			options.add(question);
+		}
+		questionnaire.setQuestion_list(options);
+		model.addAttribute("questionnaire", questionnaire);
 		return "join";
 	}
 }
