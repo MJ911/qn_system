@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.nwafu.qn_system.dao.QuestionnaireDAO;
 import com.nwafu.qn_system.entity.Questionnaire;
 import com.nwafu.qn_system.entity.User;
@@ -32,7 +35,7 @@ public class IndexController {
 	}
 	
 	@GetMapping("/questionnaire_list/{questionnaire_type}")
-	public String questionnaire_list(@PathVariable int questionnaire_type,Model model) {
+	public String questionnaire_list(@PathVariable int questionnaire_type,Model model,HttpSession session) {
 		/*
 		 * 返回问卷列表 questionnaire_list.jsp
 		 * 往model里面加调查或者投票的List
@@ -40,14 +43,28 @@ public class IndexController {
 		 * questionnaire_type为1视为投票
 		 * questionnaire_type为2为管理问卷列表
 		 */
+		session.setAttribute("questionnaire_type", questionnaire_type);
 		List<Questionnaire> questionnairelist = null;
+		//分页查询设置
+		PageHelper.startPage(1,10);// 设置分页，参数1=页数，参数2=每页显示条数
+		
 		if(questionnaire_type==2) {
 			questionnairelist = questionnaireDAO.getAll();
+			PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(questionnairelist);
+			System.out.println("总记录数："+pageInfo.getTotal());//总记录数
+			System.out.println("总页数    ："+pageInfo.getPages());//总页数
+			System.out.println("分页大小："+pageInfo.getPageSize());//分页大小
+			System.out.println("当前界面："+pageInfo.getPageNum());//当前界面
 			model.addAttribute("questionnairelist", questionnairelist);
 			return "questionnaire_listAdmin";
 		}
 		else {
 			questionnairelist = questionnaireDAO.getAllByquestionnaire_type(questionnaire_type);
+			PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(questionnairelist);
+
+			session.setAttribute("lines",pageInfo.getTotal());//总记录数
+			session.setAttribute("pages",pageInfo.getPages());//总页数
+			session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
 		}
 		
 		model.addAttribute("questionnairelist", questionnairelist);
