@@ -90,7 +90,7 @@ window.onload=window.onresize=function(){
   						<td>${qn.questionnaire_fdate}</td>
   						<td>${qn.questionnaire_state}</td>
   						<td>${qn.questionnaire_type}</td>
-  						<td><a href="" class="yellow-xt">删除</a></td>
+  						<td><a href="/qn_system/delete_questionnaire/${qn.questionnaire_id}" class="yellow-xt">删除</a></td>
   					</tr> 
 				</c:forEach>
             </tr>

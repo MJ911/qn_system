@@ -56,7 +56,7 @@ public class AdministratorController {
 //		questionnairedao.delete(qn_id);
 		model.addAttribute("questionnairelist", questionnairedao.getAll());
 
-		return "questionnaire_list";
+		return "questionnaire_listAdmin";
 	}
 
 	@GetMapping("user_list")

@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="../css/styleuser.css" rel="stylesheet" type="text/css">
 </head>
 
-<script>
+<script type="text/javascript">
 function windowHeight() {
 	var de = document.documentElement;
 	return self.innerHeight||(de && de.clientHeight)||document.body.clientHeight;
@@ -22,15 +22,18 @@ window.onload=window.onresize=function(){
 	var wh=windowHeight();
 	document.getElementById("xt-left").style.height = document.getElementById("xt-right").style.height = (wh-document.getElementById("xt-top").offsetHeight)+"px";
 }
+function Toindex(){
+	location.href="/qn_system/index";
+}
 </script>
 
 <body>
 <!-- top -->
 <div id="xt-top">
-    <div class="xt-logo"><img src="../images/icon1.png" /></div>
+    <div class="xt-logo"><img style="width:100%;heighth:100%;" src="/images/icon1.png" /></div>
     <div class="xt-geren">
-        <div class="xt-exit"><span class="xt-span">ÎÊ¾íÇ¿ºóÌ¨¹ÜÀí<span class="xt-yanse">2350´Î</span>µÇÂ¼¹ÜÀíÖĞĞÄ</span><a href="#" class="help">°ïÖú</a>
-            <a href="#" class="exit">ÍË³ö</a></div>
+        <div class="xt-exit"><span class="xt-span">é—®å·å¼ºåå°ç®¡ç†<span class="xt-yanse">2350æ¬¡</span>ç™»å½•ç®¡ç†ä¸­å¿ƒ</span><a href="#" class="help">å¸®åŠ©</a>
+            <a href="#" class="exit">é€€å‡º</a></div>
     </div>
 </div>
 <!-- left -->
@@ -38,48 +41,47 @@ window.onload=window.onresize=function(){
 <div id="xt-left">
     <div class="xt-logo"></div>
     <div class="xt-menu">
-        
         <div class="xt-menu-list"></div>
         <ul>
-        	<li><a href="/qn_system/user_list" class="hover"><em class="one"></em>ÓÃ»§¹ÜÀí</a></li>
-            <li><a href="questionnaire_list/2"><em class="two"></em>ÎÊ¾í¹ÜÀí</a></li>
+        	<li><a href="/qn_system/user_list" class="hover"><em class="one"></em>ç”¨æˆ·ç®¡ç†</a></li>
+            <li><a href="/qn_system/questionnaire_list/2"><em class="two"></em>é—®å·ç®¡ç†</a></li>
         </ul>
     </div>
 </div>
 <!-- right -->
 <div id="xt-right">
-    <div class="xt-bt">¹ÜÀíÔ±>ÓÃ»§¹ÜÀí</div>
+    <div class="xt-bt">ç®¡ç†å‘˜>ç”¨æˆ·ç®¡ç†</div>
     <div class="xt-input">
-        <span>ÕËºÅÀàĞÍ</span>
+        <span>è´¦å·ç±»å‹</span>
         <select class="int-text" >
-        <option>Ñ¡ÏîÒ»</option>
-        <option>Ñ¡Ïî¶ş</option>
-        <option>Ñ¡ÏîÈı</option>
-        <option>Ñ¡ÏîËÄ</option>
-        <option>Ñ¡ÏîÎå</option>
+        <option>é€‰é¡¹ä¸€</option>
+        <option>é€‰é¡¹äºŒ</option>
+        <option>é€‰é¡¹ä¸‰</option>
+        <option>é€‰é¡¹å››</option>
+        <option>é€‰é¡¹äº”</option>
     </select>
-        <span>ÕËºÅ/ÓÊÏä</span><input type="text" class="int-text" />
-        <span>ÉóºË/×´Ì¬</span>
+        <span>è´¦å·/é‚®ç®±</span><input type="text" class="int-text" />
+        <span>å®¡æ ¸/çŠ¶æ€</span>
         <select class="int-text" >
-            <option>Ñ¡ÏîÒ»</option>
-            <option>Ñ¡Ïî¶ş</option>
-            <option>Ñ¡ÏîÈı</option>
-            <option>Ñ¡ÏîËÄ</option>
-            <option>Ñ¡ÏîÎå</option>
+            <option>é€‰é¡¹ä¸€</option>
+            <option>é€‰é¡¹äºŒ</option>
+            <option>é€‰é¡¹ä¸‰</option>
+            <option>é€‰é¡¹å››</option>
+            <option>é€‰é¡¹äº”</option>
         </select>
-        <span>À´Ô´</span><input type="text" class="int-text" />
-        <input type="button" value="È· ¶¨" class="green-int" />
-        <input type="button" value="È· ¶¨" class="yellow-int" />
+        <span>æ¥æº</span><input type="text" class="int-text" />
+        <input type="button" value="ç¡® å®š" class="green-int" />
+        <input type="button" value="ç¡® å®š" class="yellow-int" />
     </div>
     <div class="xt-table">
         <table cellpadding="0" cellspacing="0" border="0" bgcolor="#dcdcdc" width="100%">
             <tr>
-            <th>ÓÃ»§ID</th>
-            <th>ĞÕÃû</th>
-            <th>ÃÜÂë</th>
-            <th>µç×ÓÓÊÏä</th>
-            <th>½ÇÉ«È¨ÏŞ</th>
-            <th>²Ù×÷</th>
+            <th>ç”¨æˆ·ID</th>
+            <th>ç”¨æˆ·å§“å</th>
+            <th>å¯†ç </th>
+            <th>é‚®ç®±</th>
+            <th>è§’è‰²</th>
+            <th>æ“ä½œ</th>
             </tr>
             <tr>
             	<c:forEach items = "${userlist}" var="user">
@@ -89,7 +91,7 @@ window.onload=window.onresize=function(){
   						<td>${user.user_password}</td>
   						<td>${user.user_mail}</td>
   						<td>${user.role.role_name}</td>
-  						<td><a href="user_authority/${user.user_id}" class="yellow-xt">ĞŞ¸ÄÈ¨ÏŞ</a></td>
+  						<td><a href="user_authority/${user.user_id}" class="yellow-xt">ç¼–è¾‘</a></td>
   					</tr> 
 				</c:forEach>
             </tr>
@@ -99,19 +101,19 @@ window.onload=window.onresize=function(){
 
         </table>
     </div>
-    <div class="xt-fenye">
-        <div class="xt-fenye-left">µ±Ç°µÚ 1 / 270 Ò³,Ã¿Ò³10Ìõ£¬¹² 2696Ìõ¼ÇÂ¼</div>
-        <div class="xt-fenye-right">
-            <a href="index">Ê×Ò³</a>
-            <a href="#">ÉÏÒ»Ò³</a>
-            <a href="#">ÏÂÒ»Ò³</a>
-            <a href="#">Î²Ò³</a>
-            <input type="text" name="text" />
-            <a href="#" class="xt-link">Ìø×ª</a>
-        </div>
+   	<div class="xt-fenye">
+				<div class="xt-fenye-left">å½“å‰ç¬¬ 1 / 270 é¡µ,æ¯é¡µ10æ¡ï¼Œå…± 2696æ¡è®°å½•</div>
+				<div class="xt-fenye-right">
+					<a onclick="Toindex()">é¦–é¡µ</a> <a href="#">ä¸Šä¸€æ­¥</a> <a href="#">ä¸‹ä¸€æ­¥</a> <a
+						href="#">å°¾é¡µ</a> <input type="text" name="text" /> <a href="#"
+						class="xt-link">è·³è½¬</a>
+				</div>
+			</div>
+    </div>
+    <div id="div_right">
     </div>
 </div>
-</div>
+
 
 </body>
 </html>
