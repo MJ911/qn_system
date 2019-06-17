@@ -22,9 +22,6 @@ window.onload=window.onresize=function(){
 	var wh=windowHeight();
 	document.getElementById("xt-left").style.height = document.getElementById("xt-right").style.height = (wh-document.getElementById("xt-top").offsetHeight)+"px";
 }
-function Toindex(){
-	location.href="/qn_system/index";
-}
 </script>
 
 <body>
@@ -44,7 +41,7 @@ function Toindex(){
         <div class="xt-menu-list"></div>
         <ul>
         	<li><a href="/qn_system/user_list" class="hover"><em class="one"></em>用户管理</a></li>
-            <li><a href="/qn_system/questionnaire_list/2"><em class="two"></em>问卷管理</a></li>
+            <li><a href="/qn_system/questionnaire_list/2"><em class="one"></em>问卷管理</a></li>
         </ul>
     </div>
 </div>
@@ -104,7 +101,7 @@ function Toindex(){
    	<div class="xt-fenye">
 				<div class="xt-fenye-left">当前第 1 / 270 页,每页10条，共 2696条记录</div>
 				<div class="xt-fenye-right">
-					<a onclick="Toindex()">首页</a> <a href="#">上一步</a> <a href="#">下一步</a> <a
+					<a>首页</a> <a href="#">上一步</a> <a href="#">下一步</a> <a
 						href="#">尾页</a> <input type="text" name="text" /> <a href="#"
 						class="xt-link">跳转</a>
 				</div>

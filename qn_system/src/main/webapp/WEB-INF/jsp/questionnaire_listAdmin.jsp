@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>user_list</title>
+<title>question_listAdmin</title>
 <link href="/css/styleuser.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -21,6 +21,22 @@ function windowHeight() {
 window.onload=window.onresize=function(){
 	var wh=windowHeight();
 	document.getElementById("xt-left").style.height = document.getElementById("xt-right").style.height = (wh-document.getElementById("xt-top").offsetHeight)+"px";
+}
+function ToPageNext() {
+	location.href = "/qn_system/NextPage";
+}function ToPagePre() {
+	location.href = "/qn_system/PrePage";
+}function ToPageFirst() {
+	location.href = "/qn_system/ToPageFirst";
+}function ToPageEnd() {
+	location.href = "/qn_system/ToPageEnd";
+}function ToPageIndex() {
+	var index = turnTo.turn.value;
+	location.href = "/qn_system/ToPageIndex/"+index;
+}function deletequestionnaire(id){
+	if(confirm("您确认删除吗?")){
+		location.href="/qn_system/delete_questionnaire/"+id;
+	}
 }
 </script>
 
@@ -47,7 +63,7 @@ window.onload=window.onresize=function(){
 </div>
 <!-- right -->
 <div id="xt-right">
-    <div class="xt-bt">管理员>用户管理</div>
+    <div class="xt-bt">管理员>问卷管理</div>
     <div class="xt-input">
         <span>账号类型</span>
         <select class="int-text" >
@@ -90,21 +106,21 @@ window.onload=window.onresize=function(){
   						<td>${qn.questionnaire_fdate}</td>
   						<td>${qn.questionnaire_state}</td>
   						<td>${qn.questionnaire_type}</td>
-  						<td><a href="/qn_system/delete_questionnaire/${qn.questionnaire_id}" class="yellow-xt">删除</a></td>
+  						<td><a onclick="deletequestionnaire(${qn.questionnaire_id})" class="yellow-xt">删除</a></td>
   					</tr> 
 				</c:forEach>
             </tr>
         </table>
     </div>
     <div class="xt-fenye">
-        <div class="xt-fenye-left">当前第 1 / 270 页,每页10条，共 2696条记录</div>
+        <div class="xt-fenye-left">当前第 ${indexPage} / ${pages} 页,每页10条，共 ${lines}条记录</div>
         <div class="xt-fenye-right">
-            <a href="index">首页</a>
-            <a href="#">上一页</a>
-            <a href="#">下一页</a>
-            <a href="#">尾页</a>
-            <input type="text" name="text" />
-            <a href="#" class="xt-link">跳转</a>
+            <a onclick="ToPageFirst()">首页</a>
+            <a onclick="ToPagePre()">上一页</a>
+            <a onclick="ToPageNext()">下一页</a>
+            <a onclick="ToPageEnd()">尾页</a>
+            <form name="turnTo" class="xt-fenye-right"><input type="text" id="turn" name="turn" />
+            <a href="#" class="xt-link" onclick="ToPageIndex()">跳转</a></form>
         </div>
     </div>
 </div>

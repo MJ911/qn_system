@@ -51,10 +51,10 @@ public class IndexController {
 		if(questionnaire_type==2) {
 			questionnairelist = questionnaireDAO.getAll();
 			PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(questionnairelist);
-			System.out.println("总记录数："+pageInfo.getTotal());//总记录数
-			System.out.println("总页数    ："+pageInfo.getPages());//总页数
-			System.out.println("分页大小："+pageInfo.getPageSize());//分页大小
-			System.out.println("当前界面："+pageInfo.getPageNum());//当前界面
+			
+			session.setAttribute("lines",pageInfo.getTotal());//总记录数
+			session.setAttribute("pages",pageInfo.getPages());//总页数
+			session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
 			model.addAttribute("questionnairelist", questionnairelist);
 			return "questionnaire_listAdmin";
 		}

@@ -81,14 +81,22 @@ public class QuestionnaireController {
 		PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
 		List<Questionnaire> questionnairelist = null;
 		int questionnaire_type = (int)session.getAttribute("questionnaire_type");
-		questionnairelist = questionnaireDAO.getAllByquestionnaire_type(questionnaire_type);
+		if(questionnaire_type == 2) {
+			questionnairelist = questionnaireDAO.getAll();
+		}else {
+			questionnairelist = questionnaireDAO.getAllByquestionnaire_type(questionnaire_type);
+		}
 		PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(questionnairelist);
 		
 		model.addAttribute("questionnairelist", questionnairelist);
 		session.setAttribute("lines",pageInfo.getTotal());//总记录数
 		session.setAttribute("pages",pageInfo.getPages());//总页数
 		session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
-		return "questionnaire_list";
+		if(questionnaire_type == 2) {
+			return "questionnaire_listAdmin";
+		}else {
+			return "questionnaire_list";
+		}
 	}
 	
 	//分页操作上一页（questionnaire_list）
@@ -108,14 +116,22 @@ public class QuestionnaireController {
 		PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
 		List<Questionnaire> questionnairelist = null;
 		int questionnaire_type = (int)session.getAttribute("questionnaire_type");
-		questionnairelist = questionnaireDAO.getAllByquestionnaire_type(questionnaire_type);
+		if(questionnaire_type == 2) {
+			questionnairelist = questionnaireDAO.getAll();
+		}else {
+			questionnairelist = questionnaireDAO.getAllByquestionnaire_type(questionnaire_type);
+		}
 		PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(questionnairelist);
 		
 		model.addAttribute("questionnairelist", questionnairelist);
 		session.setAttribute("lines",pageInfo.getTotal());//总记录数
 		session.setAttribute("pages",pageInfo.getPages());//总页数
 		session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
-		return "questionnaire_list";
+		if(questionnaire_type == 2) {
+			return "questionnaire_listAdmin";
+		}else {
+			return "questionnaire_list";
+		}
 	}
 	
 	//分页操作首页（questionnaire_list）
@@ -134,14 +150,22 @@ public class QuestionnaireController {
 		PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
 		List<Questionnaire> questionnairelist = null;
 		int questionnaire_type = (int)session.getAttribute("questionnaire_type");
-		questionnairelist = questionnaireDAO.getAllByquestionnaire_type(questionnaire_type);
+		if(questionnaire_type == 2) {
+			questionnairelist = questionnaireDAO.getAll();
+		}else {
+			questionnairelist = questionnaireDAO.getAllByquestionnaire_type(questionnaire_type);
+		}
 		PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(questionnairelist);
 		
 		model.addAttribute("questionnairelist", questionnairelist);
 		session.setAttribute("lines",pageInfo.getTotal());//总记录数
 		session.setAttribute("pages",pageInfo.getPages());//总页数
 		session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
-		return "questionnaire_list";
+		if(questionnaire_type == 2) {
+			return "questionnaire_listAdmin";
+		}else {
+			return "questionnaire_list";
+		}
 	}
 	
 	//分页操作尾页（questionnaire_list）
@@ -160,14 +184,22 @@ public class QuestionnaireController {
 		PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
 		List<Questionnaire> questionnairelist = null;
 		int questionnaire_type = (int)session.getAttribute("questionnaire_type");
-		questionnairelist = questionnaireDAO.getAllByquestionnaire_type(questionnaire_type);
+		if(questionnaire_type == 2) {
+			questionnairelist = questionnaireDAO.getAll();
+		}else {
+			questionnairelist = questionnaireDAO.getAllByquestionnaire_type(questionnaire_type);
+		}
 		PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(questionnairelist);
 		
 		model.addAttribute("questionnairelist", questionnairelist);
 		session.setAttribute("lines",pageInfo.getTotal());//总记录数
 		session.setAttribute("pages",pageInfo.getPages());//总页数
 		session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
-		return "questionnaire_list";
+		if(questionnaire_type == 2) {
+			return "questionnaire_listAdmin";
+		}else {
+			return "questionnaire_list";
+		}
 	}
 	
 	//分页操作跳转页（questionnaire_list）
@@ -189,13 +221,21 @@ public class QuestionnaireController {
 		PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
 		List<Questionnaire> questionnairelist = null;
 		int questionnaire_type = (int)session.getAttribute("questionnaire_type");
-		questionnairelist = questionnaireDAO.getAllByquestionnaire_type(questionnaire_type);
+		if(questionnaire_type == 2) {
+			questionnairelist = questionnaireDAO.getAll();
+		}else {
+			questionnairelist = questionnaireDAO.getAllByquestionnaire_type(questionnaire_type);
+		}
 		PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(questionnairelist);
 		
 		model.addAttribute("questionnairelist", questionnairelist);
 		session.setAttribute("lines",pageInfo.getTotal());//总记录数
 		session.setAttribute("pages",pageInfo.getPages());//总页数
 		session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
-		return "questionnaire_list";
+		if(questionnaire_type == 2) {
+			return "questionnaire_listAdmin";
+		}else {
+			return "questionnaire_list";
+		}
 	}
 }

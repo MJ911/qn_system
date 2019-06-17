@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.github.pagehelper.PageHelper;
 import com.nwafu.qn_system.dao.AuthorityDAO;
 import com.nwafu.qn_system.dao.QuestionnaireDAO;
 import com.nwafu.qn_system.dao.RoleDAO;
@@ -45,7 +46,7 @@ public class AdministratorController {
 	private QnService qnservice;
 	
 	@GetMapping("/delete_questionnaire/{qn_id}")
-	public String delete_questionnaire(@PathVariable int qn_id, Model model) {
+	public String delete_questionnaire(@PathVariable int qn_id, Model model,HttpSession session) {
 		/*
 		 * 管理员删除问卷 从questionnaire.jsp跳转 或questionnaire_list.jsp跳转过来
 		 * 跳转到啊questionnaire_list.jsp
@@ -54,6 +55,8 @@ public class AdministratorController {
 		 */
 		qnservice.deleteQn(qn_id);
 //		questionnairedao.delete(qn_id);
+		int indexPage = (int)session.getAttribute("indexPage");
+		PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
 		model.addAttribute("questionnairelist", questionnairedao.getAll());
 
 		return "questionnaire_listAdmin";
