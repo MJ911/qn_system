@@ -4,42 +4,72 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <!DOCTYPE html>
-<html>
+<html ng-app="app" lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>createquestionnaire</title>
+    <title>createVote</title>
     <link rel="stylesheet" type="text/css" href="/css/questionnaire.css">
+    
     <script src="/js/jquery.min2.js"></script>
-    <script src="/js/createquestionnaire.js"></script>
+<!--     <script src="/js/jquery.min.js"></script> -->
+    <script src="/js/createquestionnaire_vote.js"></script>
+<!-- 	<link rel="stylesheet" type="text/css" href="/css/wui.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="/css/wui.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/style_date.css">
+	<script type="text/javascript" src="/js/angular.min.js"></script>
+	<script type="text/javascript" src="/js/wui-date.js" charset="utf-8"></script>
 </head>
 
 <body>
+   <form action="/qn_system/create_questionnaire" method="post">
+    <input type="hidden" name="questionnaire_state" value="1"/>
+    <input type="hidden" name="questionnaire_type" value="1"/>
+    <center>投票名<input type="text" name="questionnaire_name"/></center>
+	
+			<div align="center" class="wui-area">
+				<p>投票截止时间</p>
+				<wui-date 
+					name="questionnaire_xdx"
+					format="yyyy-mm-dd hh:mm" 
+					placeholder="请选择或输入日期" 
+					id="date1" 
+					btns="{'ok':'确定','now':'此刻'}" 
+					ng-model="date1"
+				>
+				</wui-date>
+			</div>
+		<script type="text/javascript">
+			var app = angular.module('app',["wui.date"]);
+		</script>
+		
+		
     <div class=" all_660">
         <div class="yd_box"></div>
         <div class="but" style="padding-top: 20px">
             <select id="addquerstions" class="addquerstions" name="">
-                <option value="-1">添加问题</option>
+                <option value="-1">选择投票类型</option>
                 <option value="0">单选</option>
                 <option value="1">多选</option>
-                <option value="2">填空</option>
-                <option value="3">矩阵</option>
+<!--                 <option value="2">填空</option> -->
+<!--                 <option value="3">矩阵</option> -->
             </select>
-            <button id="button_xdx">提交问题</button>
+            
         </div>
         <!--选项卡区域  模板区域	---------------------------------------------------------------------------------------------------------------------------------------->
         <div class="xxk_box">
             <div class="xxk_conn hide">
                 <!--单选----------------------------------------------------------------------------------------------------------------------------------------->
                 <div class="xxk_xzqh_box dxuan ">
-                    <textarea name="" cols="" rows="" class="input_wenbk btwen_text btwen_text_dx" placeholder="单选题目"></textarea>
+                    <textarea style="display:none;" name="" cols="" rows="" class="input_wenbk btwen_text btwen_text_dx" placeholder="单选题目"></textarea>
                     <div class="title_itram">
                         <div class="kzjxx_iteam">
                             <input name="" type="radio" value="" class="dxk">
                             <input name="" type="text" class="input_wenbk" value="" placeholder="选项">
-                            <label>
-                                <input name="" type="checkbox" value="" class="fxk"> <span>可填空</span>
-                            </label> <a href="javascript:void(0);" class="del_xm">删除</a>
+<!--                             <label> -->
+<!--                                 <input name="" type="checkbox" value="" class="fxk"> <span>可填空</span> -->
+<!--                             </label>  -->
+                            <a href="javascript:void(0);" class="del_xm">删除</a>
                         </div>
                     </div>
                     <a href="javascript:void(0)" class="zjxx">增加选项</a>
@@ -51,13 +81,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <!--多选----------------------------------------------------------------------------------------------------------------------------------------->
                 <div class="xxk_xzqh_box duoxuan hide">
-                    <textarea name="" cols="" rows="" class="input_wenbk btwen_text btwen_text_duox" placeholder="多选题目"></textarea>
+                    <textarea style="display:none;" name="" cols="" rows="" class="input_wenbk btwen_text btwen_text_duox" placeholder="多选题目"></textarea>
                     <div class="title_itram">
                         <div class="kzjxx_iteam">
                             <input name="" type="checkbox" value="" class="dxk">
                             <input name="" type="text" class="input_wenbk" value="选项" placeholder="选项">
-                            <label>
-                                <input name="" type="checkbox" value="" class="fxk"> <span>可填空</span></label>
+<!--                             <label> -->
+<!--                                 <input name="" type="checkbox" value="" class="fxk"> <span>可填空</span></label> -->
                             <a href="javascript:void(0);" class="del_xm">删除</a>
                         </div>
                     </div>
@@ -133,6 +163,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 <input type="submit" id="button" value="生成问卷" style="border:none;width:200px;height:50px;border-radius:30px;background:blue;color:white;size=9px" />
 		 <input type="submit" id="button" value="重置问卷" style="border:none;width:200px;height:50px;border-radius:30px;background:red;color:white;size=9px" />
     </div>
+  </form>
 </body>
 
 </html>

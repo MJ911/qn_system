@@ -93,17 +93,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location.href="/qn_system/questionnaire/"+index;
 	}function Toquit() {
 		location.href = "/qn_system/quit";
-	}function ToPageNext() {
-		location.href = "/qn_system/NextPage";
-	}function ToPagePre() {
-		location.href = "/qn_system/PrePage";
-	}function ToPageFirst() {
-		location.href = "/qn_system/ToPageFirst";
-	}function ToPageEnd() {
-		location.href = "/qn_system/ToPageEnd";
-	}function ToPageIndex() {
-		var index = turnTo.turn.value;
-		location.href = "/qn_system/ToPageIndex/"+index;
 	}
 </script>
 </head>
@@ -198,14 +187,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </table>
     </div>
     <div class="xt-fenye">
-        <div class="xt-fenye-left">当前第 ${indexPage} / ${pages} 页,每页10条，共 ${lines}条记录</div>
+        <div class="xt-fenye-left">当前第 1 / 270 页,每页10条，共 2696条记录</div>
         <div class="xt-fenye-right">
-            <a onclick="ToPageFirst()">首页</a>
-            <a onclick="ToPagePre()">上一页</a>
-            <a onclick="ToPageNext()">下一页</a>
-            <a onclick="ToPageEnd()">尾页</a>
-            <form name="turnTo" class="xt-fenye-right"><input type="text" id="turn" name="turn" />
-            <a href="#" class="xt-link" onclick="ToPageIndex()">跳转</a></form>
+            <a href="#">首页</a>
+            <a href="#">上一步</a>
+            <a href="#">下一步</a>
+            <a href="#">尾页</a>
+            <input type="text" name="text" />
+            <a href="#" class="xt-link">跳转</a>
         </div>
     </div>
     </div>

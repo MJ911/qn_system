@@ -14,6 +14,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="keywords" content="" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<script type="text/javascript">
+	function Toquestionnaire_list(index){
+		location.href="/qn_system/questionnaire_list/"+index;
+	}
+	function Toindex(){
+		location.href="/qn_system/index";
+	}
+	function Tomodel_list(){
+		location.href="/qn_system/model_list";
+	}
+	function Tologin(){
+		location.href="/qn_system/login";
+	}function Tocreate_choice(){
+		location.href="/qn_system/create_choice";
+	}function Topersonal() {
+		location.href = "/qn_system/personal";
+	}
+</script>
 <!-- //for-mobile-apps -->
 <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- pignose css -->
@@ -51,26 +69,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="/js/jquery.min.js"></script>
 
 
-<script type="text/javascript">
-	function Toquestionnaire_list(index){
-		location.href="/qn_system/questionnaire_list/"+index;
-	}
-	function Toindex(){
-		location.href="/qn_system/index";
-	}
-	function Tomodel_list(){
-		location.href="/qn_system/model_list";
-	}
-	function Tologin(){
-		location.href="/qn_system/login";
-	}function Tocreate_choice(){
-		location.href="/qn_system/create_choice";
-	}function Topersonal() {
-		location.href = "/qn_system/personal";
-	}function Toquit() {
-		location.href = "/qn_system/quit";
-	}
-</script>
+	<script text="text/javascript">
+	    
+	</script>
 </head>
 
 <body>
@@ -91,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="icon-bar"></span>
 				  </button>
 				</div>
-				<!-- ����-->
+				<!-- 导航-->
 				<div  class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  
 					
@@ -127,9 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div width="10%" style="float: left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Topersonal()">主页</a></li>
-										<li class=" menu__item"><a class="menu__link"
-										onclick="Toquit()">退出</a></li>
+										onclick="Topersonal()">个人主页</a></li>
 								</ul>
 							</div>							
 							<% } %>
