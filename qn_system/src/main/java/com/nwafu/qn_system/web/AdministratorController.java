@@ -3,6 +3,7 @@ package com.nwafu.qn_system.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,35 @@ public class AdministratorController {
 		return "user_list";
 	}
 
+	@PostMapping("user_list")
+	public String user_list(Model model, HttpServletRequest request) {
+		/*
+		 * 从管理员界面 管理员点击用户集 跳转到user_list.jsp
+		 * 
+		 * @author sgf
+		 */
+		String[] authoritylist = request.getParameterValues("checkbox");
+		String role = request.getParameter("radio");
+		String userId = request.getParameter("userId");
+
+		User user = userdao.getByUser_id(Integer.parseInt(userId));
+		List<Authority> list = new ArrayList();
+		Authority authority = new Authority();
+		user_authoritydao.deleteById(user.getUser_id());
+		if (authoritylist != null) {
+			for (int i = 0; i < authoritylist.length; i++) {
+				authority = authoritydao.getByAuthority_id(Integer.parseInt(authoritylist[i]));
+				list.add(authority);
+			}
+			user.setAuthorityList(list);
+			authorityService.setRoleForUser(user, roledao.getAllByRole_id(Integer.parseInt(role)));
+			authorityService.setAtForUser(user);
+			model.addAttribute("userlist", userdao.getAll());
+		}
+
+		return "redirect:user_list";
+	}
+
 	@GetMapping("/user_authority/{user_id}")
 	public String user_authority(@PathVariable int user_id, HttpSession session, Model model) {
 		/*
@@ -109,12 +139,14 @@ public class AdministratorController {
 	}
 
 	@GetMapping("create_role")
-	public String create_role(Model model) {
+	public String create_role(Model model, HttpServletRequest request) {
 		/*
 		 * 从user_authority.jsp跳转到create_role.jsp
 		 * 
 		 * @author sgf
 		 */
+
+		String userId = request.getParameter("userId");
 		authoritydao.getAll();
 		model.addAttribute("authoritylist", authoritydao.getAll());
 		// System.out.println(authoritydao.getAll().get(0).getAuthority_name());
@@ -122,14 +154,43 @@ public class AdministratorController {
 	}
 
 	@PostMapping("create_role")
-	public String create_role(Role role) {
+	public String create_role(Model model,HttpSession session,HttpServletRequest request) {
 		/*
 		 * 从create_role.jsp跳转到user_authority.jsp
 		 * 
 		 */
-		authorityService.createRole(role);
+		String userId = request.getParameter("userId");
+		System.out.println(userId);
+		Role role = new Role();
+		String[] authoritylist = request.getParameterValues("checkbox1");
+		// System.out.println("nihoa"+authoritylist[0].toString());
+		Role role1=roledao.getRoleByName(request.getParameter("role_name"));
+		if (request.getParameter("role_name") != ""&&role1==null) {
+			role.setRole_name(request.getParameter("role_name"));
+			Authority authority = new Authority();
+			if (authoritylist != null) {
 
-		return "user_authority";
+				List<Authority> list = new ArrayList();
+				for (int i = 0; i < authoritylist.length; i++) {
+					authority = authoritydao.getByAuthority_id(Integer.parseInt(authoritylist[i]));
+					list.add(authority);
+				}
+				role.setAuthorityList(list);
+			}
+
+			role.setRole_name(request.getParameter("role_name"));
+			authorityService.createRole(role);
+			session.setAttribute("error", "");
+			return "redirect:user_authority/" + Integer.parseInt(userId);
+		}
+		else{
+			session.setAttribute("error", "角色名为空或角色已存在！");
+			session.setAttribute("rolename", request.getParameter("role_name"));
+			authoritydao.getAll();
+			model.addAttribute("authoritylist", authoritydao.getAll());
+			return "redirect:create_role";
+		}
+	
 	}
 
 }

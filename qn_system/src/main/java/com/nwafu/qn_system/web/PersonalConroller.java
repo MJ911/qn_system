@@ -103,17 +103,7 @@ public class PersonalConroller {
 		return "join_list";
 	}
 	
-	@PostMapping("create_questionnaire")
-	public String create_questionnaire(@PathVariable Questionnaire questionnaire) {
-		/*
-		 * 用户在create_questionnaire.jsp 新建问卷表单提交
-		 * questionnaire 包括question的list（前端封装）
-		 * 插入数据库
-		 * 返回到主页index.jsp
-		 */
-		qnService.createQn(questionnaire);
-		return "index";
-	}
+	
 	
 	@GetMapping("/questionnaire_view/{questionnaire_id}")
 	public String questionnaire_view(@PathVariable int questionnaire_id,Model model) {

@@ -6,7 +6,16 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost/qnsystem?serverTimezone=UTC&useSSL=false&characterEncoding=utf8
     username: root
-
+    password: 
+  mail:
+    host: smtp.qq.com
+    username: 972327281@qq.com
+    password: pftodqbdruknbffc
+    properties:
+      mail:
+        stmp:
+          ssl:
+            enable: true    
   mvc:
     view:
       prefix: /WEB-INF/jsp/

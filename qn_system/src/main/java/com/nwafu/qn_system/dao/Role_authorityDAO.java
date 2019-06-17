@@ -28,8 +28,9 @@ public interface Role_authorityDAO {
 	
 	/**
 	 * 实现插入记录（role_id、authority_id）
+	 * @param role_authority 
 	 */
 	@Insert("insert into role_authority(role_id,authority_id) values(#{role.role_id},#{authority.authority_id})")
-	public void add(Role role,Authority authority);
+	public void add(Role_authority role_authority);
 }
 

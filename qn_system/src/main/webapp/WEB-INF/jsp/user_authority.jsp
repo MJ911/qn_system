@@ -82,56 +82,56 @@
 				</table>
 
 			</div>
-			<div class="xt-table1">
-				<table cellpadding="0" cellspacing="0" border="0" bgcolor="#dcdcdc"
-					width="100%">
-					<th>全部权限</th>
-					<th>拥有权限</th>
-					<c:forEach items="${authoritylist}" var="authority">
-						<tr>
-							<td>${authority.authority_name}</td>
-							<td>
-							<input type="checkbox" name="checkbox1" />
-							<c:forEach items="${user.authorityList}" var="authorityuser">
-							
-									<c:if test="${authorityuser.authority_id eq authority.authority_id}">
-										<input type="checkbox" name="checkbox1"
-											checked="">
-										
-									</c:if>
-									
-									<c:if test="${authorityuser.authority_id ne authority.authority_id}">
-										<td><input type="checkbox" name="checkbox1"
-											checked="false"></td>
-									</c:if>
-									
-							</c:forEach>
-							</td>
-								
-							
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
+			<form action="/qn_system/user_list" method="post">
+				<div class="xt-table1">
+					<input type="hidden" value="${user_list_user.user_id}"
+						name="userId">
+					<table cellpadding="0" cellspacing="0" border="0" bgcolor="#dcdcdc"
+						width="100%">
+						<th>全部权限</th>
+						<th>用户权限</th>
+						<c:forEach items="${authoritylist}" var="authority">
+							<tr>
+								<td>${authority.authority_name}</td>
+								<td><input type="checkbox" name="checkbox"
+									value="${authority.authority_id}"
+									<c:forEach items="${user_list_user.authorityList}" var="authorityuser">
+							<c:if test="${authorityuser.authority_name eq authority.authority_name}">
+										checked="checked"	
+								</c:if>
+								</c:forEach> />
+								</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
 
-			<div class="xt-table1">
-				<table cellpadding="0" cellspacing="0" border="0" bgcolor="#dcdcdc"
-					width="100%">
-					<th>用户角色</th>
-					<th><input type="button" value="添加角色" class="green-int"
-						Onclick="window.location.href='/qn_system/create_role'" /> <input
-						type="button" value="新建角色" class="yellow-int"
-						Onclick="window.location.href='/qn_system/create_role'" /></th>
-					<c:forEach items="${rolelist}" var="role">
-						<tr>
-							<td>${role.role_name}</td>
 
-							<td><input type="checkbox" name="checkbox"
-								value="${role.role_name}" /> <c:out value="${role.role_id} " /></td>
+				<div class="xt-table1">
+					<table cellpadding="0" cellspacing="0" border="0" bgcolor="#dcdcdc"
+						width="100%">
+						<th>全部角色</th>
+						<th><input type="button" value="新建角色" class="green-int"
+							Onclick="window.location.href='/qn_system/create_role'" /></th>
+						<c:forEach items="${rolelist}" var="role">
+							<tr>
+								<td>${role.role_name}</td>
+
+								<td><input type="radio" name="radio"
+									value="${role.role_id}"
+									<c:if test="${user_list_user.role.role_name eq role.role_name}">
+										checked="checked"</c:if> />
+								</td>
+							</tr>
+
+						</c:forEach>
+						<tr>
+							<td></td>
+							<td><input type="submit" value="提交" class="yellow-int" /></td>
 						</tr>
-					</c:forEach>
-				</table>
-			</div>
+					</table>
+				</div>
+			</form>
 
 			<div class="xt-fenye">
 				<div class="xt-fenye-left">当前第 1 / 270 页,每页10条，共 2696条记录</div>

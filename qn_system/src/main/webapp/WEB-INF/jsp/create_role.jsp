@@ -23,23 +23,6 @@
 		var wh=windowHeight();
 		document.getElementById("xt-left").style.height = document.getElementById("xt-right").style.height = (wh-document.getElementById("xt-top").offsetHeight)+"px";
 	}
-	function getallcheckedvalue(name) {  
-	    var boxvalues = "";  
-	    var boxarray = document.getElementsByName(name);  
-	    for(var i = 0; i < boxarray.length; i++) {  
-	        if(boxarray[i].checked) {  
-	            var boxvalue = boxarray[i].value;  
-	            if(boxvalues == "") {  
-	                boxvalues = boxvalue;  
-	            }else {  
-	                boxvalues = boxvalues + "," + boxvalue;  
-	            }  
-	        }  
-	    }  
-	    return boxvalues;  
-	}  
-}
-              
 </script>
 
 <body>
@@ -50,8 +33,8 @@
 		</div>
 		<div class="xt-geren">
 			<div class="xt-exit">
-				<span class="xt-span">ÎÊ¾íÇ¿ºóÌ¨¹ÜÀí<span class="xt-yanse">2350´Î</span>µÇÂ¼¹ÜÀíÖĞĞÄ
-				</span><a href="#" class="help">°ïÖú</a> <a href="#" class="exit">ÍË³ö</a>
+				<span class="xt-span">è¿™æ˜¯æ‚¨ç¬¬<span class="xt-yanse">2350ci</span>ç™»é™†æœ¬ç³»ç»Ÿ
+				</span><a href="#" class="help">ï¿½ï¿½ï¿½ï¿½</a> <a href="#" class="exit">ï¿½Ë³ï¿½</a>
 			</div>
 		</div>
 	</div>
@@ -61,42 +44,54 @@
 			<div class="xt-logo"></div>
 			<div class="xt-menu">
 				<ul>
-					<li><a href="#" class="hover"><em class="one"></em>»ù´¡ĞÅÏ¢</a></li>
+					<li><a href="#" class="hover"><em class="one"></em>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢</a></li>
 				</ul>
 				<div class="xt-menu-list"></div>
 				<ul>
-					<li><a href="/qn_system/questionnaire_list/0"><em class="two"></em>ÎÊ¾í¼¯</a></li>
+					<li><a href="/qn_system/questionnaire_list/0"><em class="two"></em>ï¿½Ê¾ï¿½</a></li>
 				</ul>
 				<ul>
-					<li><a href="/qn_system/user_list"><em class="three"></em>ÓÃ»§¼¯</a></li>
+					<li><a href="/qn_system/user_list"><em class="three"></em>ï¿½Ã»ï¿½ï¿½ï¿½</a></li>
 				</ul>
 			</div>
 		</div>
 		<!-- right -->
 		<div id="xt-right">
-			<div class="xt-bt">»ù´¡ĞÅÏ¢ ></div>
+			<div class="xt-bt">åå°ç®¡ç†></div>
 			<div class="xt-input">
-				<h1>½ÇÉ«Ìí¼Ó£º</h1>
+				<h1>è§’è‰²æ–°å»º</h1>
 			</div>
 			<div id="xt-right">
-			<div class="xt-bt">Ìí¼Ó</div>
-			<div class="xt-input">
-				½ÇÉ«Ãû³Æ£º</span><input type="text" class="int-text" />  <input
-					type="button" value="È· ¶¨" class="yellow-int" Onclick="window.location.href='/qn_system/user_authority/5'" />
-			</div>
-			<div class="xt-table1" >
-				<table cellpadding="0" cellspacing="0" border="0" bgcolor="#dcdcdc"
-					width="100%">
-					<th>È«²¿È¨ÏŞ</th><th>Ñ¡Ôñ</th>
-					<c:forEach items="${authoritylist}" var="authority">
-						<tr>
-							<td>${authority.authority_name}</td>
+				<div class="xt-bt">æ–°å»ºè§’è‰²</div>
+				<form action="/qn_system/create_role" method="post">
+					<input type="hidden" value="${user_list_user.user_id}"
+						name="userId">
+					<div class="xt-input">
+						ç”¨æˆ·åç§°</span><input type="text" class="int-text" name="role_name"
+							value="${rolename}" /> <input type="submit" value="ï¿½Â½ï¿½"
+							class="yellow-int" /> ${error}
+					</div>
 
-							<td><input type="checkbox" name="checkbox1" value="ture" /></td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
+					<div class="xt-table1">
+
+						<table cellpadding="0" cellspacing="0" border="0"
+							bgcolor="#dcdcdc" width="100%">
+							<th>å…¨éƒ¨æƒé™</th>
+							<th>ç”¨æˆ·æƒé™</th>
+							<c:forEach items="${authoritylist}" var="authority">
+								<tr>
+									<td>${authority.authority_name}</td>
+
+									<td><input type="checkbox" name="checkbox1"
+										value="${authority.authority_id}" /></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+
+				</form>
+
+
 			</div>
 					
 		
@@ -104,11 +99,11 @@
 			
 	
 			<div class="xt-fenye">
-				<div class="xt-fenye-left">µ±Ç°µÚ 1 / 270 Ò³,Ã¿Ò³10Ìõ£¬¹² 2696Ìõ¼ÇÂ¼</div>
+				<div class="xt-fenye-left">ï¿½ï¿½Ç°ï¿½ï¿½ 1 / 270 Ò³,Ã¿Ò³10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2696ï¿½ï¿½ï¿½ï¿½Â¼</div>
 				<div class="xt-fenye-right">
-					<a href="#">Ê×Ò³</a> <a href="#">ÉÏÒ»²½</a> <a href="#">ÏÂÒ»²½</a> <a
+					<a href="#">ï¿½ï¿½Ò³</a> <a href="#">ï¿½ï¿½Ò»ï¿½ï¿½</a> <a href="#">ï¿½ï¿½Ò»ï¿½ï¿½</a> <a
 						href="#">Î²Ò³</a> <input type="text" name="text" /> <a href="#"
-						class="xt-link">Ìø×ª</a>
+						class="xt-link">ï¿½ï¿½×ª</a>
 				</div>
 			</div>
 		</div>

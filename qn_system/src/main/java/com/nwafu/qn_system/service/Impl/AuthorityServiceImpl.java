@@ -35,16 +35,29 @@ public class AuthorityServiceImpl implements AuthorityService{
 	private UserDAO userDAO;
 	
 	@Override
-	@Transactional(rollbackFor = Exception.class)
+	//@Transactional(rollbackFor = Exception.class)
 	public boolean createRole(Role role) {
 		// TODO Auto-generated method stub
 		try {
 			List<Authority> authority_list = role.getAuthorityList();
 			roleDAO.add(role);
-			role = roleDAO.getRoleByName(role.getRole_name());	
-			System.out.println(role.getRole_id() + " "+ role.getRole_name());
-			for(Authority authority : authority_list) {
-				role_authorityDAO.add(role, authority);
+			Role role1=new Role();
+			role1 = roleDAO.getRoleByName(role.getRole_name());	
+			
+//			System.out.println(role1.getRole_id() + " "+ role1.getRole_name());
+			Role_authority role_authority=new Role_authority();
+			if(authority_list!=null){
+				
+				for(Authority authority : authority_list) {
+					role_authority.setRole(role1);
+					role_authority.setAuthority(authority);
+					role_authorityDAO.add(role_authority);
+				}
+			}
+			
+			else{
+				role_authority.setRole(role1);
+				role_authorityDAO.add(role_authority);
 			}
 			return true;
 		} catch (Exception e) {
