@@ -104,7 +104,7 @@ public class QuestionnaireController {
 		//分页查询设置
 		int indexPage = (int)session.getAttribute("indexPage");
 		indexPage--;
-		indexPage = indexPage<0?0:indexPage;
+		indexPage = indexPage<1?1:indexPage;
 		PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
 		List<Questionnaire> questionnairelist = null;
 		int questionnaire_type = (int)session.getAttribute("questionnaire_type");
@@ -184,7 +184,7 @@ public class QuestionnaireController {
 		int indexPage = (int)session.getAttribute("indexPage");
 		indexPage=new Integer(index);
 		int pages = (int)session.getAttribute("pages");
-		indexPage = indexPage<0?0:indexPage;
+		indexPage = indexPage<1?1:indexPage;
 		indexPage = indexPage>pages?pages:indexPage;
 		PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
 		List<Questionnaire> questionnairelist = null;

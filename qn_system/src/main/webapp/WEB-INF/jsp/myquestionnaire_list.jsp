@@ -93,6 +93,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location.href="/qn_system/questionnaire/"+index;
 	}function Toquit() {
 		location.href = "/qn_system/quit";
+	}function TomyPageNext() {
+		location.href = "/qn_system/myNextPage";
+	}function TomyPagePre() {
+		location.href = "/qn_system/myPrePage";
+	}function TomyPageFirst() {
+		location.href = "/qn_system/TomyPageFirst";
+	}function TomyPageEnd() {
+		location.href = "/qn_system/TomyPageEnd";
+	}function TomyPageIndex() {
+		var index = turnTo.turn.value;
+		location.href = "/qn_system/TomyPageIndex/"+index;
 	}
 </script>
 </head>
@@ -201,14 +212,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </table>
     </div>
     <div class="xt-fenye">
-        <div class="xt-fenye-left">当前第 1 / 270 页,每页10条，共 2696条记录</div>
+        <div class="xt-fenye-left">当前第 ${indexPage} / ${pages} 页,每页10条，共 ${lines}条记录</div>
         <div class="xt-fenye-right">
-            <a href="#">首页</a>
-            <a href="#">上一步</a>
-            <a href="#">下一步</a>
-            <a href="#">尾页</a>
-            <input type="text" name="text" />
-            <a href="#" class="xt-link">跳转</a>
+            <a onclick="TomyPageFirst()">首页</a>
+            <a onclick="TomyPagePre()">上一页</a>
+            <a onclick="TomyPageNext()">下一页</a>
+            <a onclick="TomyPageEnd()">尾页</a>
+            <form name="turnTo" class="xt-fenye-right"><input type="text" id="turn" name="turn" />
+            <a href="#" class="xt-link" onclick="TomyPageIndex()">跳转</a></form>
         </div>
     </div>
     </div>
