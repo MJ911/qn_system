@@ -24,6 +24,26 @@
 
 
 </script>
+<script type="text/javascript" src="/js/jquery.js"></script> 
+<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+<script> 
+	$(function(){
+		var message ='<%=request.getSession().getAttribute("message")%>';
+		var error ='<%=request.getSession().getAttribute("error")%>';
+		 if(message != "null"){
+			swal("Good!", message, "success");
+			<%
+			request.getSession().removeAttribute("message");
+			%>
+		 }	else if(error != "null"){
+			 swal("OMG!", error, "error");
+			 <%
+			 request.getSession().removeAttribute("error");
+			 %>
+		 } 
+	})
+ 		 	
+</script>
 <!-- //for-mobile-apps -->
 <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
@@ -31,7 +51,7 @@
 <link href="/css/pignose.layerslider.css" rel="stylesheet"
 	type="text/css" media="all" />
 
-
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
 <!-- //pignose css -->
 <link href="/css/style.css" rel="stylesheet" type="text/css"
 	media="all" />

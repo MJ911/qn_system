@@ -12,6 +12,7 @@ import com.nwafu.qn_system.entity.Authority;
 import com.nwafu.qn_system.entity.User;
 import com.nwafu.qn_system.entity.User_authority;
 import com.nwafu.qn_system.service.UserService;
+import com.nwafu.qn_system.utils.EnctryUtils;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,12 +23,12 @@ public class UserServiceImpl implements UserService {
 	private User_authorityDAO user_authoritydao;
 
 	/**
-	 * @author 宋明桂
-	 * 添加了用户登录的判断,用户是否激活
+	 * @author 宋明桂 添加了用户登录的判断,用户是否激活
 	 */
 	@Override
 	public User login(User user) {
 		// TODO Auto-generated method stub
+		user.setUser_password(EnctryUtils.stringMD5(user.getUser_password()));
 		User user1 = userdao.getAllByNamePassword(user);
 		if (user1 == null || user1.isUser_state() == false)
 			return null;
@@ -46,47 +47,53 @@ public class UserServiceImpl implements UserService {
 		Pattern pMail = Pattern.compile("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$");
 		Matcher m = pName.matcher(user.getUser_name());
 		boolean flg = m.matches();
-		System.out.println(flg);
+		// System.out.println(flg);
 		if (flg) {
 
 			if (userdao.getByUser_name(user.getUser_name()) == null) {
 				m = pPasswd.matcher(user.getUser_password());
 				flg = m.matches();
-				System.out.println(flg);
+				// System.out.println(flg);
 				if (flg) {
 
 					m = pMail.matcher(user.getUser_mail());
 					flg = m.matches();
-					System.out.println(flg);
+					// System.out.println(flg);
 					if (flg) {
 						if (userdao.getByUser_mail(user.getUser_mail()) == null) {
-							System.out.println("UserServiceImpl->userdao.add->start");
+							// System.out.println("UserServiceImpl->userdao.add->start");
+							user.setUser_password(EnctryUtils.stringMD5(user.getUser_password()));
 							userdao.add(user);
-							System.out.println("UserServiceImpl->userdao.add->finish");
-							User_authority user_authority=new User_authority();
+							// System.out.println("UserServiceImpl->userdao.add->finish");
+							User_authority user_authority = new User_authority();
 							user_authority.setUser(userdao.getByUser_name(user.getUser_name()));
-							Authority authority =new Authority();
-							for(int i=1;i<=5;i++){
+							Authority authority = new Authority();
+							for (int i = 1; i <= 5; i++) {
 								authority.setAuthority_id(i);
-								user_authority.setAuthority(authority);;
+								user_authority.setAuthority(authority);				
 								user_authoritydao.insertUserAuthority(user_authority);
 							}
 							return 0;
 						} else {
+							//邮箱已经被注册
 							return 5;
 						}
 					} else {
+						//邮箱格式错误
 						return 4;
 					}
 				} else {
+					// 密码格式不匹配
 					return 3;
 				}
 
 			} else {
+				// 用户名已经被注册了
 				return 2;
 			}
 
 		} else {
+			// 用户名格式不匹配
 			return 1;
 		}
 
