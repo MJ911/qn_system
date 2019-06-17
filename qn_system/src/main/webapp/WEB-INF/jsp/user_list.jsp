@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>user_list</title>
-<link href="../css/styleuser.css" rel="stylesheet" type="text/css">
+<link href="/css/styleuser.css" rel="stylesheet" type="text/css">
 </head>
 
 <script type="text/javascript">
@@ -21,6 +21,18 @@ function windowHeight() {
 window.onload=window.onresize=function(){
 	var wh=windowHeight();
 	document.getElementById("xt-left").style.height = document.getElementById("xt-right").style.height = (wh-document.getElementById("xt-top").offsetHeight)+"px";
+}
+function TouserPageNext() {
+	location.href = "/qn_system/userNextPage";
+}function TouserPagePre() {
+	location.href = "/qn_system/userPrePage";
+}function TouserPageFirst() {
+	location.href = "/qn_system/TouserPageFirst";
+}function TouserPageEnd() {
+	location.href = "/qn_system/TouserPageEnd";
+}function TouserPageIndex() {
+	var index = turnTo.turn.value;
+	location.href = "/qn_system/TouserPageIndex/"+index;
 }
 </script>
 
@@ -99,12 +111,15 @@ window.onload=window.onresize=function(){
         </table>
     </div>
    	<div class="xt-fenye">
-				<div class="xt-fenye-left">当前第 1 / 270 页,每页10条，共 2696条记录</div>
+				<div class="xt-fenye-left">当前第 ${indexPage} / ${pages} 页,每页10条，共 ${lines}条记录</div>
 				<div class="xt-fenye-right">
-					<a>首页</a> <a href="#">上一步</a> <a href="#">下一步</a> <a
-						href="#">尾页</a> <input type="text" name="text" /> <a href="#"
-						class="xt-link">跳转</a>
-				</div>
+           	 		<a onclick="TouserPageFirst()">首页</a>
+            		<a onclick="TouserPagePre()">上一页</a>
+            		<a onclick="TouserPageNext()">下一页</a>
+            		<a onclick="TouserPageEnd()">尾页</a>
+            		<form name="turnTo" class="xt-fenye-right"><input type="text" id="turn" name="turn" />
+            		<a href="#" class="xt-link" onclick="TouserPageIndex()">跳转</a></form>
+        		</div>
 			</div>
     </div>
     <div id="div_right">

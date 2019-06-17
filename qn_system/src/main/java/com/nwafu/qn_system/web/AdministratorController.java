@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.nwafu.qn_system.dao.AuthorityDAO;
 import com.nwafu.qn_system.dao.QuestionnaireDAO;
 import com.nwafu.qn_system.dao.RoleDAO;
 import com.nwafu.qn_system.dao.UserDAO;
 import com.nwafu.qn_system.dao.User_authorityDAO;
 import com.nwafu.qn_system.entity.Authority;
+import com.nwafu.qn_system.entity.Questionnaire;
 import com.nwafu.qn_system.entity.Role;
 import com.nwafu.qn_system.entity.User;
 import com.nwafu.qn_system.entity.User_authority;
@@ -63,16 +65,102 @@ public class AdministratorController {
 	}
 
 	@GetMapping("user_list")
-	public String user_list(Model model) {
+	public String user_list(Model model,HttpSession session) {
 		/*
 		 * 从管理员界面 管理员点击用户集 跳转到user_list.jsp
 		 * 
 		 * @author sgf
 		 */
-		model.addAttribute("userlist", userdao.getAll());
+		PageHelper.startPage(1,10);// 设置分页，参数1=页数，参数2=每页显示条数
+		List<User> user_list = userdao.getAll(); 
+		PageInfo<User> pageInfo = new PageInfo<User>(user_list);
+		
+		session.setAttribute("lines",pageInfo.getTotal());//总记录数
+		session.setAttribute("pages",pageInfo.getPages());//总页数
+		session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
+		model.addAttribute("userlist", user_list);
 		return "user_list";
 	}
-
+	
+	//user_list下一页分页
+	@GetMapping("userNextPage")
+	public String userNextPage(Model model,HttpSession session) {
+		int indexPage = (int)session.getAttribute("indexPage");
+		int pages = (int)session.getAttribute("pages");
+		indexPage++;
+		indexPage = indexPage>pages?pages:indexPage;
+		PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
+		List<User> user_list = userdao.getAll(); 
+		PageInfo<User> pageInfo = new PageInfo<User>(user_list);
+		model.addAttribute("userlist", user_list);
+		session.setAttribute("lines",pageInfo.getTotal());//总记录数
+		session.setAttribute("pages",pageInfo.getPages());//总页数
+		session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
+		return "user_list";
+	}
+	//user_list上一页分页
+		@GetMapping("userPrePage")
+		public String userPrePage(Model model,HttpSession session) {
+			int indexPage = (int)session.getAttribute("indexPage");
+			indexPage--;
+			indexPage = indexPage<1?1:indexPage;
+			PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
+			List<User> user_list = userdao.getAll(); 
+			PageInfo<User> pageInfo = new PageInfo<User>(user_list);
+			model.addAttribute("userlist", user_list);
+			session.setAttribute("lines",pageInfo.getTotal());//总记录数
+			session.setAttribute("pages",pageInfo.getPages());//总页数
+			session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
+			return "user_list";
+		}
+		//user_list首页分页
+		@GetMapping("TouserPageFirst")
+		public String TouserPageFirst(Model model,HttpSession session) {
+			int indexPage = (int)session.getAttribute("indexPage");
+			indexPage=1;
+			PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
+			List<User> user_list = userdao.getAll(); 
+			PageInfo<User> pageInfo = new PageInfo<User>(user_list);
+			model.addAttribute("userlist", user_list);
+			session.setAttribute("lines",pageInfo.getTotal());//总记录数
+			session.setAttribute("pages",pageInfo.getPages());//总页数
+			session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
+			return "user_list";
+		}
+		//user_list尾页分页
+				@GetMapping("TouserPageEnd")
+				public String TouserPageEnd(Model model,HttpSession session) {
+					int indexPage = (int)session.getAttribute("indexPage");
+					int pages = (int)session.getAttribute("pages");
+					indexPage=pages;
+					PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
+					List<User> user_list = userdao.getAll(); 
+					PageInfo<User> pageInfo = new PageInfo<User>(user_list);
+					model.addAttribute("userlist", user_list);
+					session.setAttribute("lines",pageInfo.getTotal());//总记录数
+					session.setAttribute("pages",pageInfo.getPages());//总页数
+					session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
+					return "user_list";
+				}
+				
+				//user_list指定页分页
+				@GetMapping("/TouserPageIndex/{index}")
+				public String TouserPageEnd(@PathVariable String index,Model model,HttpSession session) {
+					int indexPage = (int)session.getAttribute("indexPage");
+					indexPage=new Integer(index);
+					int pages = (int)session.getAttribute("pages");
+					indexPage = indexPage<1?1:indexPage;
+					indexPage = indexPage>pages?pages:indexPage;
+					PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
+					List<User> user_list = userdao.getAll(); 
+					PageInfo<User> pageInfo = new PageInfo<User>(user_list);
+					model.addAttribute("userlist", user_list);
+					session.setAttribute("lines",pageInfo.getTotal());//总记录数
+					session.setAttribute("pages",pageInfo.getPages());//总页数
+					session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
+					return "user_list";
+				}
+				
 	@PostMapping("user_list")
 	public String user_list(Model model, HttpServletRequest request) {
 		/*
