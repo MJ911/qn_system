@@ -105,7 +105,11 @@ public class IndexController {
 		return "login";
 	}
 	@GetMapping("/personal")
-	public String personal() {
+	public String personal(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if(user.getUser_name().equals("admin")) {
+			return "user_list";
+		}
 		return "personal";
 	}
 

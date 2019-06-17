@@ -38,6 +38,12 @@ public class LoginController {
 		System.out.println(one);
 		User user = userService.login(one);
 		session.setAttribute("user", user);
+		if(user != null && user_name.equals("admin")) {
+			//管理登录
+			System.out.println("登录成功！");
+			session.setAttribute("message", "尊敬的"+user_name+"用户，您已成功登录！");
+			return "user_list";
+		}
 		if(user != null) {
 			//成功
 			System.out.println("登录成功！");

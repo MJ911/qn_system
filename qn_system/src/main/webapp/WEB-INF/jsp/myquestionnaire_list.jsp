@@ -44,9 +44,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#div_left{width:20%;height:850px;float:left;}
         #div_middle{margin-top:10px;text-align:center;width:60%;height:880px;float:left;background-color:rgba(255,255,255,0.40);border-radius:50px;text-color:black;}
 		#div_right{width:20%;height:850px;float:left;}
-		a.color1:link{color: black ; text-decoration:none;} /*³£¹æÊ±ºòµÄÑùÊ½*/
-        a.color1:visited{color: black; text-decoration:none;} /*Êó±êÖ¸ÉÏÈ¥µÄÑùÊ½*/
-        a.color1:hover {color: black; text-decoration:underline;} /*·ÃÎÊ¹ıºóµÄÑùÊ½*/
+		a.color1:link{color: black ; text-decoration:none;}
+        a.color1:visited{color: black; text-decoration:none;}
+        a.color1:hover {color: black; text-decoration:underline;}
         table tr td{text-align:center; } 
         
         .xt-table{ margin-top: 20px;margin-left: 20px;margin-right: 20px;color:black}
@@ -91,6 +91,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location.href = "/qn_system/personal";
 	}function Toquestionnaire(index){
 		location.href="/qn_system/questionnaire/"+index;
+	}function Toquit() {
+		location.href = "/qn_system/quit";
 	}
 </script>
 </head>
@@ -113,46 +115,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="icon-bar"></span>
 				  </button>
 				</div>
-				<!-- µ¼º½-->
+				<!-- ï¿½ï¿½ï¿½ï¿½-->
 				<div  class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  
 					
-					<div width="60%" style="float:left">
-					    <ul class="nav navbar-nav menu__list">
-					        <li style="color:white" class="active menu__item menu__item--current"><a class="menu__link" onclick="Toindex()">Ê×Ò³<span class="sr-only">(current)</span></a></li>				
-							<li id="qn"style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(1)">Í¶Æ±¼¯</a></li>
-							<li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(0)">ÎÊ¾í¼¯</a></li>
-					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Tomodel_list()">ÎÊ¾íÄ£°å</a></li>
-					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toindex()">°ïÖú</a></li>
+					<div width="60%" style="float: left">
+								<ul class="nav navbar-nav menu__list">
+									<li style="color: white"
+										class="active menu__item menu__item--current"><a
+										class="menu__link" onclick="Toindex()">é¦–é¡µ<span
+											class="sr-only">(current)</span></a></li>
+									<li id="qn" style="color: white" class=" menu__item"><a
+										class="menu__link" onclick="Toquestionnaire_list(1)">æŠ•ç¥¨é›†</a></li>
+									<li style="color: white" class=" menu__item"><a
+										class="menu__link" onclick="Toquestionnaire_list(0)">é—®å·é›†</a></li>
+									<li style="color: white" class=" menu__item"><a
+										class="menu__link" onclick="Tomodel_list()">é—®å·æ¨¡æ¿</a></li>
+									<li style="color: white" class=" menu__item"><a
+										class="menu__link" onclick="Toindex()">å¸®åŠ©</a></li>
 
-					    </ul>
-					</div>
+								</ul>
+							</div>
 					<div style="float:left; height:1px;width:390px">
 						<div class='validation' style="opacity: 1; right: -5px;top: -3px;">
-							<canvas  class="J_codeimg" id="myCanvas" onclick="Code();">¶Ô²»Æğ£¬ÄúµÄä¯ÀÀÆ÷²»Ö§³Öcanvas£¬ÇëÏÂÔØ×îĞÂ°æä¯ÀÀÆ÷!</canvas>
+							<canvas class="J_codeimg" id="myCanvas" onclick="Code();">å¯¹ä¸èµ·ï¼Œæ‚¨çš„æµè§ˆå™¨ä¸æ”¯æŒcanvasï¼Œè¯·ä¸‹è½½æœ€æ–°ç‰ˆæµè§ˆå™¨!</canvas>
 						</div>
 
 				    </div>
                     
 					<%
-								if(request.getSession().getAttribute("user")==null){
-							 %>
-							<div width="10%" style="float:left">
+								if (request.getSession().getAttribute("user") == null) {
+							%>
+							<div width="10%" style="float: left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">µÇÂ¼</a></li>
+										onclick="Tologin()">ç™»å½•</a></li>
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">×¢²á</a></li>
+										onclick="Tologin()">æ³¨å†Œ</a></li>
 								</ul>
 							</div>
-							<%} else{%>
-							<div width="10%" style="float:left">
+							<%
+								} else {
+							%>
+							<div width="10%" style="float: left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Topersonal()">¸öÈËÖ÷Ò³</a></li>
+										onclick="Topersonal()">ä¸»é¡µ</a></li>
+										<li class=" menu__item"><a class="menu__link"
+										onclick="Toquit()">é€€å‡º</a></li>
 								</ul>
-							</div>							
-							<% } %>
+							</div>
+							<%
+								}
+							%>
 				</div>				
 			  </div>
 			</nav>	
@@ -166,10 +181,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <div class="xt-table">
         <table cellpadding="0" cellspacing="0" border="0"  width="100%" style="color:black;">
             <tr>
-            <th>ÎÊ¾í/Í¶Æ± Ãû³Æ</th>
-            <th>ÎÊ¾í/Í¶Æ± ´´½¨Ê±¼ä</th>
-            <th>ÎÊ¾í/Í¶Æ± Ê§Ğ§Ê±¼ä</th>
-            <th>ÎÊ¾í/Í¶Æ± ÀàĞÍ</th>
+            <th>é—®å·/æŠ•ç¥¨ åç§°</th>
+            <th>é—®å·/æŠ•ç¥¨ åˆ›å»ºæ—¶é—´</th>
+            <th>é—®å·/æŠ•ç¥¨ å¤±æ•ˆæ—¶é—´</th>
+            <th>é—®å·/æŠ•ç¥¨ ç±»å‹</th>
             </tr>
             
             <c:forEach items="${myquestionnaires }" var="questionnaire">
@@ -178,22 +193,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	<td>${questionnaire.questionnaire_cdate}</td>
                 	<td>${questionnaire.questionnaire_fdate}</td>
                 	<td>
-                		<c:if test="${questionnaire.questionnaire_type == '0'}">ÎÊ¾í</c:if>
-                		<c:if test="${questionnaire.questionnaire_type == '1'}">Í¶Æ±</c:if>
+                		<c:if test="${questionnaire.questionnaire_type == '0'}">é—®å·</c:if>
+                		<c:if test="${questionnaire.questionnaire_type == '1'}">æŠ•ç¥¨</c:if>
                 	</td>
             	</tr>
             </c:forEach>         
         </table>
     </div>
     <div class="xt-fenye">
-        <div class="xt-fenye-left">µ±Ç°µÚ 1 / 270 Ò³,Ã¿Ò³10Ìõ£¬¹² 2696Ìõ¼ÇÂ¼</div>
+        <div class="xt-fenye-left">å½“å‰ç¬¬ 1 / 270 é¡µ,æ¯é¡µ10æ¡ï¼Œå…± 2696æ¡è®°å½•</div>
         <div class="xt-fenye-right">
-            <a href="#">Ê×Ò³</a>
-            <a href="#">ÉÏÒ»²½</a>
-            <a href="#">ÏÂÒ»²½</a>
-            <a href="#">Î²Ò³</a>
+            <a href="#">é¦–é¡µ</a>
+            <a href="#">ä¸Šä¸€æ­¥</a>
+            <a href="#">ä¸‹ä¸€æ­¥</a>
+            <a href="#">å°¾é¡µ</a>
             <input type="text" name="text" />
-            <a href="#" class="xt-link">Ìø×ª</a>
+            <a href="#" class="xt-link">è·³è½¬</a>
         </div>
     </div>
     </div>

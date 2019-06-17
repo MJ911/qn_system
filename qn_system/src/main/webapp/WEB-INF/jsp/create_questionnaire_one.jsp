@@ -51,9 +51,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="/js/jquery.min.js"></script>
 
 
-	<script text="text/javascript">
-	    
-	</script>
+<script type="text/javascript">
+	function Toquestionnaire_list(index){
+		location.href="/qn_system/questionnaire_list/"+index;
+	}
+	function Toindex(){
+		location.href="/qn_system/index";
+	}
+	function Tomodel_list(){
+		location.href="/qn_system/model_list";
+	}
+	function Tologin(){
+		location.href="/qn_system/login";
+	}function Tocreate_choice(){
+		location.href="/qn_system/create_choice";
+	}function Topersonal() {
+		location.href = "/qn_system/personal";
+	}function Toquit() {
+		location.href = "/qn_system/quit";
+	}
+</script>
 </head>
 
 <body>
@@ -74,33 +91,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="icon-bar"></span>
 				  </button>
 				</div>
-				<!-- µ¼º½-->
+				<!-- ï¿½ï¿½ï¿½ï¿½-->
 				<div  class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  
 					
 					<div width="60%" style="float:left">
 					    <ul class="nav navbar-nav menu__list">
-					        <li style="color:white" class="active menu__item menu__item--current"><a class="menu__link" href="home.html">Ê×Ò³<span class="sr-only">(current)</span></a></li>				
-							<li id="qn"style="color:white" class=" menu__item"><a class="menu__link" href="#">Í¶Æ±¼¯</a></li>
-							<li style="color:white" class=" menu__item"><a class="menu__link" >ÎÊ¾í¼¯</a></li>
-					        <li style="color:white" class=" menu__item"><a class="menu__link" href="#">ÎÊ¾íÄ£°å</a></li>
-					        <li style="color:white" class=" menu__item"><a class="menu__link" href="#">°ïÖú</a></li>
+					        <li style="color:white" class="active menu__item menu__item--current"><a class="menu__link" onclick="Toindex()">é¦–é¡µ<span class="sr-only">(current)</span></a></li>				
+							<li id="qn"style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(1)">æŠ•ç¥¨é›†</a></li>
+							<li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(0)">é—®å·é›†</a></li>
+					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Tomodel_list()">é—®å·æ¨¡æ¿</a></li>
+					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toindex()">å¸®åŠ©</a></li>
 
 					    </ul>
 					</div>
 					<div style="float:left; height:1px;width:390px">
 						<div class='validation' style="opacity: 1; right: -5px;top: -3px;">
-							<canvas  class="J_codeimg" id="myCanvas" onclick="Code();">¶Ô²»Æğ£¬ÄúµÄä¯ÀÀÆ÷²»Ö§³Öcanvas£¬ÇëÏÂÔØ×îĞÂ°æä¯ÀÀÆ÷!</canvas>
+							<canvas  class="J_codeimg" id="myCanvas" onclick="Code();">å¯¹ä¸èµ·ï¼Œæ‚¨çš„æµè§ˆå™¨ä¸æ”¯æŒcanvasï¼Œè¯·ä¸‹è½½æœ€æ–°ç‰ˆæµè§ˆå™¨!</canvas>
 						</div>
 
 				    </div>
                     
-					<div width="10%"style="float:left">
-						<ul class="nav navbar-nav menu__list">
-					        <li class=" menu__item"><a class="menu__link" href="login1.html">µÇÂ¼</a></li>
-					        <li class=" menu__item"><a class="menu__link" href="register.html">×¢²á</a></li>
-				        </ul>	
-				    </div>
+					<%
+								if(request.getSession().getAttribute("user")==null){
+							 %>
+							<div width="10%" style="float:left">
+								<ul class="nav navbar-nav menu__list">
+									<li class=" menu__item"><a class="menu__link"
+										onclick="Tologin()">ç™»å½•</a></li>
+									<li class=" menu__item"><a class="menu__link"
+										onclick="Tologin()">æ³¨å†Œ</a></li>
+								</ul>
+							</div>
+							<%} else{%>
+							<div width="10%" style="float: left">
+								<ul class="nav navbar-nav menu__list">
+									<li class=" menu__item"><a class="menu__link"
+										onclick="Topersonal()">ä¸»é¡µ</a></li>
+										<li class=" menu__item"><a class="menu__link"
+										onclick="Toquit()">é€€å‡º</a></li>
+								</ul>
+							</div>							
+							<% } %>
 				</div>				
 			  </div>
 			</nav>	

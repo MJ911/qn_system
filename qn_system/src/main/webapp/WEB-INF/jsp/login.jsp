@@ -157,6 +157,15 @@
 #div_label3 {
 	margin-top: 10px;
 }
+.pw-strength {clear: both;position: relative;top: 8px;width: 180px;} 
+		.pw-bar{background: url(/images/1.png) no-repeat; position:relative; top:1px;height: 14px;overflow: hidden;width: 179px;} 
+		.pw-bar-on{background: url(/images/2.png) no-repeat; width:0px; height:14px;position: absolute;top: 1px;left: 2px;transition: width .5s ease-in;-moz-transition: width .5s ease-in;-webkit-transition: width .5s ease-in;-o-transition: width .5s ease-in;} 
+		.pw-weak .pw-defule{ width:0px;} 
+		.pw-weak .pw-bar-on {width: 60px;} 
+		.pw-medium .pw-bar-on {width: 120px;} 
+		.pw-strong .pw-bar-on {width: 179px;} 
+		.pw-txt {padding-top: 2px;width: 180px;overflow: hidden;} 
+		.pw-txt span {color: #707070;float: left;font-size: 12px;text-align: center;width: 58px;}
 </style>
 <link href="/loginSpecial/css/demo.css" rel="stylesheet"
 	type="text/css" />
@@ -190,7 +199,101 @@
 		location.href = "/qn_system/personal";
 	}
 </script>
+<script type="text/javascript">
+	     
+		$(function(){
+			$("#div_middle_rig").hide();
+			$("#button_log").click(function(){
+			    $("#div_middle").show();
+				$("#div_middle_rig").hide();
+            });
+            $("#button_rigester").click(function(){
+                $("#div_middle").hide();
+				$("#div_middle_rig").show();
+            });
+			$("#warn2").hide();
+	        $("#input2").focus(function(){
+	            $("#warn2").show();
+	            var passwd1=$("#input1").val();
+		        var passwd2=$("#input2").val();
+		        if(passwd1==passwd2){
+		            $("#warn2").hide();
+		        }
+            });
+			$("#input2").blur(function(){
+	            var passwd1=$("#input1").val();
+				var passwd2=$("#input2").val();
+			    if(passwd1==passwd2){
+				    $("#warn2").hide();
+				}else{
+					$("#warn2").show();
+				}
+			});
+			$("#input1").blur(function(){
+			    $("#tab").hide();
+	            var passwd1=$("#input1").val();
+				var passwd2=$("#input2").val();
+			    if(passwd1==passwd2){
+				    $("#warn2").hide();
+				}else{
+					$("#warn2").show();
+				}
+			});
+			//判断用户名长度
+			$("#warn1").hide();
+			$("#user2").blur(function(){
+			    if($("#user2").val().length>15||$("#user2").val().length<6){
+				    $("#warn1").show();
+				}else{
+					$("#warn1").hide();
+				}
+			});
+			$("#tab").hide();
+			$("#input1").focus(function(){
+			    $("#tab").show();
+			})
 
+			$('#input1').keyup(function () { 
+				var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g"); 
+				var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g"); 
+				var enoughRegex = new RegExp("(?=.{6,}).*", "g"); 
+   
+				if (false == enoughRegex.test($(this).val())) { 
+					$('#level').removeClass('pw-weak'); 
+					$('#level').removeClass('pw-medium'); 
+					$('#level').removeClass('pw-strong'); 
+					$('#level').addClass(' pw-defule'); 
+				 //密码小于六位的时候，密码强度图片都为灰色 
+				} 
+				else if (strongRegex.test($(this).val())) { 
+				$('#level').removeClass('pw-weak'); 
+				$('#level').removeClass('pw-medium'); 
+				$('#level').removeClass('pw-strong'); 
+				$('#level').addClass(' pw-strong'); 
+				//密码为八位及以上并且字母数字特殊字符三项都包括,强度最强 
+				} 
+				else if (mediumRegex.test($(this).val())) { 
+					$('#level').removeClass('pw-weak'); 
+					$('#level').removeClass('pw-medium'); 
+					$('#level').removeClass('pw-strong'); 
+					$('#level').addClass(' pw-medium'); 
+					//密码为七位及以上并且字母、数字、特殊字符三项中有两项，强度是中等 
+				} 
+				else { 
+					$('#level').removeClass('pw-weak'); 
+					$('#level').removeClass('pw-medium'); 
+					$('#level').removeClass('pw-strong'); 
+					$('#level').addClass('pw-weak'); 
+					//如果密码为6为及以下，就算字母、数字、特殊字符三项都包括，强度也是弱的 
+				} 
+			return true; 
+		}); 
+			
+
+    });
+		
+
+    </script>
 </head>
 
 <body>
@@ -285,19 +388,36 @@
 
 					<form action="/qn_system/register"  method="post">
 						<div id="div_label2">
-							<li><font size="5px" color="black">用户名：</font> <input
-								name="user_name" type="text" height="10" style="color: black" /></li>
+							<li><font size="5px" color="black">&nbsp;用&nbsp;户&nbsp;名：&nbsp;</font> <input
+								id="user2"name="user_name" type="text" height="10" style="color: black" />
+								<label><font size="5" color="red" id="warn1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户名必须在6--15位之间</font></label>
+							</li>
+								
 						</div>
 						<div id="div_label2">
-							<li><font size="5px" color="black">密&nbsp;&nbsp;&nbsp;码：</font>
-								<input name="user_password" type="password" height="10" style="color: black" /></li>
+							<li><font size="5px" color="black">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：&nbsp;</font>
+								<span><input id="input1" name="user_password" type="password" height="10" style="color: black" /></span>
+							<table align="center" id="tab">
+								<td id="level" class="pw-strength" >    
+								<div class="pw-bar"></div> 
+								<div class="pw-bar-on"></div> 
+								<div class="pw-txt"> 
+									<span>弱</span> 
+									<span>中</span> 
+									<span>强</span> 
+								</div> 
+								</td>  
+						    </table>   
+							</li>
 						</div>
 						<div id="div_label2">
 							<li><font size="5px" color="black">确认密码：</font> <input
-								type="password" height="10" style="color: black" /></li>
+								id="input2" type="password" height="10" style="color: black" />
+								<label><font size="5" color="red" id="warn2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;两次密码输入不一致</font></label>
+							</li>
 						</div>
 						<div id="div_label2">
-							<li><font size="5px" color="black">邮&nbsp;&nbsp;&nbsp;箱：</font>
+							<li><font size="5px" color="black">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：&nbsp;</font>
 								<input name="user_mail" type="text" height="10" style="color: black" /></li>
 						</div>
 						<div id="div_label2">
