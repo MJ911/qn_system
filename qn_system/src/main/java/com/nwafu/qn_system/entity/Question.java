@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Question {
 	private int question_id;
-	private int question_type;
+	private int question_type; //1单选，2多选，3填空
 	private String question_name;
 	private int question_number;
 	

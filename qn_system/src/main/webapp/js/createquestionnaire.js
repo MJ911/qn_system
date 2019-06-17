@@ -1,4 +1,5 @@
-﻿$(document).ready(function(e) {
+﻿
+$(document).ready(function(e) {
 			 $('#button_xdx').click(function() {
 				 
 		            // debugger
