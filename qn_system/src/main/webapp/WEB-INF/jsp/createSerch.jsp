@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <!DOCTYPE html>
-<html>
+<html ng-app="app" lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -14,8 +14,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--     <script src="/js/jquery.min.js"></script> -->
     <script src="/js/createquestionnaire.js"></script>
 <!-- 	<link rel="stylesheet" type="text/css" href="/css/wui.min.css"> -->
-<!-- 	<script type="text/javascript" src="/js/angular.js" charset="utf-8"></script> -->
-<!-- 	<script type="text/javascript" src="/js/wui-date.js" charset="utf-8"></script> -->
+	<link rel="stylesheet" type="text/css" href="/css/wui.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/style_date.css">
+		
+		<script type="text/javascript" src="/js/angular.min.js"></script>
+		<script type="text/javascript" src="/js/wui-date.js" charset="utf-8"></script>
 </head>
 
 
@@ -33,8 +36,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <form action="/qn_system/create_questionnaire" method="post">
     <input type="hidden" name="questionnaire_state" value="1"/>
     <input type="hidden" name="questionnaire_type" value="0"/>
-    <center>问卷名：<input type="text" name="questionnaire_name"/></center>
-
+    <center>问卷名<input type="text" name="questionnaire_name"/></center>
+	
+			<div align="center" class="wui-area">
+				<p>问卷截止时间</p>
+				<wui-date 
+					name="questionnaire_xdx"
+					format="yyyy-mm-dd hh:mm" 
+					placeholder="请选择或输入日期" 
+					id="date1" 
+					btns="{'ok':'确定','now':'此刻'}" 
+					ng-model="date1"
+				>
+				</wui-date>
+			</div>
+		<script type="text/javascript">
+			var app = angular.module('app',["wui.date"]);
+		</script>
+	
+	
+	
     <div class=" all_660">
         <div class="yd_box"></div>
         <div class="but" style="padding-top: 20px">
