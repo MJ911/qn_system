@@ -39,4 +39,10 @@ public interface UserService {
 	 * 更新用户的状态和激活码
 	 */
 	public void upadteUser(User user);
+	
+	/**
+	 * 通过用户名获取用户对象
+	 * @author 宋明桂
+	 */
+    public User getByUserName(String name);
 }

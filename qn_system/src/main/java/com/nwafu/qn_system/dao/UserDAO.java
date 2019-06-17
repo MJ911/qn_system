@@ -83,7 +83,7 @@ public interface UserDAO {
 	/**
 	 * 根据user_name单表查询user表
 	 * @author sgf
-	 * @param user_id
+	 * @param user_name
 	 * @return 
 	 */
 	@Select("select * from user where user_name=#{user_name}")

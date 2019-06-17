@@ -118,4 +118,10 @@ public class UserServiceImpl implements UserService {
 		userdao.updateUserstate_activecode(user);
 	}
 
+	@Override
+	public User getByUserName(String name) {
+		// TODO Auto-generated method stub
+		return userdao.getByUser_name(name);
+	}
+
 }

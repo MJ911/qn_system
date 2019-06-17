@@ -24,7 +24,7 @@ public class WebConfigurer implements WebMvcConfigurer {
 //	  	addPathPatterns("/**");
 //      excludePathPatterns("/login", "/register");
     //  registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/qn_system/login", "/qn_system/index", "/qn_system/questionnaire_list/0","/qn_system/questionnaire_list/1","/qn_system/src/main/webapp/css","/qn_system/src/main/webapp/images","/qn_system/src/main/webapp/js","/qn_system/src/main/webapp/loginSpecial");
-//	  registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/qn_system/login", "/qn_system/index", "/qn_system/questionnaire_list/0","/qn_system/questionnaire_list/1","/css","/images","/js","/loginSpecial");
+	  registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/qn_system/login", "/qn_system/index", "/qn_system/questionnaire_list/0","/qn_system/questionnaire_list/1","/css/**","/images/**","/js/**","/loginSpecial/**");
 //	  registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/qn_system/login", "/qn_system/index", "/qn_system/questionnaire_list/0","/qn_system/questionnaire_list/1","/qn_system/src/main/webapp/css","/qn_system/src/main/webapp/images","/qn_system/src/main/webapp/js","/qn_system/src/main/webapp/loginSpecial");
   }
 }
