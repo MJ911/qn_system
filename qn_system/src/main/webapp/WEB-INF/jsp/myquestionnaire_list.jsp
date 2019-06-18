@@ -204,7 +204,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
             <c:forEach items="${myquestionnaires }" var="questionnaire">
             	<tr>
-                	<td><a class="color1" href="/qn_system/questionnaire/${questionnaire.questionnaire_id}">${questionnaire.questionnaire_name}</a></td>
+                	<td><a class="color1" href="/qn_system/questionnaire_view/${questionnaire.questionnaire_id}">${questionnaire.questionnaire_name}</a></td>
                 	<td>${questionnaire.questionnaire_cdate}</td>
                 	<td>${questionnaire.questionnaire_fdate}</td>
                 	<td>
