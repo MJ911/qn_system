@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>questionnaire_list</title>
+<title>model_list</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -44,9 +44,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#div_left{width:20%;height:850px;float:left;}
         #div_middle{margin-top:10px;text-align:center;width:60%;height:880px;float:left;background-color:rgba(255,255,255,0.40);border-radius:50px;text-color:black;}
 		#div_right{width:20%;height:850px;float:left;}
-		a.color1:link{color: black ; text-decoration:none;} /*³£¹æÊ±ºòµÄÑùÊ½*/
-        a.color1:visited{color: black; text-decoration:none;} /*Êó±êÖ¸ÉÏÈ¥µÄÑùÊ½*/
-        a.color1:hover {color: black; text-decoration:underline;} /*·ÃÎÊ¹ıºóµÄÑùÊ½*/
+		a.color1:link{color: black ; text-decoration:none;} /*ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ê½*/
+        a.color1:visited{color: black; text-decoration:none;} /*ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½Ê½*/
+        a.color1:hover {color: black; text-decoration:underline;} /*ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½*/
         table tr td{text-align:center; } 
         
         .xt-table{ margin-top: 20px;margin-left: 20px;margin-right: 20px;color:black}
@@ -93,37 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location.href="/qn_system/questionnaire/"+index;
 	}function Toquit() {
 		location.href = "/qn_system/quit";
-	}function ToPageNext() {
-		location.href = "/qn_system/NextPage";
-	}function ToPagePre() {
-		location.href = "/qn_system/PrePage";
-	}function ToPageFirst() {
-		location.href = "/qn_system/ToPageFirst";
-	}function ToPageEnd() {
-		location.href = "/qn_system/ToPageEnd";
-	}function ToPageIndex() {
-		var index = turnTo.turn.value;
-		if(index != ""){
-			location.href = "/qn_system/ToPageIndex/"+index;
-		}else{
-			alert("ÇëÊäÈëÌø×ªÒ³£¡");
-		}
 	}
-</script>
-<script type="text/javascript" src="/js/jquery.js"></script> 
-<script type="text/javascript" src="/js/sweetalert.min.js"></script>
-<script> 
-	$(function(){
-		var errorMessage ='<%=request.getSession().getAttribute("errorMessage")%>';
-		 if(errorMessage != "null"){
-			swal("OMG!", errorMessage, "error");
-			alert(errorMessage);
-			<%
-			request.getSession().removeAttribute("errorMessage");
-			%>
-		 }
-	})
- 		 	
 </script>
 </head>
 
@@ -145,23 +115,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="icon-bar"></span>
 				  </button>
 				</div>
-				<!-- µ¼º½-->
+				<!-- ï¿½ï¿½ï¿½ï¿½-->
 				<div  class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  
 					
 					<div width="60%" style="float:left">
 					    <ul class="nav navbar-nav menu__list">
-					        <li style="color:white" class="active menu__item menu__item--current"><a class="menu__link" onclick="Toindex()">Ê×Ò³<span class="sr-only">(current)</span></a></li>				
-							<li id="qn"style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(1)">Í¶Æ±¼¯</a></li>
-							<li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(0)">ÎÊ¾í¼¯</a></li>
-					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Tomodel_list()">ÎÊ¾íÄ£°å</a></li>
-					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toindex()">°ïÖú</a></li>
+					        <li style="color:white" class="active menu__item menu__item--current"><a class="menu__link" onclick="Toindex()">é¦–é¡µ<span class="sr-only">(current)</span></a></li>				
+							<li id="qn"style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(1)">æŠ•ç¥¨é›†</a></li>
+							<li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(0)">é—®å·é›†</a></li>
+					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Tomodel_list()">é—®å·æ¨¡æ¿</a></li>
+					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toindex()">å¸®åŠ©</a></li>
 
 					    </ul>
 					</div>
 					<div style="float:left; height:1px;width:390px">
 						<div class='validation' style="opacity: 1; right: -5px;top: -3px;">
-							<canvas  class="J_codeimg" id="myCanvas" onclick="Code();">¶Ô²»Æğ£¬ÄúµÄä¯ÀÀÆ÷²»Ö§³Öcanvas£¬ÇëÏÂÔØ×îĞÂ°æä¯ÀÀÆ÷!</canvas>
+							<canvas class="J_codeimg" id="myCanvas" onclick="Code();">å¯¹ä¸èµ·ï¼Œæ‚¨çš„æµè§ˆå™¨ä¸æ”¯æŒcanvasï¼Œè¯·ä¸‹è½½æœ€æ–°ç‰ˆæµè§ˆå™¨!</canvas>
 						</div>
 
 				    </div>
@@ -172,18 +142,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div width="10%" style="float:left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">µÇÂ¼</a></li>
+										onclick="Tologin()">ç™»å½•</a></li>
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">×¢²á</a></li>
+										onclick="Tologin()">æ³¨å†Œ</a></li>
 								</ul>
 							</div>
 							<%} else{%>
 							<div width="10%" style="float: left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Topersonal()">Ö÷Ò³</a></li>
+										onclick="Topersonal()">ä¸»é¡µ</a></li>
 										<li class=" menu__item"><a class="menu__link"
-										onclick="Toquit()">ÍË³ö</a></li>
+										onclick="Toquit()">é€€å‡º</a></li>
 								</ul>
 							</div>							
 							<% } %>
@@ -200,13 +170,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <div class="xt-table">
         <table cellpadding="0" cellspacing="0" border="0"  width="100%" style="color:black;">
             <tr>
-            <th>ÎÊ¾í/Í¶Æ± Ãû³Æ</th>
-            <th>ÎÊ¾í/Í¶Æ± ´´½¨Ê±¼ä</th>
-            <th>ÎÊ¾í/Í¶Æ± Ê§Ğ§Ê±¼ä</th>
-            <th>ÎÊ¾í/Í¶Æ± ´´½¨ÈË</th>
+            <th>é—®å·/æŠ•ç¥¨ åç§°</th>
+            <th>é—®å·/æŠ•ç¥¨ åˆ›å»ºæ—¶é—´</th>
+            <th>é—®å·/æŠ•ç¥¨ å¤±æ•ˆæ—¶é—´</th>
+            <th>é—®å·/æŠ•ç¥¨ åˆ›å»ºäºº</th>
             </tr>
             
-            <c:forEach items="${questionnairelist }" var="questionnaire">
+            <c:forEach items="${modellist }" var="questionnaire">
             	<tr>
                 	<td><a class="color1" href="/qn_system/model/${questionnaire.questionnaire_id}">${questionnaire.questionnaire_name}</a></td>
                 	<td>${questionnaire.questionnaire_cdate}</td>
@@ -215,17 +185,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	</tr>
             </c:forEach>         
         </table>
-    </div>
-    <div class="xt-fenye">
-        <div class="xt-fenye-left">µ±Ç°µÚ ${indexPage} / ${pages} Ò³,Ã¿Ò³10Ìõ£¬¹² ${lines}Ìõ¼ÇÂ¼</div>
-        <div class="xt-fenye-right">
-            <a onclick="ToPageFirst()">Ê×Ò³</a>
-            <a onclick="ToPagePre()">ÉÏÒ»Ò³</a>
-            <a onclick="ToPageNext()">ÏÂÒ»Ò³</a>
-            <a onclick="ToPageEnd()">Î²Ò³</a>
-            <form name="turnTo" class="xt-fenye-right"><input type="text" id="turn" name="turn" />
-            <a href="#" class="xt-link" onclick="ToPageIndex()">Ìø×ª</a></form>
-        </div>
     </div>
     </div>
     <div id="div_right">

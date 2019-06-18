@@ -1,5 +1,6 @@
 package com.nwafu.qn_system.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.github.pagehelper.Page;
@@ -91,44 +93,43 @@ public class IndexController {
 	
 	@GetMapping("/model_list")
 	public String model_list(Model model,HttpSession session) {
-		//返回模板列表 model_list.jsp
+		//返回模板列表 model_list.jsp(questionnaire表中前10个视为模板问卷/投票)
 
 			List<Questionnaire> questionnairelist = null;
+			List<Questionnaire> modellist = new ArrayList<Questionnaire>();
 			questionnairelist = questionnaireDAO.getAll();
-			model.addAttribute("questionnairelist", questionnairelist);
+			for(int i=0;i<questionnairelist.size();i++) {
+				modellist.add(questionnairelist.get(i));
+			}
+			model.addAttribute("modellist", modellist);
 			return "model_list";
 		
 
 	}
 	@GetMapping("/model/{model_qn_id}")
-	public String model(@PathVariable int model_qn_id,HttpSession session) {
+	public String model(@PathVariable int model_qn_id,Model model) {
 		/*
 		 * 把model_qn_id的model问卷对象放入session里
 		 */
 		Questionnaire questionnairemodel = qnService.getQn(model_qn_id);
-		session.setAttribute("questionnaire", questionnairemodel);
+		model.addAttribute("questionnaire", questionnairemodel);
 		return "model";
 	}
 	
-	@GetMapping("/create_questionnaireFrommodel/{model_qn_id}")
-	public String create_questionnaireFrommodel(@PathVariable int model_qn_id,Model model,HttpSession session) {
+	@PostMapping("/create_Frommodel")
+	public String create_Frommodel(Questionnaire questionnaire,Model model,HttpSession session) {
 		//进入创建问卷界面 create_model_many.jsp
 		//把model_qn_id的model问卷对象放入session里
 		//问卷对象的名字属性要清空
-		model.addAttribute("model_qn_id", model_qn_id);
+		model.addAttribute("model_qn_id", questionnaire.getQuestionnaire_id());
 		
-		return "create_model_many";
-	}
-	
-	@GetMapping("/create_voteFrommodel/{model_qn_id}")
-	public String create_voteFrommodel(@PathVariable int model_qn_id,Model model,HttpSession session) {
-		//进入创建问卷界面 create_model_one.jsp
-		//把model_qn_id的model问卷对象放入session里
-		//问卷对象的名字属性要清空
-		model.addAttribute("model_qn_id", model_qn_id);
+		if(questionnaire.getQuestionnaire_type() == 0) {
+			return "create_model_many";
+		}
 		
 		return "create_model_one";
 	}
+
 	
 	@GetMapping("/modelSerch/{model_qn_id}")
 	public String create_modelSerch(@PathVariable int model_qn_id,Model model) {

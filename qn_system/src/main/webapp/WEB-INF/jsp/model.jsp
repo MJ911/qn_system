@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>questionnaire</title>
+<title>model</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -34,6 +34,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location.href = "/qn_system/personal";
 	}function Toquit() {
 		location.href = "/qn_system/quit";
+	}function TomakeModel() {
+		alert(hello);
+		var index = '${questionnaire.questionnaire_id }';
+		var type = '${questionnaire.questionnaire_type}';
+		if(type=='0'){
+			location.href = "/qn_system/create_questionnaireFrommodel/"+index;
+		}else(type=='1'){
+			location.href = "/qn_system/create_voteFrommodel/"+index;
+		}
 	}
 </script>
 <!-- //for-mobile-apps -->
@@ -141,9 +150,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </style>
     <link href="/loginSpecial/css/demo.css" rel="stylesheet" type="text/css" />
     <link href="/loginSpecial/css/loaders.css" rel="stylesheet" type="text/css" />
-	<script text="text/javascript">
-	    
-	</script>
 </head>
 
 <body>
@@ -164,23 +170,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="icon-bar"></span>
 				  </button>
 				</div>
-				<!-- µ¼º½-->
+				<!-- ï¿½ï¿½ï¿½ï¿½-->
 				<div  class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  
 					
 					<div width="60%" style="float:left">
 					    <ul class="nav navbar-nav menu__list">
-					        <li style="color:white" class="active menu__item menu__item--current"><a class="menu__link" onclick="Toindex()">Ê×Ò³<span class="sr-only">(current)</span></a></li>				
-							<li id="qn"style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(1)">Í¶Æ±¼¯</a></li>
-							<li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(0)">ÎÊ¾í¼¯</a></li>
-					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Tomodel_list()">ÎÊ¾íÄ£°å</a></li>
-					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toindex()">°ïÖú</a></li>
+					        <li style="color:white" class="active menu__item menu__item--current"><a class="menu__link" onclick="Toindex()">é¦–é¡µ<span class="sr-only">(current)</span></a></li>				
+							<li id="qn"style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(1)">æŠ•ç¥¨é›†</a></li>
+							<li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(0)">é—®å·é›†</a></li>
+					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Tomodel_list()">é—®å·æ¨¡æ¿</a></li>
+					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toindex()">å¸®åŠ©</a></li>
 
 					    </ul>
 					</div>
 					<div style="float:left; height:1px;width:390px">
 						<div class='validation' style="opacity: 1; right: -5px;top: -3px;">
-							<canvas  class="J_codeimg" id="myCanvas" onclick="Code();">¶Ô²»Æğ£¬ÄúµÄä¯ÀÀÆ÷²»Ö§³Öcanvas£¬ÇëÏÂÔØ×îĞÂ°æä¯ÀÀÆ÷!</canvas>
+							<canvas class="J_codeimg" id="myCanvas" onclick="Code();">å¯¹ä¸èµ·ï¼Œæ‚¨çš„æµè§ˆå™¨ä¸æ”¯æŒcanvasï¼Œè¯·ä¸‹è½½æœ€æ–°ç‰ˆæµè§ˆå™¨!</canvas>
 						</div>
 
 				    </div>
@@ -191,18 +197,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div width="10%" style="float:left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">µÇÂ¼</a></li>
+										onclick="Tologin()">ç™»å½•</a></li>
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">×¢²á</a></li>
+										onclick="Tologin()">æ³¨å†Œ</a></li>
 								</ul>
 							</div>
 							<%} else{%>
 							<div width="10%" style="float: left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Topersonal()">Ö÷Ò³</a></li>
+										onclick="Topersonal()">ä¸»é¡µ</a></li>
 										<li class=" menu__item"><a class="menu__link"
-										onclick="Toquit()">ÍË³ö</a></li>
+										onclick="Toquit()">é€€å‡º</a></li>
 								</ul>
 							</div>							
 							<% } %>
@@ -220,36 +226,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        <div id="div_blankLeft"></div>
 	   <div id="div_middleofMiddle">
 	   <h1 style="text-align:center;margin-top:40px;margin-bottom:40px;font-weight:bold;font-size:50px;">${questionnaire.questionnaire_name }</h1>
-	   <form action="/qn_system/questionnaire_list" method="post">
+	   <form action="/qn_system/create_Frommodel" method="post">
 	   
 	   	<c:forEach items="${questionnaire.question_list}" var="question">
 	   		<c:if test="${questionnaire.questionnaire_type eq 0 }">
-	   			<h2 style="margin-top:20px;margin-bottom:20px;">ÌâÄ¿${question.question_number }&nbsp;.${question.question_name}</h2>
+	   			<h2 style="margin-top:20px;margin-bottom:20px;">é¢˜ç›®${question.question_number }&nbsp;.${question.question_name}</h2>
  	   		</c:if>
- 	   		<c:if test="${question.question_type == '1'}"><%--µ±Ç°Îªµ¥Ñ¡Ìâ --%>
+ 	   		<c:if test="${question.question_type == '1'}">
 	   			<c:forEach items="${question.options_list }" var="option">
 	   				<h3><input name="question_list[${question.question_number-1 }].answer.answer_info" type="radio" value="${option.option_number }" onclick="return false"/>${option.option_number }.&nbsp;&nbsp;&nbsp;&nbsp;${option.option_name}</h3><br>
-	   				<input name="question_list[${question.question_number-1 }].question_type" type="hidden" value="${question.question_type }">
-	   				<input name="question_list[${question.question_number-1 }].answer.question.question_id" type="hidden" value="${question.question_id }">
 	   			</c:forEach>
 	   		</c:if>
-	   		<c:if test="${question.question_type == '2'}"><%--µ±Ç°Îª¶àÑ¡Ìâ --%>
+	   		<c:if test="${question.question_type == '2'}">
 	   			<c:forEach items="${question.options_list }" var="option">
 	   				<h3><input name="question_list[${question.question_number-1 }].answer.answer_info" type="checkbox" value="${option.option_number }" onclick="return false"/>${option.option_number }.&nbsp;&nbsp;&nbsp;${option.option_name}</h3><br>
 	   				<input name="question_list[${question.question_number-1 }].question_type" type="hidden" value="${question.question_type }">
-	   				<input name="question_list[${question.question_number-1 }].answer.question.question_id" type="hidden" value="${question.question_id }">
-	   				<input name="question_list[${question.question_number-1 }].options_list[${option.option_number-1 }].option_number" type="hidden" value="${option.option_number }">
 	   			</c:forEach>
 	   		</c:if>
-	   		<c:if test="${question.question_type == '3'}"><%--µ±Ç°ÎªÌî¿ÕÌâ --%>
+	   		<c:if test="${question.question_type == '3'}">
 	   			<textarea name="question_list[${question.question_number-1 }].answer.answer_info" style="overflow:auto;width:95%;height:50px;color:black;border:2px;background-color:rgba(255,255,255,0.40);font-size:20px;" class="inputtext" disabled="disabled"></textarea>
-	   			<input name="question_list[${question.question_number-1 }].question_type" type="hidden" value="${question.question_type }">
-	   			<input name="question_list[${question.question_number-1 }].answer.question.question_id" type="hidden" value="${question.question_id }">
 	   		</c:if>
 	   	</c:forEach><br>
 	   	<input name="questionnaire_id" type="hidden" value="${questionnaire.questionnaire_id }">
-	   	<input name="user.user_id" type="hidden" value="${sessionScope.user.user_id}">
-	   	<center><input type="submit" value="ÓÃ»§×ÓÄ£°æ" style="margin-top:40px;"class="button blue bigrounded" <c:if test="${questionnaire.questionnaire_type == '0'}">onclick='/qn_system/create_questionnaireFrommodel/questionnaire_id'</c:if>/>
+	   	<input name="questionnaire_type" type="hidden" value="${questionnaire.questionnaire_type }">
+	   	<center><input type="submit" value="åº”ç”¨è¯¥æ¨¡æ¿" style="margin-top:40px;"class="button blue bigrounded"/></center>
 	   	
 	   	
 	   </form>
