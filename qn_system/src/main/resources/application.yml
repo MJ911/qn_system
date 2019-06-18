@@ -8,14 +8,19 @@ spring:
     username: root
     password: 
   mail:
-    host: smtp.qq.com
-    username: 972327281@qq.com
-    password: pftodqbdruknbffc
-    properties:
-      mail:
-        stmp:
-          ssl:
-            enable: true    
+    host: smtp.163.com
+    username: smg_song@163.com
+    password: smg980528
+    protocol: smtp
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.port: 994 #465Лђеп994
+    properties.mail.display.sendmail: Javen
+    properties.mail.display.sendname: Spring Boot Guide Email
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.smtp.starttls.required: true
+    properties.mail.smtp.ssl.enable: true
+    default-encoding: utf-8
+  
   mvc:
     view:
       prefix: /WEB-INF/jsp/
