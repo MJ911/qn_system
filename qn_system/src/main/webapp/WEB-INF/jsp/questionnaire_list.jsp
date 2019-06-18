@@ -103,8 +103,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location.href = "/qn_system/ToPageEnd";
 	}function ToPageIndex() {
 		var index = turnTo.turn.value;
-		location.href = "/qn_system/ToPageIndex/"+index;
+		if(index != ""){
+			location.href = "/qn_system/ToPageIndex/"+index;
+		}else{
+			alert("请输入跳转页！");
+		}
 	}
+</script>
+<script type="text/javascript" src="/js/jquery.js"></script> 
+<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+<script> 
+	$(function(){
+		var errorMessage ='<%=request.getSession().getAttribute("errorMessage")%>';
+		 if(errorMessage != "null"){
+			swal("OMG!", errorMessage, "error");
+			alert(errorMessage);
+			<%
+			request.getSession().removeAttribute("errorMessage");
+			%>
+		 }
+	})
+ 		 	
 </script>
 </head>
 

@@ -18,6 +18,7 @@ import com.nwafu.qn_system.dao.QuestionnaireDAO;
 import com.nwafu.qn_system.entity.Answer;
 import com.nwafu.qn_system.entity.Question;
 import com.nwafu.qn_system.entity.Questionnaire;
+import com.nwafu.qn_system.entity.User;
 import com.nwafu.qn_system.service.QnService;
 @Controller
 @RequestMapping("qn_system")
@@ -34,8 +35,15 @@ public class QuestionnaireController {
 	private QuestionnaireDAO questionnaireDAO;
 	
 	@PostMapping("questionnaire_list")
-	public String questionnaire(Questionnaire questionnaire) {
+	public String questionnaire(Questionnaire questionnaire,HttpSession session) {
 //		System.out.println(questionnaire);
+		User user = (User) session.getAttribute("user");
+		Questionnaire qn = qnService.getAnseredQn(user, questionnaire.getQuestionnaire_id());
+		if(qn.getQuestion_list().get(0).getAnswer() != null) {
+			String str = "请勿重复提交问卷！";
+			session.setAttribute("errorMessage", str);
+			return "questionnaire_list";
+		}
 		List<Question> questionList = questionnaire.getQuestion_list();
 		for(Question q:questionList) {
 			if(q.getQuestion_type() == 2) {

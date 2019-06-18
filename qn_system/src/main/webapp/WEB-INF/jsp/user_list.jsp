@@ -32,7 +32,11 @@ function TouserPageNext() {
 	location.href = "/qn_system/TouserPageEnd";
 }function TouserPageIndex() {
 	var index = turnTo.turn.value;
-	location.href = "/qn_system/TouserPageIndex/"+index;
+	if(index != ""){
+		location.href = "/qn_system/TouserPageIndex/"+index;
+	}else{
+		alert("请输入跳转页！");
+	}
 }
 </script>
 

@@ -103,7 +103,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location.href = "/qn_system/TomyPageEnd";
 	}function TomyPageIndex() {
 		var index = turnTo.turn.value;
-		location.href = "/qn_system/TomyPageIndex/"+index;
+		if(index != ""){
+			location.href = "/qn_system/TomyPageIndex/"+index;
+		}else{
+			alert("请输入跳转页！");
+		}
 	}
 </script>
 </head>
