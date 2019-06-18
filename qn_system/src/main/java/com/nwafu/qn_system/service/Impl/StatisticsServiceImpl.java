@@ -48,31 +48,40 @@ public class StatisticsServiceImpl implements StatisticsService{
 		if(question.getQuestion_type() == 1) {//单选
 //			System.out.println("*****qu_id:"+question.getQuestion_id());
 //			System.out.println("******answer_size:"+answers.size());
+			//判断问卷有无答案
+			if(answers!=null)
 			for(int i=0;i<answers.size();i++) {
 				Answer answer = answers.get(i);
-				int index = Integer.parseInt(answer.getAnswer_info())-1;
-//				System.out.println("********index:"+index);
-				everyOptionSum[index]++;
+				//判断该回答是否为空
+				if(answer.getAnswer_info()!=null) {
+					int index = Integer.parseInt(answer.getAnswer_info())-1;
+//					System.out.println("********index:"+index);
+					everyOptionSum[index]++;
+				}
 			}
 			
 			
 		}
 		else if(question.getQuestion_type() == 2) {//多选
-			
+			//判断问卷有无答案
+			if(answers!=null)
 			for(int i=0;i<answers.size();i++) {
 				Answer answer = answers.get(i);
-				int answer_info =  Integer.parseInt(answer.getAnswer_info());
-				String binary = Integer.toBinaryString(answer_info);
-				System.out.println("二进制："+binary);
+				//判断该回答是否为空
+				if(answer.getAnswer_info()!=null) {
+					int answer_info =  Integer.parseInt(answer.getAnswer_info());
+					String binary = Integer.toBinaryString(answer_info);
+					System.out.println("二进制："+binary);
 				
-				for(int j=0;j<binary.length();j++) {//eg :101(2) = 5(10)
+					for(int j=0;j<binary.length();j++) {//eg :101(2) = 5(10)
 
-					char c = binary.charAt(j);
+						char c = binary.charAt(j);
 
-					if(49 == c) {
+						if(49 == c) {
 
-						everyOptionSum[j]++;
+							everyOptionSum[j]++;
 
+						}
 					}
 				}
 //				System.out.println(everyOptionSum[0]);
@@ -86,9 +95,14 @@ public class StatisticsServiceImpl implements StatisticsService{
 		
 		for(int i=0;i<optionsNum;i++) {
 			//optionRate.add(i,(double)everyOptionSum[i]/sum);
-			BigDecimal orignal = new BigDecimal((double)everyOptionSum[i]/answers.size());
-			double rate = orignal.setScale(3,BigDecimal.ROUND_HALF_UP).doubleValue();
-			optionRate.add(i,rate);
+			//该题有回答
+			if(answers.size()>0) {
+				BigDecimal orignal = new BigDecimal((double)everyOptionSum[i]/answers.size());
+				double rate = orignal.setScale(3,BigDecimal.ROUND_HALF_UP).doubleValue();
+				optionRate.add(i,rate);
+			} else {
+				optionRate.add(i,0.0);
+			}
 		}
 		return optionRate;
 	}
@@ -100,9 +114,7 @@ public class StatisticsServiceImpl implements StatisticsService{
 		answers = answerDAO.getByQuestionId(question.getQuestion_id());
 		question.setQuestion_answer(answers);
 //		System.out.println("*****answer_size:"+answers.size());///???size为0
-		for(int i=0;i<answers.size();i++) {
-//			System.out.println("answer["+i+"]:"+answers.get(i).getAnswer_info());
-		}
+
 		return question;
 	}
 

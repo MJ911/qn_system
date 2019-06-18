@@ -233,6 +233,13 @@ ul.c {list-style-type:square;}
 	   			</c:forEach>
 	   		</c:if>
 	   		
+	   		<c:if test="${question.question_type == '2'}"><%--当前为多选题 --%>
+	   			<c:forEach items="${question.options_list }" var="option">
+	   				<h3 style="color:pink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${option.option_number }.&nbsp;&nbsp;&nbsp;&nbsp;${option.option_name} &nbsp;&nbsp;
+	   				(${100*option.option_rate } %)<br></h3>
+	   			</c:forEach>
+	   		</c:if>
+	   		
 	   		<c:if test="${question.question_type == '3'}"><%--当前为填空题 --%>
 	   			<ul style="list-style-type:circle;list-style-position:inherit;">
 	   				<c:forEach items = "${question.question_answer }" var = "answer">

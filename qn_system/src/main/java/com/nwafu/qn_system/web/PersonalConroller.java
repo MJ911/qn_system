@@ -378,7 +378,7 @@ public class PersonalConroller {
 		 */
 		
 		Questionnaire questionnaire = qnService.getAnseredQn((User)session.getAttribute("user"),questionnaire_id);
-		System.out.println(questionnaire.getQuestion_list().get(0).getAnswer().getAnswer_info());
+//		System.out.println(questionnaire.getQuestion_list().get(0).getAnswer().getAnswer_info());
 		String str = null;
 		List<Question> options=new ArrayList<>();
 		
