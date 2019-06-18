@@ -299,23 +299,23 @@
 								<ul class="nav navbar-nav menu__list">
 									<li style="color: white"
 										class="active menu__item menu__item--current"><a
-										class="menu__link" onclick="Toindex()">Ê×Ò³<span
+										class="menu__link" onclick="Toindex()">首页<span
 											class="sr-only">(current)</span></a></li>
 									<li id="qn" style="color: white" class=" menu__item"><a
-										class="menu__link" onclick="Toquestionnaire_list(1)">Í¶Æ±¼¯</a></li>
+										class="menu__link" onclick="Toquestionnaire_list(1)">投票集</a></li>
 									<li style="color: white" class=" menu__item"><a
-										class="menu__link" onclick="Toquestionnaire_list(0)">ÎÊ¾í¼¯</a></li>
+										class="menu__link" onclick="Toquestionnaire_list(0)">问卷集</a></li>
 									<li style="color: white" class=" menu__item"><a
-										class="menu__link" onclick="Tomodel_list()">ÎÊ¾íÄ£°å</a></li>
+										class="menu__link" onclick="Tomodel_list()">问卷模板</a></li>
 									<li style="color: white" class=" menu__item"><a
-										class="menu__link" onclick="Toindex()">°ïÖú</a></li>
+										class="menu__link" onclick="Toindex()">帮助</a></li>
 
 								</ul>
 							</div>
 							<div style="float: left; height: 1px; width: 390px">
 								<div class='validation'
 									style="opacity: 1; right: -5px; top: -3px;">
-									<canvas class="J_codeimg" id="myCanvas" onclick="Code();">¶Ô²»Æð£¬ÄúµÄä¯ÀÀÆ÷²»Ö§³Öcanvas£¬ÇëÏÂÔØ×îÐÂ°æä¯ÀÀÆ÷!</canvas>
+									<canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
 								</div>
 
 							</div>
@@ -326,9 +326,9 @@
 							<div width="10%" style="float: left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">µÇÂ¼</a></li>
+										onclick="Tologin()">登录</a></li>
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">×¢²á</a></li>
+										onclick="Tologin()">注册</a></li>
 								</ul>
 							</div>
 							<%
@@ -337,9 +337,9 @@
 							<div width="10%" style="float: left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Topersonal()">Ö÷Ò³</a></li>
-									<li class=" menu__item"><a class="menu__link"
-										onclick="Toquit()">ÍË³ö</a></li>
+										onclick="Topersonal()">主页</a></li>
+										<li class=" menu__item"><a class="menu__link"
+										onclick="Toquit()">退出</a></li>
 								</ul>
 							</div>
 							<%
@@ -354,22 +354,21 @@
 		</div>
 		<div id="div_left"></div>
 
-		<div id="div_middle" style="color: black;">
+		<div id="div_middle" style="color: black;overflow: scroll;overflow-x: hidden;">
 			<div id="div_blankLeft"></div>
-			<div id="div_middleofMiddle"
-				style="overflow: scroll; overflow-x: hidden;">
+			<div id="div_middleofMiddle">
 				<h1
 					style="text-align: center; margin-top: 40px; margin-bottom: 40px; font-weight: bold; font-size: 50px;">${questionnaire.questionnaire_name }</h1>
 				<form action="/qn_system/questionnaire_list" method="post">
 
 					<c:forEach items="${questionnaire.question_list}" var="question">
-						<h2 style="margin-top: 20px; margin-bottom: 20px;">ÌâÄ¿${question.question_number }&nbsp;${question.question_name}</h2>
+						<h2 style="margin-top: 20px; margin-bottom: 20px;">题目${question.question_number }.&nbsp;${question.question_name}</h2>
 						<c:if test="${question.question_type == '1'}">
 							<%--µ±Ç°Îªµ¥Ñ¡Ìâ --%>
 							<c:forEach items="${question.options_list }" var="option">
 								<h3>
 									<input type="radio" value="${option.option_number }"
-										<c:if test="${option.option_number eq question.answer.answer_info}">checked='checked'</c:if> />${option.option_number }.&nbsp;&nbsp;&nbsp;&nbsp;${option.option_name}</h3>
+										<c:if test="${option.option_number eq question.answer.answer_info}">checked='checked'</c:if> onclick="return false"/>${option.option_number }.&nbsp;&nbsp;&nbsp;&nbsp;${option.option_name}</h3>
 								<br>
 								<input type="hidden" value="${question.question_type }">
 								<input type="hidden" value="${question.question_id }">
@@ -404,7 +403,7 @@
 							</c:forEach>
 						</c:if>
 						<c:if test="${question.question_type == '3'}">
-							<%--µ±Ç°ÎªÌî¿ÕÌâ --%>
+							<%--填空 --%>
 							<textarea
 								style="overflow: auto; width: 95%; height: 50px; color: black; border: 2px; background-color: rgba(255, 255, 255, 0.40); font-size: 20px;"
 								class="inputtext" disabled>${question.answer.answer_info}</textarea>

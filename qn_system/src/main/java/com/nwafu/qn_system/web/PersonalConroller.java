@@ -133,7 +133,6 @@ public class PersonalConroller {
 		 */
 		// 分页查询设置
 		int indexPage = (int) session.getAttribute("indexPage");
-		int pages = (int) session.getAttribute("pages");
 		indexPage--;
 		indexPage = indexPage < 1 ? 1 : indexPage;
 		PageHelper.startPage(indexPage, 10);// 设置分页，参数1=页数，参数2=每页显示条数
@@ -219,13 +218,119 @@ public class PersonalConroller {
 		/**
 		 * 用户从personal.jsp点击参与问卷创建跳转到join_list.jsp
 		 */
+		PageHelper.startPage(1, 10);// 设置分页，参数1=页数，参数2=每页显示条数
 		User user = (User) session.getAttribute("user");
 		System.out.println(user);
 		List<Questionnaire> joinquestionnaires = qnService.getAnsweredQns(user);
+		PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(joinquestionnaires);
+
+		session.setAttribute("lines", pageInfo.getTotal());// 总记录数
+		session.setAttribute("pages", pageInfo.getPages());// 总页数
+		session.setAttribute("indexPage", pageInfo.getPageNum());// 当前界面
 		model.addAttribute("joinquestionnaires", joinquestionnaires);
 		return "join_list";
 	}
+	
+	//join_list分页下一页请求
+	@GetMapping("joinNextPage")
+	public String joinNextPage(HttpSession session, Model model) {
+		// 分页查询设置
+		int indexPage = (int) session.getAttribute("indexPage");
+		int pages = (int) session.getAttribute("pages");
+		indexPage++;
+		indexPage = indexPage > pages ? pages : indexPage;
+		PageHelper.startPage(indexPage, 10);// 设置分页，参数1=页数，参数2=每页显示条数
+		User user = (User) session.getAttribute("user");
+		System.out.println(user);
+		List<Questionnaire> joinquestionnaires = qnService.getAnsweredQns(user);
+		PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(joinquestionnaires);
 
+		session.setAttribute("lines", pageInfo.getTotal());// 总记录数
+		session.setAttribute("pages", pageInfo.getPages());// 总页数
+		session.setAttribute("indexPage", pageInfo.getPageNum());// 当前界面
+		model.addAttribute("joinquestionnaires", joinquestionnaires);
+		return "join_list";
+	}
+	//join_list分页上一页请求
+		@GetMapping("joinPrePage")
+		public String joinPrePage(HttpSession session, Model model) {
+			// 分页查询设置
+			int indexPage = (int) session.getAttribute("indexPage");
+			indexPage--;
+			indexPage = indexPage < 1 ? 1 : indexPage;
+			PageHelper.startPage(indexPage, 10);// 设置分页，参数1=页数，参数2=每页显示条数
+			User user = (User) session.getAttribute("user");
+			System.out.println(user);
+			List<Questionnaire> joinquestionnaires = qnService.getAnsweredQns(user);
+			PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(joinquestionnaires);
+
+			session.setAttribute("lines", pageInfo.getTotal());// 总记录数
+			session.setAttribute("pages", pageInfo.getPages());// 总页数
+			session.setAttribute("indexPage", pageInfo.getPageNum());// 当前界面
+			model.addAttribute("joinquestionnaires", joinquestionnaires);
+			return "join_list";
+		}
+		//join_list分页首页请求
+		@GetMapping("TojoinPageFirst")
+		public String TojoinPageFirst(HttpSession session, Model model) {
+			// 分页查询设置
+			int indexPage = (int) session.getAttribute("indexPage");
+			indexPage=1;
+			PageHelper.startPage(indexPage, 10);// 设置分页，参数1=页数，参数2=每页显示条数
+			User user = (User) session.getAttribute("user");
+			System.out.println(user);
+			List<Questionnaire> joinquestionnaires = qnService.getAnsweredQns(user);
+			PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(joinquestionnaires);
+
+			session.setAttribute("lines", pageInfo.getTotal());// 总记录数
+			session.setAttribute("pages", pageInfo.getPages());// 总页数
+			session.setAttribute("indexPage", pageInfo.getPageNum());// 当前界面
+			model.addAttribute("joinquestionnaires", joinquestionnaires);
+			return "join_list";
+		}
+		//join_list分页尾页请求
+		@GetMapping("TojoinPageEnd")
+		public String TojoinPageEnd(HttpSession session, Model model) {
+			// 分页查询设置
+			int indexPage = (int) session.getAttribute("pages");
+
+			PageHelper.startPage(indexPage, 10);// 设置分页，参数1=页数，参数2=每页显示条数
+			User user = (User) session.getAttribute("user");
+			System.out.println(user);
+			List<Questionnaire> joinquestionnaires = qnService.getAnsweredQns(user);
+			PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(joinquestionnaires);
+
+			session.setAttribute("lines", pageInfo.getTotal());// 总记录数
+			session.setAttribute("pages", pageInfo.getPages());// 总页数
+			session.setAttribute("indexPage", pageInfo.getPageNum());// 当前界面
+			model.addAttribute("joinquestionnaires", joinquestionnaires);
+			return "join_list";
+		}	
+		
+		// join_list分页操作指定页
+		@GetMapping("/TojoinPageIndex/{index}")
+		public String TojoinPageIndex(@PathVariable String index,Model model, HttpSession session) {
+			/*
+			 * 返回问卷列表 myquestionnaire_list.jsp 往model里面加调查或者投票的List
+			 */
+			// 分页查询设置
+			int indexPage = (int) session.getAttribute("indexPage");
+			indexPage=new Integer(index);
+			int pages = (int)session.getAttribute("pages");
+			indexPage = indexPage<1?1:indexPage;
+			indexPage = indexPage>pages?pages:indexPage;
+			PageHelper.startPage(indexPage,10);// 设置分页，参数1=页数，参数2=每页显示条数
+			User user = (User) session.getAttribute("user");
+			List<Questionnaire> joinquestionnaires = qnService.getAnsweredQns(user);
+			PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(joinquestionnaires);
+
+			session.setAttribute("lines", pageInfo.getTotal());// 总记录数
+			session.setAttribute("pages", pageInfo.getPages());// 总页数
+			session.setAttribute("indexPage", pageInfo.getPageNum());// 当前界面
+			model.addAttribute("joinquestionnaires", joinquestionnaires);
+			return "join_list";
+		}
+		
 	@GetMapping("/questionnaire_view/{questionnaire_id}")
 	public String questionnaire_view(@PathVariable int questionnaire_id,Model model) {
 		/**
