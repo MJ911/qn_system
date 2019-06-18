@@ -381,11 +381,15 @@ public class PersonalConroller {
 		System.out.println(questionnaire.getQuestion_list().get(0).getAnswer().getAnswer_info());
 		String str = null;
 		List<Question> options=new ArrayList<>();
+		
 		for (Question question : questionnaire.getQuestion_list()) {
 			if(question.getQuestion_type() == 2){
-				str=Integer.toBinaryString(Integer.parseInt(question.getAnswer().getAnswer_info()));
-				System.out.println("测试"+str);
-				question.getAnswer().setAnswer_info(str);	
+				//答案判空
+				if(question.getAnswer().getAnswer_info()!=null) {
+					str=Integer.toBinaryString(Integer.parseInt(question.getAnswer().getAnswer_info()));
+					System.out.println("测试"+str);
+					question.getAnswer().setAnswer_info(str);	
+				}
 			}
 			options.add(question);
 		}

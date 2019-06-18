@@ -177,6 +177,8 @@ public class QnServiceImpl implements QnService {
 		 * 插入answer表
 		 */
 		List<Question> q_list = questionnaire.getQuestion_list();
+		
+		if(q_list!=null)
 		for(int i = 0;i<q_list.size();i++) {
 			Question question = q_list.get(i);
 			List<Answer> answer_list = question.getQuestion_answer();
@@ -240,10 +242,14 @@ public class QnServiceImpl implements QnService {
 		user_qn.setUser(user);
 		
 		User_questionnaire user_qn_got = user_qndao.getUser_qnByUser_idQn_id(user_qn);
-		
+		if(user_qn_got==null) {
+			return null;
+		}
 		/*****接下来获取user_qn_got在answer表中的查询answerList*/
 		List<Answer> answer_list = answerdao.getAnswersByUser_qn_id(user_qn_got.getUser_questionnaire_id());
-		
+		if(answer_list==null) {
+			return qn_result;
+		}
 		/****接下来把答案依次放到qn_reuslt中的每个question中***************/
 		for(int j = 0;j<answer_list.size();j++) {
 			for(int i = 0;i<qn_result.getQuestion_list().size();i++) {

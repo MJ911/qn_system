@@ -362,7 +362,9 @@
 				<form action="/qn_system/questionnaire_list" method="post">
 
 					<c:forEach items="${questionnaire.question_list}" var="question">
-						<h2 style="margin-top: 20px; margin-bottom: 20px;">题目${question.question_number }.&nbsp;${question.question_name}</h2>
+						<c:if test="${questionnaire.questionnaire_type==0 }">
+							<h2 style="margin-top: 20px; margin-bottom: 20px;">题目${question.question_number }.&nbsp;${question.question_name}</h2>
+						</c:if>
 						<c:if test="${question.question_type == '1'}">
 							<%--µ±Ç°Îªµ¥Ñ¡Ìâ --%>
 							<c:forEach items="${question.options_list }" var="option">
@@ -382,6 +384,7 @@
 							<%
 								//String str=request.getParameter("question.answer.answer_info");
 										String str = (String) pageContext.getAttribute("quest");
+										if(str!=null){
 // 										System.out.println("dafd" + str);
 										List<Integer> ch = new ArrayList<Integer>();
 
@@ -390,6 +393,7 @@
 // 											System.out.println("shuzo" + str.charAt(i));
 										}
 										pageContext.setAttribute("ch", ch);
+										}
 							%>
 
 							<c:forEach items="${question.options_list}" var="option"

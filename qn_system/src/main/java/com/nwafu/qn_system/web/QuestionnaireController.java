@@ -39,15 +39,22 @@ public class QuestionnaireController {
 //		System.out.println(questionnaire);
 		User user = (User) session.getAttribute("user");
 		Questionnaire qn = qnService.getAnseredQn(user, questionnaire.getQuestionnaire_id());
-		if(qn.getQuestion_list().get(0).getAnswer() != null) {
+		//判断是否重复提交
+		if(qn != null) {
 			String str = "请勿重复提交问卷！";
 			session.setAttribute("errorMessage", str);
 			return "questionnaire_list";
 		}
 		List<Question> questionList = questionnaire.getQuestion_list();
+		//题目判空
+		if(questionList!=null)
 		for(Question q:questionList) {
 			if(q.getQuestion_type() == 2) {
 				String str = q.getAnswer().getAnswer_info();
+				//答案判空
+				if(str==null) {
+					continue;
+				}
 				int OptionsLen = q.getOptions_list().size();
 				String[] strArr = str.split(","); 
 				Integer[] intArr = new Integer[strArr.length];
