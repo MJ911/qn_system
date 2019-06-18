@@ -1,5 +1,7 @@
 package com.nwafu.qn_system.web;
 
+import java.io.File;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +23,7 @@ import com.nwafu.qn_system.entity.Question;
 import com.nwafu.qn_system.entity.Questionnaire;
 import com.nwafu.qn_system.entity.User;
 import com.nwafu.qn_system.service.QnService;
+import com.nwafu.qn_system.service.StatisticsService;
 
 @Controller
 @RequestMapping("qn_system")
@@ -28,7 +31,9 @@ public class PersonalConroller {
 
 	@Autowired
 	private QnService qnService;
-
+	@Autowired
+	private StatisticsService statisticsService;
+	
 	@PostMapping("create_questionnaire")
 	public String create_questionnaire(Questionnaire questionnaire, HttpSession session) {
 		/*
@@ -222,18 +227,24 @@ public class PersonalConroller {
 	}
 
 	@GetMapping("/questionnaire_view/{questionnaire_id}")
-	public String questionnaire_view(@PathVariable int questionnaire_id, Model model) {
+	public String questionnaire_view(@PathVariable int questionnaire_id,Model model) {
 		/**
-		 * 用户在myquestionnaire_list.jsp点击查看该行 questionnaire_id问卷数据统计 数据存储在session中
-		 * 返回到用户的该问卷详细信息questionnaire_view.jsp可视化界面显示数据 暂时搁置
+		 * 用户在myquestionnaire_list.jsp点击查看该 questionnaire_id问卷数据统计
+		 * 统计信息封装在Questionnaire对象中返回，在用户的该问卷详细信息questionnaire_view.jsp可视化界面显示数据
 		 */
+		Questionnaire questionnaire = statisticsService.exportQn(questionnaire_id);
+		model.addAttribute("questionnaire", questionnaire);
+		model.addAttribute("qn", questionnaire_id);
+		
+		
 		return "questionnaire_view";
 	}
-
-	@GetMapping("export_questionnaire_view")
-	public void export_questionnaire_view() {
+	
+	@GetMapping("export_questionnaire_view{questionnaire_id}")
+	public void export_questionnaire_view(@PathVariable int questionnaire_id,Model model) {
 		/*
-		 * 暂时搁置 统计结果导出
+		 * 尚未实现
+		 * 统计结果导出
 		 */
 	}
 

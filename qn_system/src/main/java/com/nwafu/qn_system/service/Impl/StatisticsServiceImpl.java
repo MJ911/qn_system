@@ -108,7 +108,9 @@ public class StatisticsServiceImpl implements StatisticsService{
 
 	@Override
 	public File exportFile(Questionnaire qn) throws IOException {//参数qn只需包含问卷，题目，选项
-		File file = new File("statistics.txt");
+		String fileName = "./statistics/statistics"+qn.getQuestionnaire_id()+".txt";
+	//	File file = new File("statistics.txt");
+		File file = new File(fileName);
 		if(!file.exists()) {
 			try {
 				file.createNewFile();
