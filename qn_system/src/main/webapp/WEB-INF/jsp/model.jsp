@@ -34,15 +34,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location.href = "/qn_system/personal";
 	}function Toquit() {
 		location.href = "/qn_system/quit";
-	}function TomakeModel() {
-		alert(hello);
-		var index = '${questionnaire.questionnaire_id }';
-		var type = '${questionnaire.questionnaire_type}';
-		if(type=='0'){
-			location.href = "/qn_system/create_questionnaireFrommodel/"+index;
-		}else(type=='1'){
-			location.href = "/qn_system/create_voteFrommodel/"+index;
-		}
 	}
 </script>
 <!-- //for-mobile-apps -->
