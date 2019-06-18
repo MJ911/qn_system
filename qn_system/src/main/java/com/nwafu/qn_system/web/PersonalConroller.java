@@ -1,5 +1,6 @@
 package com.nwafu.qn_system.web;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -249,8 +250,9 @@ public class PersonalConroller {
 		String str = null;
 		List<Question> options=new ArrayList<>();
 		for (Question question : questionnaire.getQuestion_list()) {
-			if(question.getQuestion_type() == '2'){
+			if(question.getQuestion_type() == 2){
 				str=Integer.toBinaryString(Integer.parseInt(question.getAnswer().getAnswer_info()));
+				System.out.println("测试"+str);
 				question.getAnswer().setAnswer_info(str);	
 			}
 			options.add(question);

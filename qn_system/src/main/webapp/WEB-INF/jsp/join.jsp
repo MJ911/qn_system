@@ -10,14 +10,16 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>questionnaire</title>
+<title>join_list</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
 <script type="application/x-javascript">
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } 
+	function hideURLbar(){ window.scrollTo(0,1); } 
+
 </script>
 
 <script type="text/javascript">
@@ -288,7 +290,7 @@
 									class="icon-bar"></span>
 							</button>
 						</div>
-						<!-- 导航-->
+						<!-- 碌录潞陆-->
 						<div class="collapse navbar-collapse menu--shylock"
 							id="bs-example-navbar-collapse-1">
 
@@ -297,23 +299,23 @@
 								<ul class="nav navbar-nav menu__list">
 									<li style="color: white"
 										class="active menu__item menu__item--current"><a
-										class="menu__link" onclick="Toindex()">首页<span
+										class="menu__link" onclick="Toindex()">脢脳脪鲁<span
 											class="sr-only">(current)</span></a></li>
 									<li id="qn" style="color: white" class=" menu__item"><a
-										class="menu__link" onclick="Toquestionnaire_list(1)">投票集</a></li>
+										class="menu__link" onclick="Toquestionnaire_list(1)">脥露脝卤录炉</a></li>
 									<li style="color: white" class=" menu__item"><a
-										class="menu__link" onclick="Toquestionnaire_list(0)">问卷集</a></li>
+										class="menu__link" onclick="Toquestionnaire_list(0)">脦脢戮铆录炉</a></li>
 									<li style="color: white" class=" menu__item"><a
-										class="menu__link" onclick="Tomodel_list()">问卷模板</a></li>
+										class="menu__link" onclick="Tomodel_list()">脦脢戮铆脛拢掳氓</a></li>
 									<li style="color: white" class=" menu__item"><a
-										class="menu__link" onclick="Toindex()">帮助</a></li>
+										class="menu__link" onclick="Toindex()">掳茂脰煤</a></li>
 
 								</ul>
 							</div>
 							<div style="float: left; height: 1px; width: 390px">
 								<div class='validation'
 									style="opacity: 1; right: -5px; top: -3px;">
-									<canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+									<canvas class="J_codeimg" id="myCanvas" onclick="Code();">露脭虏禄脝冒拢卢脛煤碌脛盲炉脌脌脝梅虏禄脰搂鲁脰canvas拢卢脟毛脧脗脭脴脳卯脨脗掳忙盲炉脌脌脝梅!</canvas>
 								</div>
 
 							</div>
@@ -324,9 +326,9 @@
 							<div width="10%" style="float: left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">登录</a></li>
+										onclick="Tologin()">碌脟脗录</a></li>
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">注册</a></li>
+										onclick="Tologin()">脳垄虏谩</a></li>
 								</ul>
 							</div>
 							<%
@@ -335,9 +337,9 @@
 							<div width="10%" style="float: left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Topersonal()">主页</a></li>
+										onclick="Topersonal()">脰梅脪鲁</a></li>
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Toquit()">退出</a></li>
+										onclick="Toquit()">脥脣鲁枚</a></li>
 								</ul>
 							</div>
 							<%
@@ -361,9 +363,9 @@
 				<form action="/qn_system/questionnaire_list" method="post">
 
 					<c:forEach items="${questionnaire.question_list}" var="question">
-						<h2 style="margin-top: 20px; margin-bottom: 20px;">题目${question.question_number }&nbsp;${question.question_name}</h2>
+						<h2 style="margin-top: 20px; margin-bottom: 20px;">脤芒脛驴${question.question_number }&nbsp;${question.question_name}</h2>
 						<c:if test="${question.question_type == '1'}">
-							<%--当前为单选题 --%>
+							<%--碌卤脟掳脦陋碌楼脩隆脤芒 --%>
 							<c:forEach items="${question.options_list }" var="option">
 								<h3>
 									<input type="radio" value="${option.option_number }"
@@ -375,19 +377,26 @@
 						</c:if>
 
 						<c:if test="${question.question_type == '2'}">
-							<%--当前为多选题 --%>
+							<%--锟斤拷前为锟斤拷选锟斤拷 --%>
+							<c:set var="quest" value="${question.answer.answer_info}" />
+							<c:set var="list" value="${question.options_list}" />
 							<%
 								//String str=request.getParameter("question.answer.answer_info");
-										String str = "11";
-										System.out.println("是不是00" + str);
-										char[] ch = str.toCharArray();
+										String str = (String) pageContext.getAttribute("quest");
+// 										System.out.println("dafd" + str);
+										List<Integer> ch = new ArrayList<Integer>();
+
+										for (int i = 0; i < str.length(); i++) {
+											ch.add(str.charAt(i) - '0');
+// 											System.out.println("shuzo" + str.charAt(i));
+										}
+										pageContext.setAttribute("ch", ch);
 							%>
 
-							<c:forEach items="${question.options_list }" var="option">
-
-								<h3>
+							<c:forEach items="${question.options_list}" var="option"
+								varStatus="loop"><h3>
 									<input type="checkbox" value="${option.option_number }"
-										<c:if test="${ch[option.option_number-1] eq '1'}">checked='checked'</c:if> />${option.option_number }.&nbsp;&nbsp;&nbsp;${option.option_name}</h3>
+										<c:if test="${ch[loop.count-1] eq 1}">checked='checked'</c:if> onclick="return false" />${option.option_number }.&nbsp;&nbsp;&nbsp;${option.option_name}</h3>
 								<br>
 								<input type="hidden" value="${question.question_type }">
 								<input type="hidden" value="${question.question_id }">
@@ -395,10 +404,10 @@
 							</c:forEach>
 						</c:if>
 						<c:if test="${question.question_type == '3'}">
-							<%--当前为填空题 --%>
+							<%--碌卤脟掳脦陋脤卯驴脮脤芒 --%>
 							<textarea
 								style="overflow: auto; width: 95%; height: 50px; color: black; border: 2px; background-color: rgba(255, 255, 255, 0.40); font-size: 20px;"
-								class="inputtext">${question.answer.answer_info}</textarea>
+								class="inputtext" disabled>${question.answer.answer_info}</textarea>
 							<input
 								name="question_list[${question.question_number-1 }].question_type"
 								type="hidden" value="${question.question_type }">
@@ -411,18 +420,14 @@
 						value="${questionnaire.questionnaire_id }"> <input
 						name="user.user_id" type="hidden"
 						value="${sessionScope.user.user_id}">
-					<center>
-
-						<input type="button" value="返回" onclick="/qn_system/join_list" />
-					</center>
-
-				</form>
+					</form>
+				
+				
+				</div>
+   			 </div>
 			</div>
-			<div id="div_blankRight"></div>
-		</div>
-		<div id="div_right"></div>
-
-	</div>
+<!-- 		<div id="div_blankRight"></div> -->
+<!-- 		<div id="div_right"></div> -->
 	<script src="/loginSpecial/js/Particleground.js" type="text/javascript"></script>
 	<script src="/loginSpecial/js/Treatment.js" type="text/javascript"></script>
 	<script src="/loginSpecial/js/controlLogin.js" type="text/javascript"></script>
