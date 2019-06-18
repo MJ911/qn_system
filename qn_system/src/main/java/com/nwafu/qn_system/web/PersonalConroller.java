@@ -35,31 +35,45 @@ public class PersonalConroller {
 	private StatisticsService statisticsService;
 	
 	@PostMapping("create_questionnaire")
-	public String create_questionnaire(Questionnaire questionnaire, HttpSession session) {
+	public String create_questionnaire(Questionnaire questionnaire, HttpSession session, HttpServletRequest request) {
 		/*
-		 * @PathVariable Questionnaire questionnaire 用户在create_questionnaire.jsp
-		 * 新建问卷表单提交 questionnaire 包括question的list（前端封装） 插入数据库 返回到主页index.jsp
+		 * @PathVariable Questionnaire questionnaire
+		 * 用户在create_questionnaire.jsp 新建问卷表单提交
+		 * questionnaire 包括question的list（前端封装）
+		 * 插入数据库
+		 * 返回到主页index.jsp
 		 */
-		System.out.print("xdx!!!");
+		String obj = (String)request.getParameter("questionnaire_xdx");
+		System.out.println(obj);
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		ParsePosition pos = new ParsePosition(0);
+		Date f_date = formatter.parse(obj, pos);
+		questionnaire.setQuestionnaire_fdate(f_date);
 		questionnaire.setQuestionnaire_cdate(new Date());
 		System.out.println(questionnaire);
-		for (int i = 0; i < questionnaire.getQuestion_list().size(); i++) {
-			Question que = questionnaire.getQuestion_list().get(i);
-			System.out.println(que.getQuestion_number() + " " + que.getQuestion_name() + " " + que.getQuestion_type());
-			if (que.getOptions_list() != null)
-				for (int j = 0; j < que.getOptions_list().size(); j++) {
-					System.out.print("   ");
-					Options option = que.getOptions_list().get(j);
-					System.out.println(option.getOption_name() + " " + option.getOption_number());
-				}
-		}
+//		for(int i = 0;i<questionnaire.getQuestion_list().size();i++) {
+//			Question que = questionnaire.getQuestion_list().get(i);
+//			System.out.println(que.getQuestion_number()+" "+que.getQuestion_name()+" "+que.getQuestion_type());
+//			if(que.getOptions_list()!=null)
+//			for(int j=0;j<que.getOptions_list().size();j++) {
+//				System.out.print("   ");
+//				Options option = que.getOptions_list().get(j);
+//				System.out.println(option.getOption_name()+" "+option.getOption_number());
+//			}
+//		}
 		User user = (User) session.getAttribute("user");
-		// System.out.println(user.getUser_name()+user.getUser_id());
+//		System.out.println(user.getUser_name()+user.getUser_id());
 		questionnaire.setUser(user);
 		qnService.createQn(questionnaire);
-		return "index";
+		if(questionnaire.getQuestionnaire_type()==0)
+			return "createSerch";
+		else {
+			return "createVote";
+		}
 	}
-
+	
+	
 	@GetMapping("/create_questionnaire/{questionnaire_type}")
 	public String create_questionnaire(@PathVariable int questionnaire_type) {
 		/*

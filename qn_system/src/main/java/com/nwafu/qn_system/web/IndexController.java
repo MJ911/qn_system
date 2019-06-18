@@ -105,15 +105,36 @@ public class IndexController {
 	
 	@GetMapping("/create_questionnaireFrommodel/{model_qn_id}")
 	public String create_questionnaireFrommodel(@PathVariable int model_qn_id,Model model,HttpSession session) {
-		//进入创建问卷界面 create_questionnaire.jsp
+		//进入创建问卷界面 create_model_many.jsp
 		//把model_qn_id的model问卷对象放入session里
 		//问卷对象的名字属性要清空
-		Questionnaire questionnaire = qnService.getQn(model_qn_id);
-		User user = (User) session.getAttribute("user");
-		questionnaire.setUser(user);
-		model.addAttribute("questionnaire", questionnaire);
+		model.addAttribute("model_qn_id", model_qn_id);
 		
-		return "create_questionnaire_many";
+		return "create_model_many";
+	}
+	
+	@GetMapping("/create_voteFrommodel/{model_qn_id}")
+	public String create_voteFrommodel(@PathVariable int model_qn_id,Model model,HttpSession session) {
+		//进入创建问卷界面 create_model_one.jsp
+		//把model_qn_id的model问卷对象放入session里
+		//问卷对象的名字属性要清空
+		model.addAttribute("model_qn_id", model_qn_id);
+		
+		return "create_model_one";
+	}
+	
+	@GetMapping("/modelSerch/{model_qn_id}")
+	public String create_modelSerch(@PathVariable int model_qn_id,Model model) {
+		Questionnaire questionnaire = qnService.getQn(model_qn_id);
+		model.addAttribute("questionnaire", questionnaire);
+		return "modelSerch";
+	}
+	
+	@GetMapping("/modelVote/{model_qn_id}")
+	public String create_modelVote(@PathVariable int model_qn_id,Model model) {
+		Questionnaire questionnaire = qnService.getQn(model_qn_id);
+		model.addAttribute("questionnaire", questionnaire);
+		return "modelVote";
 	}
 	
 	@GetMapping("/login")

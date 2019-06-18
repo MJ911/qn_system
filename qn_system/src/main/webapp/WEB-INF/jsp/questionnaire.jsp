@@ -223,7 +223,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   <form action="/qn_system/questionnaire_list" method="post">
 	   
 	   	<c:forEach items="${questionnaire.question_list}" var="question">
-	   		<h2 style="margin-top:20px;margin-bottom:20px;">题目${question.question_number }&nbsp;.${question.question_name}</h2>
+	   		<c:if test="${questionnaire.questionnaire_type eq 0 }">
+	   			<h2 style="margin-top:20px;margin-bottom:20px;">题目${question.question_number }&nbsp;.${question.question_name}</h2>
+ 	   		</c:if>
  	   		<c:if test="${question.question_type == '1'}"><%--当前为单选题 --%>
 	   			<c:forEach items="${question.options_list }" var="option">
 	   				<h3><input name="question_list[${question.question_number-1 }].answer.answer_info" type="radio" value="${option.option_number }"/>${option.option_number }.&nbsp;&nbsp;&nbsp;&nbsp;${option.option_name}</h3><br>

@@ -58,25 +58,29 @@ public class QnServiceImpl implements QnService {
 //		Questionnaire qn_inserted = qndao.getQuestionnaireByUser_idCdate(qn);
 		Questionnaire qn_inserted = qndao.getQuestionnaireByUser_idQ_name(qn);
 		System.out.println(qn_inserted);
-		for(int i = 0;i<qn.getQuestion_list().size();i++) {
-			Question question = qn.getQuestion_list().get(i);
-			question.setQuestionnaire(qn_inserted);
-			try{
-				questiondao.insertToQuestion(question);
-			}catch(Exception e) {
-				throw e;
-			}
+		if(qn.getQuestion_list()!=null) {
+			for(int i = 0;i<qn.getQuestion_list().size();i++) {
+				Question question = qn.getQuestion_list().get(i);
+				question.setQuestionnaire(qn_inserted);
+				try{
+					questiondao.insertToQuestion(question);
+				}catch(Exception e) {
+					throw e;
+				}
 			
-			Question q_inserted = questiondao.getQuestionByQn_idQ_number(question);
+				Question q_inserted = questiondao.getQuestionByQn_idQ_number(question);
 			
-			if(question.getQuestion_type()==1||question.getQuestion_type()==2) {
-				for(int j = 0;j<question.getOptions_list().size();j++) {
-					Options options = question.getOptions_list().get(j);
-					options.setQuestion(q_inserted);
-					try{
-						optionsdao.add(options);
-					}catch(Exception e) {
-						throw e;
+				if(question.getQuestion_type()==1||question.getQuestion_type()==2) {
+					if(question.getOptions_list()!=null) {
+						for(int j = 0;j<question.getOptions_list().size();j++) {
+							Options options = question.getOptions_list().get(j);
+							options.setQuestion(q_inserted);
+							try{
+								optionsdao.add(options);
+							}catch(Exception e) {
+								throw e;
+							}
+						}
 					}
 				}
 			}
