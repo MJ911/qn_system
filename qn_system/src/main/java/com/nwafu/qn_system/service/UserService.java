@@ -45,4 +45,9 @@ public interface UserService {
 	 * @author 宋明桂
 	 */
     public User getByUserName(String name);
+    /**
+           * 更新用户头像
+     * @author 宋明桂
+     */
+    public void updateUserheadurl(User user);
 }

@@ -1,5 +1,6 @@
 package com.nwafu.qn_system.service;
 
+
 public interface MailService {
 	 /**
      *  发送多媒体类型邮件

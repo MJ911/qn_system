@@ -93,8 +93,8 @@ public interface UserDAO {
 	 * 修改用户状态
 	 * @author 宋明桂
 	 */
-	@Update("update user set user_state=#{user_state},user_activecode=#{user_activecode} where user_name=#{user_name}")
-	public void updateUserstate_activecode(User user);
+	@Update("update user set user_password=#{user_password},user_mail=#{user_mail},user_headurl=#{user_headurl},user_state=#{user_state},user_activecode=#{user_activecode} where user_name=#{user_name}")
+	public void updateAll(User user);
 	
 	/**
 	 * 修改用户头像

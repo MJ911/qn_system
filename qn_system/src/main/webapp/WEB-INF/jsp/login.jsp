@@ -479,9 +479,9 @@
 					</form>
 
 					<div id="div_label2">
-						<listyle"text-decoration:underline"> <font size="1px"
-							color="black">忘记用户名/密码?</font>
-						</li>
+						<a href="/qn_system/finduser/dongpeijie"> <font size="1px"
+							color="black">忘记用户名/密码?</font></a>
+						
 					</div>
 				</ul>
 			</div>

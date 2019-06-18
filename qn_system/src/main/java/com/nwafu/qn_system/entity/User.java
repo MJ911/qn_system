@@ -18,6 +18,7 @@ public class User {
 	 * user_state(0,1) user_activecode
 	 * @author 宋明桂
 	 */
+	private String user_headurl;
 	private boolean user_state;
 	private String user_activecode;
 	/**
@@ -63,6 +64,13 @@ public class User {
 	public void setAuthorityList(List<Authority> authorityList) {
 		this.authorityList = authorityList;
 	}
+	
+	public String getUser_headurl() {
+		return user_headurl;
+	}
+	public void setUser_headurl(String user_headurl) {
+		this.user_headurl = user_headurl;
+	}
 	public boolean isUser_state() {
 		return user_state;
 	}
@@ -78,8 +86,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", user_name=" + user_name + ", user_password=" + user_password
-				+ ", user_mail=" + user_mail + ", role=" + role + ", user_state=" + user_state + ", user_activecode="
-				+ user_activecode + ", authorityList=" + authorityList + "]";
-	}
-	
+				+ ", user_mail=" + user_mail + ", role=" + role + ", user_headurl=" + user_headurl + ", user_state="
+				+ user_state + ", user_activecode=" + user_activecode + ", authorityList=" + authorityList + "]";
+	}	
 }

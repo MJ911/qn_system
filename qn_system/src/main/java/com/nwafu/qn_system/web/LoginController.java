@@ -1,5 +1,8 @@
 package com.nwafu.qn_system.web;
-
+/**
+ * 用户登录、注册以及修改密码
+ * @author 宋明桂
+ */
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.nwafu.qn_system.entity.User;
 import com.nwafu.qn_system.service.MailService;
 import com.nwafu.qn_system.service.UserService;
+import com.nwafu.qn_system.utils.EnctryUtils;
 import com.nwafu.qn_system.utils.UUIDGenerator;
 
 @Controller
@@ -103,6 +107,42 @@ public class LoginController {
 				session.setAttribute("error", "未知错误,请联系客服");
 				return "login";
 		}
+	}
+	
+	/**
+	 * 通过链接来找回密码
+	 * @author 宋明桂
+	 * @return
+	 */
+	@PostMapping("findpassword")
+	public String findpw(String password,HttpSession session) {
+		String user_name = (String) session.getAttribute("username");
+		User user = userService.getByUserName(user_name);
+		user.setUser_password(EnctryUtils.stringMD5(password));
+		userService.upadteUser(user);
+		session.setAttribute("message", "尊敬的"+user_name+"用户，您已成功修改密码！");
+		return "login";	
+	}
+	
+	@PostMapping("editpassword")
+	public String editpw(String old_password,String new_password,HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		String old = user.getUser_password();
+		old_password = EnctryUtils.stringMD5(old_password);
+		if(!old.equals(old_password)) {
+			session.setAttribute("error", "原密码输入错误");
+			return "personal";
+		}
+		if(old_password.equals(new_password)) {
+			session.setAttribute("error", "输入密码不可以与原密码相同");
+			return "personal";
+		}
+		new_password = EnctryUtils.stringMD5(new_password);
+		user.setUser_password(new_password);
+		userService.upadteUser(user);
+		session.removeAttribute("user");
+		session.setAttribute("message", "密码已经成功修改，请重新登录");
+		return "login";
 	}
 	
 	@GetMapping("checkcode/{active_code}")

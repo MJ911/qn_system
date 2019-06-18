@@ -1,5 +1,8 @@
 package com.nwafu.qn_system.web;
-
+/**
+ * 用户找回密码向邮箱发送链接以及核对链接
+ * @author 宋明桂
+ */
 import java.sql.Timestamp;
 
 import javax.servlet.http.HttpSession;
@@ -70,17 +73,15 @@ public class MailRetrieveController {
         long nowTime=outDate.getTime();
         System.out.println("nowTime:"+nowTime);
         if(outTime<=nowTime){
-            session.setAttribute("error","verifyMail time is overdue");
-            return "login";
+            session.setAttribute("error","verifyMail time is overdue");           
         }else if("".equals(sid)){
-            session.setAttribute("error","sid is incomplete content");
-            return "login";
+            session.setAttribute("error","sid is incomplete content");          
         }else if(!sid.equals(mailRetrieve.getSid())){
-            session.setAttribute("error","sid is error");
-            return "login";
+            session.setAttribute("error","sid is error");           
         }else{
-            session.setAttribute("message", "请输入新密码");
-            return "ge";//更改用户更改密码的界面
+            session.setAttribute("message", "请输入新密码");   
+            session.setAttribute("username", user_name);
         }	
+        return "updatepassword";//更改用户更改密码的界面
 	}
 }

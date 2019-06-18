@@ -115,13 +115,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void upadteUser(User user) {
 		// TODO Auto-generated method stub
-		userdao.updateUserstate_activecode(user);
+		userdao.updateAll(user);
 	}
 
 	@Override
 	public User getByUserName(String name) {
 		// TODO Auto-generated method stub
 		return userdao.getByUser_name(name);
+	}
+
+	@Override
+	public void updateUserheadurl(User user) {
+		// TODO Auto-generated method stub
+		userdao.updateUserheadurl(user);
 	}
 
 }
