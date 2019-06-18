@@ -79,6 +79,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location.href = "/qn_system/quit";
 	}function TomyquestionnaireLis() {
 		location.href = "/qn_system/myquestionnaire_list";
+	}function ToJoinquestionnaireLis() {
+		location.href = "/qn_system/join_list";
 	}
 </script>
 </head>
@@ -192,7 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <div class="div_middle_down_left">
 			    <ul class="ui_left">
 				    <li><input onclick="TomyquestionnaireLis()" type="button" value="我创建的"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
-					<li><input type="button" value="我参与的"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
+					<li><input onclick="ToJoinquestionnaireLis()" type="button" value="我参与的"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
 					<li><input type="button" value="修改信息"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
 					<li><input type="button" value="更多设置"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
 					<li><input type="button" value="修改密码"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>

@@ -216,9 +216,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div id="div_left">
     </div>
     
-    <div id="div_middle" style="color:black;">
+    <div id="div_middle" style="color:black;overflow:scroll;overflow-x:hidden;">
        <div id="div_blankLeft"></div>
-	   <div id="div_middleofMiddle" style="overflow:scroll;overflow-x:hidden;">
+	   <div id="div_middleofMiddle">
 	   <h1 style="text-align:center;margin-top:40px;margin-bottom:40px;font-weight:bold;font-size:50px;">${questionnaire.questionnaire_name }</h1>
 	   <form action="/qn_system/questionnaire_list" method="post">
 	   
