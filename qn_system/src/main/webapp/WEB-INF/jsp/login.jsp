@@ -202,25 +202,39 @@
 <script type="text/javascript">
 	     
 		$(function(){
-			$("#warn3").hide();
-			$("#button_login").click(function(){
-				 if($("#user_name").val()!=""&&$("#user_password").val()!=""){
-					 $("#button_login").attr("disabled", false); 
-					 $("#warn3").hide();
-				 }else{
-					 $("#warn3").show();
-					 $("#button_login").attr("disabled", true); 
-				 }
+			$("#button_login").attr("disabled", true);
+			$("#user_name").blur(function(){
+				if($("#user_name").val()!=""&&$("#user_password").val()!=""){
+					$("#warn3").hide();
+					$("#button_login").attr("disabled", false);
+				}else{
+					$("#warn3").show();
+					$("#button_login").attr("disabled", true);
+				}
+				
+			});
+			$("#user_password").blur(function(){
+				if($("#user_name").val()!=""&&$("#user_password").val()!=""){
+					$("#warn3").hide();
+					$("#button_login").attr("disabled", false);
+				}else{
+					$("#warn3").show();
+					$("#button_login").attr("disabled", true);
+				}		
 			});
 			$("#warn4").hide();
-			$("#button_rig").click(function(){
-				 if($("#input1").val()!=$("#input2").val()&&$("#input1").val()!=""&&("#user2").val()!=""){
-					 $("#button_rig").attr("disabled", false); 
-					 $("#warn4").hide();
-				 }else{
-					 $("#warn4").show();
-					 $("#button_rig").attr("disabled", true); 
-				 }
+			$("#button_rig").attr("disabled", true);
+			
+			$("#warn5").hide();
+			$("#user_mail").blur(function(){
+				if($("#user_mail").val()!=""){
+					$("#warn5").hide();
+					$("#button_rig").attr("disabled", false);
+				}
+				else {
+					$("#warn5").show();
+					$("#button_rig").attr("disabled", true);
+				}
 			});
 			
 			
@@ -243,6 +257,14 @@
 		        }
             });
 			$("#input2").blur(function(){
+				if($("#input1").val()==$("#input2").val()&&$("#input1").val()!=""&&$("#user2").val()!=""&&$("#user_mail").val()!=""){
+					$("#warn4").hide();
+					$("#button_rig").attr("disabled", false);
+				}
+				else {
+					$("#warn4").show();
+					$("#button_rig").attr("disabled", true);
+				}
 	            var passwd1=$("#input1").val();
 				var passwd2=$("#input2").val();
 			    if(passwd1==passwd2){
@@ -252,6 +274,14 @@
 				}
 			});
 			$("#input1").blur(function(){
+				if($("#input1").val()==$("#input2").val()&&$("#input1").val()!=""&&$("#user2").val()!=""&&$("#user_mail").val()!=""){
+					$("#warn4").hide();
+					$("#button_rig").attr("disabled", false);
+				}
+				else {
+					$("#warn4").show();
+					$("#button_rig").attr("disabled", true);
+				}
 			    $("#tab").hide();
 	            var passwd1=$("#input1").val();
 				var passwd2=$("#input2").val();
@@ -264,6 +294,14 @@
 			//判断用户名长度
 			$("#warn1").hide();
 			$("#user2").blur(function(){
+				if($("#input1").val()==$("#input2").val()&&$("#input1").val()!=""&&$("#user2").val()!=""&&$("#user_mail").val()!=""){
+					$("#warn4").hide();
+					$("#button_rig").attr("disabled", false);
+				}
+				else {
+					$("#warn4").show();
+					$("#button_rig").attr("disabled", true);
+				}
 			    if($("#user2").val().length>15||$("#user2").val().length<6){
 				    $("#warn1").show();
 				}else{
@@ -441,7 +479,9 @@
 						</div>
 						<div id="div_label2">
 							<li><font size="5px" color="black">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：&nbsp;</font>
-								<input name="user_mail" type="text" height="10" style="color: black" /></li>
+								<input id="user_mail" name="user_mail" type="text" height="10" style="color: black" /></li>
+							    <label><font size="5" color="red" id="warn5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱不能为空</font></label>
+
 						</div>
 						<div id="div_label2">
 							<li align="center"><input type="submit" id="button_rig"
