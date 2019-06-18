@@ -38,8 +38,8 @@
 		</div>
 		<div class="xt-geren">
 			<div class="xt-exit">
-				<span class="xt-span">�ʾ�ǿ��̨����<span class="xt-yanse">2350��</span>��¼��������
-				</span><a href="#" class="help">����</a> <a href="#" class="exit">�˳�</a>
+				<span class="xt-span">问卷强后台管理<span class="xt-yanse">2350次</span>登录管理中心
+				</span><a href="#" class="help">帮助</a> <a href="#" class="exit">退出</a>
 			</div>
 		</div>
 	</div>
@@ -52,31 +52,31 @@
 				<div class="xt-menu-list"></div>
 				<ul>
 					<li><a href="/qn_system/user_list" class="hover"><em
-							class="one"></em>�û�����</a></li>
+							class="one"></em>用户管理</a></li>
 					<li><a href="/qn_system/questionnaire_list/2"><em
-							class="two"></em>�ʾ�����</a></li>
+							class="two"></em>问卷管理</a></li>
 				</ul>
 			</div>
 		</div>
 		<!-- right -->
 		<div id="xt-right">
-			<div class="xt-bt">�û���Ϣ�༭</div>
+			<div class="xt-bt">用户信息编辑</div>
 
 			<div class="xt-table1">
 				<table cellpadding="0" cellspacing="0" border="0" bgcolor="#dcdcdc"
 					width="100%">
-					<th>�û���Ϣ</th>
+					<th>用户信息</th>
 					<th></th>
 					<tr>
-						<td>�û�ID:</td>
+						<td>用户ID:</td>
 						<td>${user_list_user.user_id}</td>
 					</tr>
 					<tr>
-						<td>����:</td>
+						<td>姓名:</td>
 						<td>${user_list_user.user_name}</td>
 					</tr>
 					<tr>
-						<td>����:</td>
+						<td>邮箱:</td>
 						<td>${user_list_user.user_mail}</td>
 					</tr>
 
@@ -89,8 +89,8 @@
 						name="userId">
 					<table cellpadding="0" cellspacing="0" border="0" bgcolor="#dcdcdc"
 						width="100%">
-						<th>ȫ��Ȩ��</th>
-						<th>ӵ��Ȩ��</th>
+						<th>全部权限</th>
+						<th>拥有权限</th>
 						<c:forEach items="${authoritylist}" var="authority">
 							<tr>
 								<td>${authority.authority_name}</td>
@@ -111,8 +111,8 @@
 				<div class="xt-table1">
 					<table cellpadding="0" cellspacing="0" border="0" bgcolor="#dcdcdc"
 						width="100%">
-						<th>ȫ����ɫ</th>
-						<th>�û���ɫ</th>
+						<th>全部角色</th>
+						<th>用户角色</th>
 						<c:forEach items="${rolelist}" var="role">
 							<tr>
 								<td>${role.role_name}</td>
@@ -126,20 +126,20 @@
 
 						</c:forEach>
 						<tr>
-							<td><input type="button" value="�½���ɫ" class="green-int"
+							<td><input type="button" value="新建角色" class="green-int"
 							Onclick="window.location.href='/qn_system/create_role'" /></td>
-							<td><input type="submit" value="�޸�" class="yellow-int" /></td>
+							<td><input type="submit" value="修改" class="yellow-int" /></td>
 						</tr>
 					</table>
 				</div>
 			</form>
 
 			<div class="xt-fenye">
-				<div class="xt-fenye-left">��ǰ�� 1 / 270 ҳ,ÿҳ10������ 2696����¼</div>
+				<div class="xt-fenye-left">当前第 1 / 270 页,每页10条，共 2696条记录</div>
 				<div class="xt-fenye-right">
-					<a onclick="Toindex()">��ҳ</a> <a href="#">��һ��</a> <a href="#">��һ��</a> <a
-						href="#">βҳ</a> <input type="text" name="text" /> <a href="#"
-						class="xt-link">��ת</a>
+					<a onclick="Toindex()">首页</a> <a href="#">上一步</a> <a href="#">下一步</a> <a
+						href="#">尾页</a> <input type="text" name="text" /> <a href="#"
+						class="xt-link">跳转</a>
 				</div>
 			</div>
 		</div>

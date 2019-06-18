@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="icon-bar"></span>
 				  </button>
 				</div>
-				<!-- µ¼º½-->
+				<!-- å¯¼èˆª-->
 				<div  class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				  
 					
@@ -111,22 +111,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<ul class="nav navbar-nav menu__list">
 									<li style="color: white"
 										class="active menu__item menu__item--current"><a
-										class="menu__link" onclick="Toindex()">Ê×Ò³<span
+										class="menu__link" onclick="Toindex()">é¦–é¡µ<span
 											class="sr-only">(current)</span></a></li>
 									<li id="qn" style="color: white" class=" menu__item"><a
-										class="menu__link" onclick="Toquestionnaire_list(1)">Í¶Æ±¼¯</a></li>
+										class="menu__link" onclick="Toquestionnaire_list(1)">æŠ•ç¥¨é›†</a></li>
 									<li style="color: white" class=" menu__item"><a
-										class="menu__link" onclick="Toquestionnaire_list(0)">ÎÊ¾í¼¯</a></li>
+										class="menu__link" onclick="Toquestionnaire_list(0)">é—®å·é›†</a></li>
 									<li style="color: white" class=" menu__item"><a
-										class="menu__link" onclick="Tomodel_list()">ÎÊ¾íÄ£°å</a></li>
+										class="menu__link" onclick="Tomodel_list()">é—®å·æ¨¡æ¿</a></li>
 									<li style="color: white" class=" menu__item"><a
-										class="menu__link" onclick="Toindex()">°ïÖú</a></li>
+										class="menu__link" onclick="Toindex()">å¸®åŠ©</a></li>
 
 								</ul>
 							</div>
 					<div style="float:left; height:1px;width:390px">
 						<div class='validation' style="opacity: 1; right: -5px;top: -3px;">
-							<canvas class="J_codeimg" id="myCanvas" onclick="Code();">¶Ô²»Æğ£¬ÄúµÄä¯ÀÀÆ÷²»Ö§³Öcanvas£¬ÇëÏÂÔØ×îĞÂ°æä¯ÀÀÆ÷!</canvas>
+							<canvas class="J_codeimg" id="myCanvas" onclick="Code();">å¯¹ä¸èµ·ï¼Œæ‚¨çš„æµè§ˆå™¨ä¸æ”¯æŒcanvasï¼Œè¯·ä¸‹è½½æœ€æ–°ç‰ˆæµè§ˆå™¨!</canvas>
 						</div>
 
 				    </div>
@@ -137,9 +137,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div width="10%" style="float: left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">µÇÂ¼</a></li>
+										onclick="Tologin()">ç™»å½•</a></li>
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Tologin()">×¢²á</a></li>
+										onclick="Tologin()">æ³¨å†Œ</a></li>
 								</ul>
 							</div>
 							<%
@@ -148,9 +148,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div width="10%" style="float: left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Topersonal()">Ö÷Ò³</a></li>
+										onclick="Topersonal()">ä¸»é¡µ</a></li>
 										<li class=" menu__item"><a class="menu__link"
-										onclick="Toquit()">ÍË³ö</a></li>
+										onclick="Toquit()">é€€å‡º</a></li>
 								</ul>
 							</div>
 							<%
@@ -171,20 +171,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="div_intro">
 			    <ul class="ui">
-				    <li style="width:200px;text-align:left;font-size:20px;">ÓÃ»§Ãû:</li>    
+				    <li style="width:200px;text-align:left;font-size:20px;">ç”¨æˆ·å:</li>    
 				</ul>
 				<ul class="ui">
-				    <li style="width:200px;text-align:left;font-size:20px;">¸öĞÔÇ©Ãû£º</li>    
+				    <li style="width:200px;text-align:left;font-size:20px;">ä¸ªæ€§ç­¾åï¼š</li>    
 				</ul>
 			    <ul class="ui">
-				    <li>Ö÷Ò³</li>
-                    <li>ÈÕÖ¾</li>
-                    <li>Ïà²á</li>
-                    <li>ÁôÑÔ°å</li>
-                    <li>ËµËµ</li>
-					<li>¸öÈËµµ</li>
-					<li>ÒôÀÖ</li>
-					<li>¸ü¶à</li>
+				    <li>ä¸»é¡µ</li>
+                    <li>æ—¥å¿—</li>
+                    <li>ç›¸å†Œ</li>
+                    <li>ç•™è¨€æ¿</li>
+                    <li>è¯´è¯´</li>
+					<li>ä¸ªäººæ¡£</li>
+					<li>éŸ³ä¹</li>
+					<li>æ›´å¤š</li>
 				</ul>
 			</div>
 			
@@ -193,11 +193,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="div_middle_down">
 		    <div class="div_middle_down_left">
 			    <ul class="ui_left">
-				    <li><input onclick="TomyquestionnaireLis()" type="button" value="ÎÒ´´½¨µÄ"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
-					<li><input onclick="ToJoinquestionnaireLis()" type="button" value="ÎÒ²ÎÓëµÄ"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
-					<li><input type="button" value="ĞŞ¸ÄĞÅÏ¢"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
-					<li><input type="button" value="¸ü¶àÉèÖÃ"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
-					<li><input type="button" value="ĞŞ¸ÄÃÜÂë"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
+				    <li><input onclick="TomyquestionnaireLis()" type="button" value="æˆ‘åˆ›å»ºçš„"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
+					<li><input onclick="ToJoinquestionnaireLis()" type="button" value="æˆ‘å‚ä¸çš„"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
+					<li><input type="button" value="ä¿®æ”¹ä¿¡æ¯"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
+					<li><input type="button" value="æ›´å¤šè®¾ç½®"style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
+					<li><input type="button" value="ä¿®æ”¹å¯†ç "style="border:none;width:200px;height:50px;border-radius:30px;background:orange;color:white;size:16px;background-color: rgba(250,128,114,0.5);" ></li>
 				</ul>
 			</div>
 
