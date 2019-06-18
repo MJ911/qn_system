@@ -114,8 +114,8 @@ public class LoginController {
 	 * @author 宋明桂
 	 * @return
 	 */
-	@PostMapping("findpassword")
-	public String findpw(String password,HttpSession session) {
+	@PostMapping("enterpassword")
+	public String enterpw(String password,HttpSession session) {
 		String user_name = (String) session.getAttribute("username");
 		User user = userService.getByUserName(user_name);
 		user.setUser_password(EnctryUtils.stringMD5(password));
@@ -163,5 +163,9 @@ public class LoginController {
 	public String quit(HttpSession session) {
 		session.removeAttribute("user");
 		return "index";
+	}
+	@GetMapping("findpw")
+	public String findpw() {
+		return "findpw";
 	}
 }

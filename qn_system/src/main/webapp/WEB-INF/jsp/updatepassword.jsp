@@ -7,12 +7,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>login</title>
+<title>updatepw</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
 <script type="application/x-javascript">
+	
 	
 	
 	
@@ -23,32 +24,33 @@
 
 
 
+
 </script>
 <!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
 <!-- pignose css -->
-<link href="css/pignose.layerslider.css" rel="stylesheet"
+<link href="/css/pignose.layerslider.css" rel="stylesheet"
 	type="text/css" media="all" />
 
 
 <!-- //pignose css -->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- js -->
-<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
 <!-- cart -->
-<script src="js/simpleCart.min.js"></script>
+<script src="/js/simpleCart.min.js"></script>
 <!-- cart -->
 <!-- for bootstrap working -->
-<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-3.1.1.min.js"></script>
 <!-- //for bootstrap working -->
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
 	rel='stylesheet' type='text/css'>
 <link
 	href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic'
 	rel='stylesheet' type='text/css'>
-<script src="js/jquery.easing.min.js"></script>
+<script src="/js/jquery.easing.min.js"></script>
 <style type="text/css">
 #top {
 	background-color: #213d90;
@@ -145,7 +147,7 @@
 }
 
 .pw-bar {
-	background: url(images/1.png) no-repeat;
+	background: url(/images/1.png) no-repeat;
 	position: relative;
 	top: 1px;
 	height: 14px;
@@ -154,7 +156,7 @@
 }
 
 .pw-bar-on {
-	background: url(images/2.png) no-repeat;
+	background: url(/images/2.png) no-repeat;
 	width: 0px;
 	height: 14px;
 	position: absolute;
@@ -196,82 +198,85 @@
 	width: 58px;
 }
 </style>
-<link href="loginSpecial/css/demo.css" rel="stylesheet" type="text/css" />
-<link href="loginSpecial/css/loaders.css" rel="stylesheet"
+<link href="/loginSpecial/css/demo.css" rel="stylesheet" type="text/css" />
+<link href="/loginSpecial/css/loaders.css" rel="stylesheet"
 	type="text/css" />
 <script type="text/javascript">
-	     
-$(function(){ 
-    $('#pass').keyup(function () { 
-	var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g"); 
-	var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g"); 
-	var enoughRegex = new RegExp("(?=.{6,}).*", "g"); 
-   
-	if (false == enoughRegex.test($(this).val())) { 
-	$('#level').removeClass('pw-weak'); 
-	$('#level').removeClass('pw-medium'); 
-	$('#level').removeClass('pw-strong'); 
-	$('#level').addClass(' pw-defule'); 
+$(function(){		
+	
+	$("#warn2").hide();
+    $("#input2").focus(function(){
+        $("#warn2").show();
+        var passwd1=$("#input1").val();
+        var passwd2=$("#input2").val();
+        if(passwd1==passwd2){
+            $("#warn2").hide();
+        }
+    });
+	$("#input2").blur(function(){
+        var passwd1=$("#input1").val();
+		var passwd2=$("#input2").val();
+	    if(passwd1==passwd2){
+		    $("#warn2").hide();
+		}else{
+			$("#warn2").show();
+		}
+	});
+	$("#input1").blur(function(){
+	    $("#tab").hide();
+        var passwd1=$("#input1").val();
+		var passwd2=$("#input2").val();
+	    if(passwd1==passwd2){
+		    $("#warn2").hide();
+		}else{
+			$("#warn2").show();
+		}
+	});
+	
+	$("#tab").hide();
+	$("#input1").focus(function(){
+	    $("#tab").show();
+	})
+
+	$('#input1').keyup(function () { 
+		var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g"); 
+		var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g"); 
+		var enoughRegex = new RegExp("(?=.{6,}).*", "g"); 
+
+		if (false == enoughRegex.test($(this).val())) { 
+			$('#level').removeClass('pw-weak'); 
+			$('#level').removeClass('pw-medium'); 
+			$('#level').removeClass('pw-strong'); 
+			$('#level').addClass(' pw-defule'); 
 		 //密码小于六位的时候，密码强度图片都为灰色 
-	} 
-	else if (strongRegex.test($(this).val())) { 
+		} 
+		else if (strongRegex.test($(this).val())) { 
 		$('#level').removeClass('pw-weak'); 
 		$('#level').removeClass('pw-medium'); 
 		$('#level').removeClass('pw-strong'); 
 		$('#level').addClass(' pw-strong'); 
 		//密码为八位及以上并且字母数字特殊字符三项都包括,强度最强 
-	} 
-	else if (mediumRegex.test($(this).val())) { 
-		$('#level').removeClass('pw-weak'); 
-		$('#level').removeClass('pw-medium'); 
-		$('#level').removeClass('pw-strong'); 
-		$('#level').addClass(' pw-medium'); 
-		//密码为七位及以上并且字母、数字、特殊字符三项中有两项，强度是中等 
-	} 
-	else { 
-		$('#level').removeClass('pw-weak'); 
-		$('#level').removeClass('pw-medium'); 
-		$('#level').removeClass('pw-strong'); 
-		$('#level').addClass('pw-weak'); 
-		//如果密码为6为及以下，就算字母、数字、特殊字符三项都包括，强度也是弱的 
-	} 
-	return true; 
-	}); 
-    $("#warn2").hide();
-    $("#pass1").focus(function(){
-        $("#warn2").show();
-        var passwd1=$("#pass").val();
-        var passwd2=$("#pass1").val();
-        if(passwd1==passwd2){
-            $("#warn2").hide();
-        }
-    });
-	$("#pass1").blur(function(){
-        var passwd1=$("#pass").val();
-		var passwd2=$("#pass1").val();
-	    if(passwd1==passwd2){
-		    $("#warn2").hide();
-		}else{
-			$("#warn2").show();
-		}
-	});
-	$("#pass").blur(function(){
-	    $("#tab").hide();
-        var passwd1=$("#pass").val();
-		var passwd2=$("#pass1").val();
-	    if(passwd1==passwd2){
-		    $("#warn2").hide();
-		}else{
-			$("#warn2").show();
-		}
-	});
-})
-			
+		} 
+		else if (mediumRegex.test($(this).val())) { 
+			$('#level').removeClass('pw-weak'); 
+			$('#level').removeClass('pw-medium'); 
+			$('#level').removeClass('pw-strong'); 
+			$('#level').addClass(' pw-medium'); 
+			//密码为七位及以上并且字母、数字、特殊字符三项中有两项，强度是中等 
+		} 
+		else { 
+			$('#level').removeClass('pw-weak'); 
+			$('#level').removeClass('pw-medium'); 
+			$('#level').removeClass('pw-strong'); 
+			$('#level').addClass('pw-weak'); 
+			//如果密码为6为及以下，就算字母、数字、特殊字符三项都包括，强度也是弱的 
+		} 
+	    return true; 
+       }); 
+	
 
-    });
-		
-
-    </script>
+});
+</script>
 
 </head>
 
@@ -341,34 +346,28 @@ $(function(){
 			</div>
 		</div>
 		<div id="div_left"></div>
-		<form action="/qn_system/findpassword" method="post">
+		<form method="post" action="/qn_system/enterpassword">
 			<div id="div_middle">
-				<table style="width: 320px; margin: 40px auto;">
-					<tr>
-						<th>密码</th>
-						<td><span class="tbl-txt"><input id="pass"
-								class="input-style" size="30" maxlength="30" name="pass"
-								type="text" /></span></td>
-					</tr>
-					<tr>
-						<th></th>
-						<td id="level" class="pw-strength">
-							<div class="pw-bar"></div>
-							<div class="pw-bar-on"></div>
-							<div class="pw-txt">
-								<span>弱</span> <span>中</span> <span>强</span>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th>确认密码</th>
-						<td><span class="tbl-txt"><input id="pass1"
-								class="input-style" size="30" maxlength="30" name="pass"
-								type="text" /></span></td>
-						<label><font size="5" color="red" id="warn2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;两次密码输入不一致</font></label>
-					</tr>
-					<tr>
-				</table>
+				<div id="div_label2">
+					<li><font size="5px" color="black">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：&nbsp;</font>
+						<span><input id="input1" name="password"
+							type="password" height="10" style="color: black" /></span>
+						<table align="center" id="tab">
+							<td id="level" class="pw-strength">
+								<div class="pw-bar"></div>
+								<div class="pw-bar-on"></div>
+								<div class="pw-txt">
+									<span>弱</span> <span>中</span> <span>强</span>
+								</div>
+							</td>
+						</table></li>
+				</div>
+				<div id="div_label2">
+					<li><font size="5px" color="black">确认密码：</font> <input
+						id="input2" type="password" height="10" style="color: black" /> <label><font
+							size="5" color="red" id="warn2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;两次密码输入不一致</font></label>
+					</li>
+				</div>
 				<div id="div_label2">
 					<li align="center"><input type="submit" id="button_rig"
 						value="立即提交"
@@ -382,9 +381,9 @@ $(function(){
 		<div id="div_right"></div>
 
 	</div>
-	<script src="loginSpecial/js/Particleground.js" type="text/javascript"></script>
-	<script src="loginSpecial/js/Treatment.js" type="text/javascript"></script>
-	<script src="loginSpecial/js/controlLogin.js" type="text/javascript"></script>
+	<script src="/loginSpecial/js/Particleground.js" type="text/javascript"></script>
+	<script src="/loginSpecial/js/Treatment.js" type="text/javascript"></script>
+	<script src="/loginSpecial/js/controlLogin.js" type="text/javascript"></script>
 
 </body>
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nwafu.qn_system.entity.MailRetrieve;
@@ -36,10 +37,11 @@ public class MailRetrieveController {
 	 * 
 	 * @author 宋明桂
 	 */
-	@GetMapping("finduser/{user_name}")
-	public String produceURL(@PathVariable String user_name, HttpSession session) {
+	@PostMapping("sendurl")
+	public String produceURL(String user_name, HttpSession session) {
 		// MailRetrieve mailRetieve = mailRetrieveService.findByAccount(user_name);
 		User user = userService.getByUserName(user_name);
+		System.out.println(user_name);
 		if (user == null) {
 			session.setAttribute("error", "用户名不存在");
 		} else {
@@ -66,7 +68,7 @@ public class MailRetrieveController {
 	
 	@GetMapping("checklink/{sid}/{user_name}")
 	public String checkLink(@PathVariable String user_name,@PathVariable String  sid, HttpSession session) {
-		//System.out.println(user_name+" "+sid);
+		System.out.println(user_name+" "+sid);
 		MailRetrieve mailRetrieve = mailRetrieveService.findByAccount(user_name);
 		long outTime = mailRetrieve.getOut_time();
 		Timestamp outDate = new Timestamp(System.currentTimeMillis());
@@ -81,7 +83,8 @@ public class MailRetrieveController {
         }else{
             session.setAttribute("message", "请输入新密码");   
             session.setAttribute("username", user_name);
+            return "updatepassword";//更改用户更改密码的界面
         }	
-        return "updatepassword";//更改用户更改密码的界面
+        return "login";
 	}
 }

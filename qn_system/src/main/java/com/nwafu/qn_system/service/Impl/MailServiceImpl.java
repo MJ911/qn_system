@@ -1,6 +1,8 @@
 package com.nwafu.qn_system.service.Impl;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.slf4j.Logger;
@@ -26,6 +28,7 @@ public class MailServiceImpl implements MailService {
 	@Override
 	public void sendMimeMail(String to, String subject, String content) {
 		// TODO Auto-generated method stub
+		System.out.println("start sending mail");
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper helper = null;
 		try {
@@ -34,6 +37,7 @@ public class MailServiceImpl implements MailService {
 			helper.setSubject(subject);
 			helper.setTo(to);
 			helper.setText(content, true);
+			message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(from));
 			mailSender.send(message);
 			// 日志信息
 			logger.info("邮件已经发送。");
