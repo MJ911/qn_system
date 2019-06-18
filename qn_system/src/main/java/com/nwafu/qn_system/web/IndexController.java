@@ -15,6 +15,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.nwafu.qn_system.dao.QuestionnaireDAO;
+import com.nwafu.qn_system.entity.Question;
 import com.nwafu.qn_system.entity.Questionnaire;
 import com.nwafu.qn_system.entity.User;
 import com.nwafu.qn_system.service.QnService;
@@ -89,9 +90,15 @@ public class IndexController {
 	}
 	
 	@GetMapping("/model_list")
-	public String model_list() {
+	public String model_list(Model model,HttpSession session) {
 		//返回模板列表 model_list.jsp
-		return "model_list";
+
+			List<Questionnaire> questionnairelist = null;
+			questionnairelist = questionnaireDAO.getAll();
+			model.addAttribute("questionnairelist", questionnairelist);
+			return "model_list";
+		
+
 	}
 	@GetMapping("/model/{model_qn_id}")
 	public String model(@PathVariable int model_qn_id,HttpSession session) {
@@ -99,7 +106,7 @@ public class IndexController {
 		 * 把model_qn_id的model问卷对象放入session里
 		 */
 		Questionnaire questionnairemodel = qnService.getQn(model_qn_id);
-		session.setAttribute("questionnairemodel", questionnairemodel);
+		session.setAttribute("questionnaire", questionnairemodel);
 		return "model";
 	}
 	
