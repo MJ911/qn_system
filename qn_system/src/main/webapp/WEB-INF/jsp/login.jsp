@@ -479,9 +479,7 @@
 						</div>
 						<div id="div_label2">
 							<li><font size="5px" color="black">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：&nbsp;</font>
-								<input id="user_mail" name="user_mail" type="text" height="10" style="color: black" /></li>
-							    <label><font size="5" color="red" id="warn5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱不能为空</font></label>
-
+								<input name="user_mail" type="text" height="10" style="color: black" /></li>
 						</div>
 						<div id="div_label2">
 							<li align="center"><input type="submit" id="button_rig"
@@ -543,8 +541,8 @@
 					</form>
 
 					<div id="div_label2">
-						<listyle"text-decoration:underline"> <font size="1px"
-							color="black">忘记用户名/密码?</font>
+						<li style"text-decoration:underline"><a href="/qn_system/findpw"> <font size="1px"
+							color="black">忘记用户名/密码?</font> </a>
 						</li>
 					</div>
 				</ul>
