@@ -133,7 +133,7 @@
 	margin-top: 180px;
 	text-align: center;
 	width: 26%;
-	height: 550px;
+	height: 650px;
 	float: left;
 	background-color: rgba(255, 255, 255, 0.9);
 	border-radius: 30px;
@@ -202,6 +202,28 @@
 <script type="text/javascript">
 	     
 		$(function(){
+			$("#warn3").hide();
+			$("#button_login").click(function(){
+				 if($("#user_name").val()!=""&&$("#user_password").val()!=""){
+					 $("#button_login").attr("disabled", false); 
+					 $("#warn3").hide();
+				 }else{
+					 $("#warn3").show();
+					 $("#button_login").attr("disabled", true); 
+				 }
+			});
+			$("#warn4").hide();
+			$("#button_rig").click(function(){
+				 if($("#input1").val()!=$("#input2").val()&&$("#input1").val()!=""&&("#user2").val()!=""){
+					 $("#button_rig").attr("disabled", false); 
+					 $("#warn4").hide();
+				 }else{
+					 $("#warn4").show();
+					 $("#button_rig").attr("disabled", true); 
+				 }
+			});
+			
+			
 			$("#div_middle_rig").hide();
 			$("#button_log").click(function(){
 			    $("#div_middle").show();
@@ -414,6 +436,7 @@
 							<li><font size="5px" color="black">确认密码：</font> <input
 								id="input2" type="password" height="10" style="color: black" />
 								<label><font size="5" color="red" id="warn2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;两次密码输入不一致</font></label>
+							    <label><font size="5" color="red" id="warn4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户名或密码不能为空</font></label>
 							</li>
 						</div>
 						<div id="div_label2">
@@ -446,18 +469,19 @@
 						<li><font size="5px" color="orange">欢迎登录问卷强</font></li>
 					</div>
 
-					<form action="/qn_system/login" method="post">
+					<form action="/qn_system/login" method="post" >
 
 						<div id="div_label2">
 
-							<li><font size="5px" color="black">用户名：</font> <input
+							<li><font size="5px" color="black">用户名：</font> <input id="user_name"
 								name="user_name" "type="text" height="10" style="color: black" />
 							</li>
 						</div>
 						<div id="div_label2">
 							<li><font size="5px" color="black">密&nbsp;&nbsp;&nbsp;码：</font>
-								<input name="user_password" type="password" height="10"
+								<input id="user_password" name="user_password" type="password" height="10"
 								style="color: black" /></li>
+								<label><font size="5" color="red" id="warn3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户名或密码不能为空</font></label>
 						</div>
 						<div id="div_label2">
 							<li><input name="Fruit" type="checkbox" value="" /><font
@@ -479,9 +503,9 @@
 					</form>
 
 					<div id="div_label2">
-						<a href="/qn_system/finduser/dongpeijie"> <font size="1px"
-							color="black">忘记用户名/密码?</font></a>
-						
+						<listyle"text-decoration:underline"> <font size="1px"
+							color="black">忘记用户名/密码?</font>
+						</li>
 					</div>
 				</ul>
 			</div>
