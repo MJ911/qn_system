@@ -97,6 +97,12 @@ public interface UserDAO {
 	public void updateAll(User user);
 	
 	/**
+	 * 修改用户密码
+	 * @author xdx
+	 */
+	@Update("update user set user_password=#{user_password} where user_name=#{user_name }")
+	public void updatePW(User user);
+	/**
 	 * 修改用户头像
 	 * @author 宋明桂
 	 */
