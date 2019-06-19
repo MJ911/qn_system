@@ -14,7 +14,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="/js/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
 </head>
+<style type="text/css">
+.smg {
+	width: 180px;
+	height: 180px;
+	overflow: hidden;
+	border-radius: 50%;
+}
 
+.smg img {
+	max-width: 180px;
+	_width: expression(this.width > 180 ? "180px" : this.width);
+	max-height: 180px;
+	_height: expression(this.height > 180 ? "180px" : this.height);
+}
+</style>
 <script>
 function windowHeight() {
 	var de = document.documentElement;
@@ -59,7 +73,9 @@ function ToPageNext() {
 <body>
 <!-- top -->
 <div id="xt-top">
-    <div class="xt-logo"><img style="width:100%;heighth:100%;" src="/images/icon1.png" /></div>
+    <div class="smg">
+    	<img  src="/images/logo_2.png" />
+    </div>
     <div class="xt-geren">
         <div class="xt-exit"><span class="xt-span">问卷强后台管理<span class="xt-yanse">2350次</span>登录管理中心</span><a href="#" class="help">帮助</a>
             <a href="#" class="exit">退出</a></div>
@@ -68,7 +84,8 @@ function ToPageNext() {
 <!-- left -->
 <div class="xt-center">
 <div id="xt-left">
-    <div class="xt-logo"></div>
+    <div class="xt-logo">
+    </div>
     <div class="xt-menu">
         <div class="xt-menu-list"></div>
         <ul>
