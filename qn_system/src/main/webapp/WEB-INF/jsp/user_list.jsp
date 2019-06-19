@@ -58,6 +58,7 @@ function TouserPageNext() {
         <ul>
         	<li><a href="/qn_system/user_list" class="hover"><em class="one"></em>用户管理</a></li>
             <li><a href="/qn_system/questionnaire_list/2"><em class="one"></em>问卷管理</a></li>
+            <li><a href="/qn_system/index"><em class="one"></em>返回主页</a></li>
         </ul>
     </div>
 </div>
