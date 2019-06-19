@@ -1,5 +1,6 @@
 package com.nwafu.qn_system.web;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Base64;
 import java.util.Base64.Decoder;
@@ -34,8 +35,12 @@ public class ImageController {
         file = file.substring(22); 
         //System.out.println(file);
         //解码  
+        File dir = new File(path);
+        if(!dir.exists()) {
+        	dir.mkdirs();
+        }
         String file_path= path+user.getUser_name()+".png";
-        user.setUser_headurl(user.getUser_name()+".png");
+        user.setUser_headurl("/"+user.getUser_name()+".png");
         userService.updateUserheadurl(user);
         byte[] imgByte = decoder.decode(file); 
         try {  
@@ -45,7 +50,7 @@ public class ImageController {
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
-          
+        //session.setAttribute("headurl", user.getUser_headurl());
         return "personal";  
 	}
 }
