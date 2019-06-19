@@ -407,13 +407,20 @@
 							<%--多选--%>
 							<c:set var="quest" value="${question.answer.answer_info}" />
 							<c:set var="list" value="${question.options_list}" />
+							<c:set var="size" value="${question.options_size}" />
 							<%
 								//String str=request.getParameter("question.answer.answer_info");
 										String str = (String) pageContext.getAttribute("quest");
+										int size = (int) pageContext.getAttribute("size");
 										if (str != null) {
 											// 										System.out.println("dafd" + str);
 											List<Integer> ch = new ArrayList<Integer>();
-
+											if(str.length()<size){
+												for(int i = 0;i<size-str.length();i++){
+													ch.add(0);
+												}
+											}
+											
 											for (int i = 0; i < str.length(); i++) {
 												ch.add(str.charAt(i) - '0');
 												// 											System.out.println("shuzo" + str.charAt(i));

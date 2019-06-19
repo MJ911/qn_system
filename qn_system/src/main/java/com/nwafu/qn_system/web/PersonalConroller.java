@@ -379,6 +379,7 @@ public class PersonalConroller {
 		
 		Questionnaire questionnaire = qnService.getAnseredQn((User)session.getAttribute("user"),questionnaire_id);
 //		System.out.println(questionnaire.getQuestion_list().get(0).getAnswer().getAnswer_info());
+//		String str2 = null;
 		String str = null;
 		List<Question> options=new ArrayList<>();
 		
@@ -387,10 +388,15 @@ public class PersonalConroller {
 				//答案判空
 				if(question.getAnswer().getAnswer_info()!=null) {
 					str=Integer.toBinaryString(Integer.parseInt(question.getAnswer().getAnswer_info()));
+//					str = "";
+//					for(int i = 0;i<str2.length();i++) {
+//						str += str2.charAt(str2.length()-1-i);
+//					}
 					System.out.println("测试"+str);
 					question.getAnswer().setAnswer_info(str);	
 				}
 			}
+			question.setOptions_size(question.getOptions_list().size());
 			options.add(question);
 		}
 		questionnaire.setQuestion_list(options);

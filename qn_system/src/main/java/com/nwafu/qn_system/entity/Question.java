@@ -12,6 +12,7 @@ public class Question {
 	private int question_type; //1单选，2多选，3填空
 	private String question_name;
 	private int question_number;
+	private int options_size;
 	
 	private Questionnaire questionnaire;
 	private Answer answer;
@@ -19,6 +20,16 @@ public class Question {
 	private List<Answer> question_answer;
 
 	
+	public int getOptions_size() {
+		return options_size;
+	}
+
+
+	public void setOptions_size(int options_size) {
+		this.options_size = options_size;
+	}
+
+
 	public Answer getAnswer() {
 		return answer;
 	}

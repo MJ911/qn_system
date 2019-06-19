@@ -73,14 +73,25 @@ public class StatisticsServiceImpl implements StatisticsService{
 					String binary = Integer.toBinaryString(answer_info);
 					System.out.println("二进制："+binary);
 				
-					for(int j=0;j<binary.length();j++) {//eg :101(2) = 5(10)
-
-						char c = binary.charAt(j);
-
-						if(49 == c) {
-
+//					for(int j=0;j<binary.length();j++) {//eg :101(2) = 5(10)
+//
+//						char c = binary.charAt(j);
+//
+//						if(49 == c) {
+//
+//							everyOptionSum[j]++;
+//
+//						}
+//					}
+					int k = binary.length()-1;
+					for(int j = optionsNum-1;j>=0;j--) {
+						char c = binary.charAt(k);
+						if(c==49) {
 							everyOptionSum[j]++;
-
+						}
+						k--;
+						if(k<0) {
+							break;
 						}
 					}
 				}
