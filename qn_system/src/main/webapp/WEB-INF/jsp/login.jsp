@@ -172,17 +172,6 @@
 <link href="/loginSpecial/css/loaders.css" rel="stylesheet"
 	type="text/css" />
 <script type="text/javascript">
-	$(function() {
-		// 		$("#div_middle_rig").hide();
-		$("#button_log").click(function() {
-			$("#div_middle").show();
-			$("#div_middle_rig").hide();
-		});
-		$("#button_rigester").click(function() {
-			$("#div_middle").hide();
-			$("#div_middle_rig").show();
-		});
-	});
 	function Toquestionnaire_list(index) {
 		location.href = "/qn_system/questionnaire_list/" + index;
 	}
@@ -198,44 +187,53 @@
 	function Topersonal() {
 		location.href = "/qn_system/personal";
 	}
+	function cklogin(){
+		var user=document.getElementById("user_name");
+		if(user.value.trim().length==0){
+			//$("#warn3").hide();
+			alert("用户名不能为空");
+			return false;
+		}
+		var pass=document.getElementById("user_password");
+		if(pass.value.trim().length==0){
+			alert("密码不能为空");
+			return false;
+		}
+		return true;
+	}
+	function ckregister(){
+		
+		var user=document.getElementById("user2");
+		if(user.value.trim().length==0){
+			alert("用户名不能为空");
+			return false;
+		}
+		var pass1=document.getElementById("input1");
+		if(pass1.value.trim().length==0){
+			alert("密码不能为空");
+			return false;
+		}
+		var pass2=document.getElementById("input2");
+		if(pass2.value.trim().length==0){
+			alert("确认密码不能为空");
+			return false;
+		}
+		var mail=document.getElementById("user_mail");
+		if(mail.value.trim().length==0){
+			alert("邮箱不能为空");
+			return false;
+		}
+		
+		
+		return true;
+	}
 </script>
 <script type="text/javascript">
-	     
+		
 		$(function(){
-			$("#button_login").attr("disabled", true);
-			$("#user_name").blur(function(){
-				if($("#user_name").val()!=""&&$("#user_password").val()!=""){
-					$("#warn3").hide();
-					$("#button_login").attr("disabled", false);
-				}else{
-					$("#warn3").show();
-					$("#button_login").attr("disabled", true);
-				}
-				
-			});
-			$("#user_password").blur(function(){
-				if($("#user_name").val()!=""&&$("#user_password").val()!=""){
-					$("#warn3").hide();
-					$("#button_login").attr("disabled", false);
-				}else{
-					$("#warn3").show();
-					$("#button_login").attr("disabled", true);
-				}		
-			});
-			$("#warn4").hide();
-			$("#button_rig").attr("disabled", true);
-			
+			$("#warn3").hide();
+			$("#warn4").hide();			
 			$("#warn5").hide();
-			$("#user_mail").blur(function(){
-				if($("#user_mail").val()!=""){
-					$("#warn5").hide();
-					$("#button_rig").attr("disabled", false);
-				}
-				else {
-					$("#warn5").show();
-					$("#button_rig").attr("disabled", true);
-				}
-			});
 			
 			
 			$("#div_middle_rig").hide();
@@ -255,16 +253,9 @@
 		        if(passwd1==passwd2){
 		            $("#warn2").hide();
 		        }
+		        
             });
 			$("#input2").blur(function(){
-				if($("#input1").val()==$("#input2").val()&&$("#input1").val()!=""&&$("#user2").val()!=""&&$("#user_mail").val()!=""){
-					$("#warn4").hide();
-					$("#button_rig").attr("disabled", false);
-				}
-				else {
-					$("#warn4").show();
-					$("#button_rig").attr("disabled", true);
-				}
 	            var passwd1=$("#input1").val();
 				var passwd2=$("#input2").val();
 			    if(passwd1==passwd2){
@@ -274,14 +265,6 @@
 				}
 			});
 			$("#input1").blur(function(){
-				if($("#input1").val()==$("#input2").val()&&$("#input1").val()!=""&&$("#user2").val()!=""&&$("#user_mail").val()!=""){
-					$("#warn4").hide();
-					$("#button_rig").attr("disabled", false);
-				}
-				else {
-					$("#warn4").show();
-					$("#button_rig").attr("disabled", true);
-				}
 			    $("#tab").hide();
 	            var passwd1=$("#input1").val();
 				var passwd2=$("#input2").val();
@@ -294,14 +277,6 @@
 			//判断用户名长度
 			$("#warn1").hide();
 			$("#user2").blur(function(){
-				if($("#input1").val()==$("#input2").val()&&$("#input1").val()!=""&&$("#user2").val()!=""&&$("#user_mail").val()!=""){
-					$("#warn4").hide();
-					$("#button_rig").attr("disabled", false);
-				}
-				else {
-					$("#warn4").show();
-					$("#button_rig").attr("disabled", true);
-				}
 			    if($("#user2").val().length>15||$("#user2").val().length<6){
 				    $("#warn1").show();
 				}else{
