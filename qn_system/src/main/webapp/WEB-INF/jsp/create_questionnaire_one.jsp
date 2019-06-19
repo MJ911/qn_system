@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 <head>
-<title>CreateQuestionnaireList</title>
+<title>CreateQuestionnaireOne</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		#list{list-style:none;margin-left:80px;margin-top:10px;font-size:20pt;}
 		#div_left{width:20%;height:850px;float:left;}
-        #div_middle{margin-top:10px;text-align:center;width:60%;height:870px;float:left;background-color:rgba(228,198,208,0.8);border-radius:30px;}
+        #div_middle{width:60%;height:880px;float:left;background-color:rgba(255,255,255,0.40);border-radius:30px;}
 		#div_right{width:20%;height:850px;float:left;}
 </style>
     <link href="/loginSpecial/css/demo.css" rel="stylesheet" type="text/css" />

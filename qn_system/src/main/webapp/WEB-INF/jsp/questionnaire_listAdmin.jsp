@@ -32,14 +32,14 @@ function ToPageNext() {
 	location.href = "/qn_system/ToPageEnd";
 }function ToPageIndex() {
 	var index = turnTo.turn.value;
-	location.href = "/qn_system/ToPageIndex/"+index;
+	if(index != ""){
+		location.href = "/qn_system/ToPageIndex/"+index;
+	}else{
+		alert("请输入跳转页！");
+	}
 }function deletequestionnaire(id){
 	if(confirm("您确认删除吗?")){
-		if(index != ""){
-			location.href="/qn_system/delete_questionnaire/"+id;
-		}else{
-			alert("请输入跳转页！");
-		}
+		location.href="/qn_system/delete_questionnaire/"+id;
 	}
 }
 </script>
