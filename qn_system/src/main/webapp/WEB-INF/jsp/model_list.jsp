@@ -181,7 +181,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	<td><a class="color1" href="/qn_system/model/${questionnaire.questionnaire_id}">${questionnaire.questionnaire_name}</a></td>
                 	<td>${questionnaire.questionnaire_cdate}</td>
                 	<td>${questionnaire.questionnaire_fdate}</td>
-                	<td>${questionnaire.user.user_name}</td>
+                	<td>
+                		<c:if test="${questionnaire.questionnaire_type == '0'}">问卷</c:if>
+                		<c:if test="${questionnaire.questionnaire_type == '1'}">投票</c:if>
+                	</td>
             	</tr>
             </c:forEach>         
         </table>
