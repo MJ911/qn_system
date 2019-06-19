@@ -50,4 +50,11 @@ public interface UserService {
      * @author 宋明桂
      */
     public void updateUserheadurl(User user);
+    
+    /**
+     * 激活用户.
+     * @author xdx
+     * @param user
+     */
+    public void activeUser(User user);
 }

@@ -63,7 +63,60 @@ public class AdministratorController {
 
 		return "questionnaire_listAdmin";
 	}
+	
+	@GetMapping("admin")
+	public String admin(Model model, HttpSession session) {
+		List<Authority> list_at = (List<Authority>) session.getAttribute("list_at");
+		boolean flag1 = false;
+		boolean flag2 = false;
+		for(int i = 0;i<list_at.size();i++) {
+			System.out.println("xdx:"+list_at.get(i).getAuthority_id());
+			if(list_at.get(i).getAuthority_id()==7) {
+				flag1 = true;
+			}
+			if(list_at.get(i).getAuthority_id()==8) {
+				flag2 = true;
+			}
+		}
+		
+		if((flag1&&flag2)==true) {
+			PageHelper.startPage(1,10);// 设置分页，参数1=页数，参数2=每页显示条数
+			List<User> user_list = userdao.getAll(); 
+			PageInfo<User> pageInfo = new PageInfo<User>(user_list);
+			
+			session.setAttribute("lines",pageInfo.getTotal());//总记录数
+			session.setAttribute("pages",pageInfo.getPages());//总页数
+			session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
+			model.addAttribute("userlist", user_list);
+			return "user_list";
+		}else if(flag1==true) {
+			//分页查询设置
+			PageHelper.startPage(1,10);// 设置分页，参数1=页数，参数2=每页显示条数
 
+			List<Questionnaire>questionnairelist = questionnairedao.getAll();
+			PageInfo<Questionnaire> pageInfo = new PageInfo<Questionnaire>(questionnairelist);
+			
+			session.setAttribute("lines",pageInfo.getTotal());//总记录数
+			session.setAttribute("pages",pageInfo.getPages());//总页数
+			session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
+			model.addAttribute("questionnairelist", questionnairelist);
+			return "questionnaire_listAdmin";
+		}else if(flag2==true) {
+			PageHelper.startPage(1,10);// 设置分页，参数1=页数，参数2=每页显示条数
+			List<User> user_list = userdao.getAll(); 
+			PageInfo<User> pageInfo = new PageInfo<User>(user_list);
+			
+			session.setAttribute("lines",pageInfo.getTotal());//总记录数
+			session.setAttribute("pages",pageInfo.getPages());//总页数
+			session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
+			model.addAttribute("userlist", user_list);
+			return "user_list";
+		}else {
+			session.setAttribute("error", "您没有该权限！");
+			return "index";
+		}
+	}
+	
 	@GetMapping("user_list")
 	public String user_list(Model model,HttpSession session) {
 		/*

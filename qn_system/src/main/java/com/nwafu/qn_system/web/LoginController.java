@@ -1,4 +1,6 @@
 package com.nwafu.qn_system.web;
+import java.util.List;
+
 /**
  * 用户登录、注册以及修改密码
  * @author 宋明桂
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.nwafu.qn_system.entity.Authority;
 import com.nwafu.qn_system.entity.User;
+import com.nwafu.qn_system.service.AuthorityService;
 import com.nwafu.qn_system.service.MailService;
 import com.nwafu.qn_system.service.UserService;
 import com.nwafu.qn_system.utils.EnctryUtils;
@@ -26,6 +30,8 @@ public class LoginController {
 	private UserService userService;
 	@Autowired
 	private MailService mailService;
+	@Autowired
+	private AuthorityService atService;
 	
 	@PostMapping("login")
 	public String login(String user_name,String user_password,HttpSession session) {
@@ -42,13 +48,12 @@ public class LoginController {
 		System.out.println(one);
 		User user = userService.login(one);
 		session.setAttribute("user", user);
-		if(user != null && user_name.equals("admin")) {
-			//管理登录
-			System.out.println("登录成功！");
-			session.setAttribute("message", "尊敬的"+user_name+"用户，您已成功登录！");
-			return "user_list";
-		}
+		
+		
 		if(user != null) {
+			/**********获取该用户权限**********/
+			List<Authority> list_at = atService.getAllAtFromUser(user);
+			session.setAttribute("list_at", list_at);
 			//成功
 			System.out.println("登录成功！");
 			session.setAttribute("message", "尊敬的"+user_name+"用户，您已成功登录！");
@@ -154,7 +159,7 @@ public class LoginController {
             user.setUser_state(true);
             //把code验证码清空，已经不需要了
             user.setUser_activecode("");
-            userService.upadteUser(user);
+            userService.activeUser(user);
         }
 		return "login";
 	}
@@ -162,6 +167,7 @@ public class LoginController {
 	@GetMapping("quit")
 	public String quit(HttpSession session) {
 		session.removeAttribute("user");
+		session.removeAttribute("list_at");
 		return "index";
 	}
 	@GetMapping("findpw")

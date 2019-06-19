@@ -129,5 +129,10 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		userdao.updateUserheadurl(user);
 	}
+	
+	@Override
+	public void activeUser(User user) {
+		userdao.updateAll(user);
+	}
 
 }

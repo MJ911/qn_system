@@ -35,6 +35,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location.href="/qn_system/create_choice";
 	}function Topersonal() {
 		location.href = "/qn_system/personal";
+	}function ToAdmin(){
+		location.href="/qn_system/user_list";
 	}
 </script>
 <!-- //for-mobile-apps -->
@@ -178,7 +180,12 @@ ul.c {list-style-type:square;}
 							<li id="qn"style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(1)">投票集</a></li>
 							<li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(0)">问卷集</a></li>
 					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Tomodel_list()">问卷模板</a></li>
-					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toindex()">帮助</a></li>
+					        <c:forEach items="${list_at }" var="at">
+										<c:if test="${at.authority_id==6 }">
+											<li style="color: white" class=" menu__item"><a
+											class="menu__link" onclick="ToAdmin()">管理</a></li>
+										</c:if>
+							</c:forEach>
 
 					    </ul>
 					</div>

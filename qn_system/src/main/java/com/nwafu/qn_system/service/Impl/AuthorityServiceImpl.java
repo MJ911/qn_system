@@ -128,13 +128,19 @@ public class AuthorityServiceImpl implements AuthorityService{
 	@Override
 	public List<Authority> getAllAtFromUser(User user) {
 		// TODO Auto-generated method stub
-		List<Role_authority> role_authority_list = role_authorityDAO.getByRole_id(user.getRole().getRole_id());
+		List<Role_authority> role_authority_list = new ArrayList<Role_authority>();
+		if(user.getRole()!=null)
+			role_authority_list = role_authorityDAO.getByRole_id(user.getRole().getRole_id());
 		List<Authority> authority_list_by_role = new ArrayList<Authority>();
 		for(Role_authority role_authority : role_authority_list) {
 			authority_list_by_role.add(role_authority.getAuthority());
 		}
 		
 		List<User_authority> user_authority_list = user_authorityDAO.getByUserId(user.getUser_id());
+		//判空
+		if(user_authority_list==null) {
+			user_authority_list = new ArrayList<User_authority>();
+		}
 		List<Authority> authority_list_by_user = new ArrayList<Authority>();
 		for(User_authority user_authority : user_authority_list) {
 			authority_list_by_user.add(user_authority.getAuthority());

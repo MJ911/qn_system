@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri= "http://java.sun.com/jsp/jstl/core" prefix= "c" %> 
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -32,6 +33,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location.href = "/qn_system/personal";
 	}function Toquit() {
 		location.href = "/qn_system/quit";
+	}function ToAdmin(){
+		location.href="/qn_system/user_list";
 	}
 </script>
 <!-- //for-mobile-apps -->
@@ -104,7 +107,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li id="qn"style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(1)">投票集</a></li>
 							<li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(0)">问卷集</a></li>
 					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Tomodel_list()">问卷模板</a></li>
-					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toindex()">帮助</a></li>
+					        <c:forEach items="${list_at }" var="at">
+										<c:if test="${at.authority_id==6 }">
+											<li style="color: white" class=" menu__item"><a
+											class="menu__link" onclick="ToAdmin()">管理</a></li>
+										</c:if>
+							</c:forEach>
 
 					    </ul>
 					</div>
