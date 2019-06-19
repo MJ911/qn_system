@@ -124,6 +124,20 @@ public class AdministratorController {
 		 * 
 		 * @author sgf
 		 */
+		
+		/**判断是否有权限**/
+		List<Authority> list_at = (List<Authority>) session.getAttribute("list_at");
+		boolean flag2 = false;
+		for(int i = 0;i<list_at.size();i++) {
+			if(list_at.get(i).getAuthority_id()==8) {
+				flag2 = true;
+			}
+		}
+		if(flag2==false) {
+			
+		}
+		
+		
 		PageHelper.startPage(1,10);// 设置分页，参数1=页数，参数2=每页显示条数
 		List<User> user_list = userdao.getAll(); 
 		PageInfo<User> pageInfo = new PageInfo<User>(user_list);

@@ -347,9 +347,9 @@
 			<div class="div_middle_down">
 				<div class="div_middle_down_left">
 					<ul class="ui_left">
-						<li><input type="button" value="我创建的"
+						<li><input onclick="TomyquestionnaireLis()" type="button" value="我创建的"
 							style="border: none; width: 200px; height: 50px; border-radius: 30px; background: orange; color: white; size: 16px; background-color: rgba(250, 128, 114, 0.5);"></li>
-						<li><input type="button" value="我参与的"
+						<li><input onclick="ToJoinquestionnaireLis()" type="button" value="我参与的"
 							style="border: none; width: 200px; height: 50px; border-radius: 30px; background: orange; color: white; size: 16px; background-color: rgba(250, 128, 114, 0.5);"></li>
 						<li><input type="button" value="修改信息"
 							style="border: none; width: 200px; height: 50px; border-radius: 30px; background: orange; color: white; size: 16px; background-color: rgba(250, 128, 114, 0.5);"></li>

@@ -37,7 +37,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location.href = "/qn_system/personal";
 	}function ToAdmin(){
 		location.href="/qn_system/user_list";
+	}function Toquit() {
+		location.href = "/qn_system/quit";
 	}
+	
 </script>
 <!-- //for-mobile-apps -->
 <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -208,13 +211,17 @@ ul.c {list-style-type:square;}
 								</ul>
 							</div>
 							<%} else{%>
-							<div width="10%" style="float:left">
+							<div width="10%" style="float: left">
 								<ul class="nav navbar-nav menu__list">
 									<li class=" menu__item"><a class="menu__link"
-										onclick="Topersonal()">个人主页</a></li>
+										onclick="Topersonal()">主页</a></li>
+										<li class=" menu__item"><a class="menu__link"
+										onclick="Toquit()">退出</a></li>
 								</ul>
-							</div>							
-							<% } %>
+							</div>
+							<%
+								}
+							%>
 				</div>				
 			  </div>
 			</nav>	

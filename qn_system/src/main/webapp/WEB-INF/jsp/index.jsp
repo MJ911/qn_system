@@ -14,11 +14,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
+<script type="text/javascript" src="/js/jquery.js"></script> 
+<script type="text/javascript" src="/js/sweetalert.min.js"></script>
 <script type="application/x-javascript">
 	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } 
 
+</script>
+
+<script> 
+	$(function(){
+		var message ='<%=request.getSession().getAttribute("message")%>';
+		var error ='<%=request.getSession().getAttribute("error")%>';
+		 if(message != "null"){
+			 
+			swal("Good!", message, "success");
+			<%
+			request.getSession().removeAttribute("message");
+			%>
+		 }	else if(error != "null"){
+			 swal("OMG!", error, "error");
+			 <%
+			 request.getSession().removeAttribute("error");
+			 %>
+		 } 
+	}); 	
 </script>
 
 <script type="text/javascript">
@@ -46,6 +67,8 @@
 		location.href="/qn_system/admin";
 	}
 </script>
+
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
 <!-- //for-mobile-apps -->
 <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
