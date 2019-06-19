@@ -11,6 +11,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>question_listAdmin</title>
 <link href="/css/styleuser.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
 </head>
 
 <script>
@@ -35,12 +37,22 @@ function ToPageNext() {
 	if(index != ""){
 		location.href = "/qn_system/ToPageIndex/"+index;
 	}else{
-		alert("请输入跳转页！");
+		//alert("请输入跳转页！");
+		swal("请输入跳转页！");
 	}
 }function deletequestionnaire(id){
-	if(confirm("您确认删除吗?")){
-		location.href="/qn_system/delete_questionnaire/"+id;
-	}
+	swal({
+		title: "您确定要删除吗？",
+		text: "您确定要删除这条数据？",
+		type: "warning",
+		showCancelButton: true,
+		closeOnConfirm: false,
+		confirmButtonText: "是的，我要删除",
+		confirmButtonColor: "#ec6c62"
+	}, function() {
+		location.href = "/qn_system/delete_questionnaire/"+id;
+	    swal("操作成功!", "已成功删除数据！", "success");	
+	});
 }
 </script>
 

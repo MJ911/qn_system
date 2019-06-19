@@ -26,6 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- <link href="/css/style_table.css" rel="stylesheet" type="text/css" media="all" /> -->
 <!-- js -->
 <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
 <!-- //js -->
 <!-- cart -->
 	<script src="/js/simpleCart.min.js"></script>
@@ -106,7 +108,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if(index != ""){
 			location.href = "/qn_system/ToPageIndex/"+index;
 		}else{
-			alert("请输入跳转页！");
+			//alert("请输入跳转页！");
+			swal("请输入跳转页！");
 		}
 	}
 </script>
@@ -117,7 +120,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var errorMessage ='<%=request.getSession().getAttribute("errorMessage")%>';
 		 if(errorMessage != "null"){
 			swal("OMG!", errorMessage, "error");
-			alert(errorMessage);
 			<%
 			request.getSession().removeAttribute("errorMessage");
 			%>

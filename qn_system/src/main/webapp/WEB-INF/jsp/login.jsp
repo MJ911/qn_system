@@ -37,6 +37,7 @@
 			%>
 		 }	else if(error != "null"){
 			 swal("OMG!", error, "error");
+
 			 <%
 			 request.getSession().removeAttribute("error");
 			 %>
@@ -191,12 +192,15 @@
 		var user=document.getElementById("user_name");
 		if(user.value.trim().length==0){
 			//$("#warn3").hide();
-			alert("用户名不能为空");
+			//alert("用户名不能为空");
+			
+			swal("OMG!", "用户名不能为空", "error");
 			return false;
 		}
 		var pass=document.getElementById("user_password");
 		if(pass.value.trim().length==0){
-			alert("密码不能为空");
+			//alert("密码不能为空");
+			swal("OMG!", "密码不能为空", "error");
 			return false;
 		}
 		return true;
@@ -205,22 +209,26 @@
 		
 		var user=document.getElementById("user2");
 		if(user.value.trim().length==0){
-			alert("用户名不能为空");
+			//alert("用户名不能为空");
+			swal("OMG!", "用户名不能为空", "error");
 			return false;
 		}
 		var pass1=document.getElementById("input1");
 		if(pass1.value.trim().length==0){
-			alert("密码不能为空");
+			//alert("密码不能为空");
+			swal("OMG!", "密码不能为空", "error");
 			return false;
 		}
 		var pass2=document.getElementById("input2");
 		if(pass2.value.trim().length==0){
-			alert("确认密码不能为空");
+			//alert("确认密码不能为空");
+			swal("OMG!", "确认密码不能为空", "error");
 			return false;
 		}
 		var mail=document.getElementById("user_mail");
 		if(mail.value.trim().length==0){
-			alert("邮箱不能为空");
+			//alert("邮箱不能为空");
+			swal("OMG!", "邮箱不能为空", "error");
 			return false;
 		}
 		
@@ -421,7 +429,7 @@
 					</div>
 
 
-					<form action="/qn_system/register"  method="post">
+					<form action="/qn_system/register"  method="post" onsubmit="return ckregister()">
 						<div id="div_label2">
 							<li><font size="5px" color="black">&nbsp;用&nbsp;户&nbsp;名：&nbsp;</font> <input
 								id="user2"name="user_name" type="text" height="10" style="color: black" />
@@ -454,7 +462,7 @@
 						</div>
 						<div id="div_label2">
 							<li><font size="5px" color="black">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：&nbsp;</font>
-								<input name="user_mail" type="text" height="10" style="color: black" /></li>
+								<input id="user_mail" name="user_mail" type="text" height="10" style="color: black" /></li>
 						</div>
 						<div id="div_label2">
 							<li align="center"><input type="submit" id="button_rig"
@@ -482,7 +490,7 @@
 						<li><font size="5px" color="orange">欢迎登录问卷强</font></li>
 					</div>
 
-					<form action="/qn_system/login" method="post" >
+					<form action="/qn_system/login" method="post" onsubmit="return cklogin()">
 
 						<div id="div_label2">
 

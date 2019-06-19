@@ -70,6 +70,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </style>
     <link href="/loginSpecial/css/demo.css" rel="stylesheet" type="text/css" />
     <link href="/loginSpecial/css/loaders.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
 	<script text="text/javascript">
 	    
 	</script>
@@ -106,7 +108,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if(index != ""){
 			location.href = "/qn_system/TojoinPageIndex/"+index;
 		}else{
-			alert("请输入跳转页！");
+			//alert("请输入跳转页！");
+			swal("请输入跳转页！");
 		}
 	}
 </script>

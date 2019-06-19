@@ -35,7 +35,7 @@ function TouserPageNext() {
 	if(index != ""){
 		location.href = "/qn_system/TouserPageIndex/"+index;
 	}else{
-		alert("请输入跳转页！");
+		swal("请输入跳转页！");
 	}
 }
 </script>
