@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.nwafu.qn_system.dao.AnswerDAO;
 import com.nwafu.qn_system.dao.QuestionnaireDAO;
+import com.nwafu.qn_system.dao.User_questionnaireDAO;
 import com.nwafu.qn_system.entity.Answer;
 import com.nwafu.qn_system.entity.Question;
 import com.nwafu.qn_system.entity.Questionnaire;
 import com.nwafu.qn_system.entity.User;
+import com.nwafu.qn_system.entity.User_questionnaire;
 import com.nwafu.qn_system.service.QnService;
 @Controller
 @RequestMapping("qn_system")
@@ -30,9 +33,60 @@ public class QuestionnaireController {
      */
 	@Autowired
 	private QnService qnService;
-	
+	@Autowired 
+	private AnswerDAO answerDAO;
 	@Autowired
 	private QuestionnaireDAO questionnaireDAO;
+	@Autowired
+	private User_questionnaireDAO userQuestionnaireDAO;
+	
+	@PostMapping("modifyQn")
+	public String modifyQn(Questionnaire qn,HttpSession session) {
+		User user = (User) session.getAttribute("user");		
+		List<Question> questionList = qn.getQuestion_list();
+		for(int i=0;i<questionList.size();i++) {
+			Question question = questionList.get(i);
+			//接下来就是如何通过DAO获取answer1的answer_id
+			User_questionnaire uq = new User_questionnaire();
+			uq.setUser(user);
+			uq.setQuestionnaire(qn);
+			uq = userQuestionnaireDAO.getUser_qnByUser_idQn_id(uq);
+			Answer answer1 = question.getAnswer();
+			answer1.setUser_questionnaire(uq);
+			answer1.setQuestion(question);
+			List<Answer> answerList = answerDAO.getByUser_Questionnaire_Id_and_Question_Id(answer1);
+			answer1.setAnswer_id(answerList.get(0).getAnswer_id());
+			
+			//对多选进行处理，把多选的字符砖转换为二进制串，再把二进制转换为十进制存进数据库
+			if(question.getQuestion_type() == 2) {
+				String str = question.getAnswer().getAnswer_info();
+				//答案判空
+				if(str==null) {
+					continue;
+				}
+				int OptionsLen = question.getOptions_list().size();
+				String[] strArr = str.split(","); 
+				Integer[] intArr = new Integer[strArr.length];
+				for(int a=0;a<strArr.length;a++){
+					intArr[a] = Integer.valueOf(strArr[a]); //然后遍历字符串数组，使用包装类Integer的valueOf方法将字符串转为整型
+				}
+				int ar[] = new int[OptionsLen];
+				for(int j:intArr) {
+					ar[j-1] = 1;
+				}
+				int res = 0;
+				for(int j=OptionsLen-1,k=0;j>=0;j--,k++) {
+					res += ar[j] * Math.pow(2,k);
+				}
+				answer1.setAnswer_info(res+"");
+			}
+			else {
+				answer1.setAnswer_info(question.getAnswer().getAnswer_info());
+			}
+			qnService.updateAnswer(answer1);
+		}
+		return "questionnaire_list";
+	}
 	
 	@PostMapping("questionnaire_list")
 	public String questionnaire(Questionnaire questionnaire,HttpSession session) {
@@ -69,11 +123,10 @@ public class QuestionnaireController {
 				for(int i=OptionsLen-1,j=0;i>=0;i--,j++) {
 					answer += ar[i] * Math.pow(2,j);
 				}
-//				System.out.println("answer = "+answer);
 				q.getAnswer().setAnswer_info(answer+"");
 			}
 		}
-		System.out.println(questionnaire); 
+//		System.out.println(questionnaire); 
 		qnService.answerQn(questionnaire);
 		return "questionnaire_list";
 	}

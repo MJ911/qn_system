@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.nwafu.qn_system.entity.Answer;
 import com.nwafu.qn_system.entity.Question;
@@ -81,4 +82,14 @@ public interface AnswerDAO {
 	 */
 	@Delete("delete from answer where user_questionnaire_id=#{user_qn_id}")
 	public void deleteAnswers(int user_qn_id);
+	
+	/*
+	 * 用户修改问卷时，要修改数据库中的answer表
+	 *  @author 李文雅
+	 *  @param answer_id
+	 *  @param answer_info
+	 */
+	@Update("update answer set answer_info=#{answer_info} where answer_id=#{answer_id}")
+//	@Update("update answer set answer_info='000' where answer_id=#{answer_id}")
+	public void updateAnswer(Answer answer);
 }

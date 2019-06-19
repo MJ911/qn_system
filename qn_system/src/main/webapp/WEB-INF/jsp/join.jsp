@@ -17,14 +17,31 @@
 <meta name="keywords" content="" />
 <script type="application/x-javascript">
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 	function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 </script>
 
 <script type="text/javascript">
-	function Toquestionnaire_list(index){
-		location.href="/qn_system/questionnaire_list/"+index;
+	function modifyQn() {
+		var signal = document.getElementsByClassName("sigChoose");
+		for (var i = 0; i < signal.length; i++) {
+			signal[i].onclick = false;
+		}
+		var multi = document.getElementsByClassName("mulChoose");
+		for (var i = 0; i < multi.length; i++) {
+			multi[i].onclick = false;
+		}
+		var blank = document.getElementsByClassName("textarea");
+		for (var i = 0; i < blank.length; i++) {
+			blank[i].disabled = false;
+		}
+	}
+		
+	function Toquestionnaire_list(index) {
+		location.href = "/qn_system/questionnaire_list/" + index;
 	}
 	function Toindex(){
 		location.href="/qn_system/index";
@@ -360,68 +377,72 @@
 		</div>
 		<div id="div_left"></div>
 
-		<div id="div_middle" style="color: black;overflow: scroll;overflow-x: hidden;">
+		<div id="div_middle"
+			style="color: black; overflow: scroll; overflow-x: hidden;">
 			<div id="div_blankLeft"></div>
 			<div id="div_middleofMiddle">
 				<h1
 					style="text-align: center; margin-top: 40px; margin-bottom: 40px; font-weight: bold; font-size: 50px;">${questionnaire.questionnaire_name }</h1>
-				<form action="/qn_system/questionnaire_list" method="post">
+				<form action="/qn_system/modifyQn" method="post">
 
 					<c:forEach items="${questionnaire.question_list}" var="question">
 						<c:if test="${questionnaire.questionnaire_type==0 }">
 							<h2 style="margin-top: 20px; margin-bottom: 20px;">题目${question.question_number }.&nbsp;${question.question_name}</h2>
 						</c:if>
 						<c:if test="${question.question_type == '1'}">
-							<%--µ±Ç°Îªµ¥Ñ¡Ìâ --%>
+							<%--单选 --%>
 							<c:forEach items="${question.options_list }" var="option">
 								<h3>
-									<input type="radio" value="${option.option_number }"
-										<c:if test="${option.option_number eq question.answer.answer_info}">checked='checked'</c:if> onclick="return false"/>${option.option_number }.&nbsp;&nbsp;&nbsp;&nbsp;${option.option_name}</h3>
+									<input name="question_list[${question.question_number-1 }].answer.answer_info" class="sigChoose" type="radio" value="${option.option_number }"
+										<c:if test="${option.option_number eq question.answer.answer_info}">checked='checked'</c:if>
+										onclick="return false" />${option.option_number }.&nbsp;&nbsp;&nbsp;&nbsp;${option.option_name}
+								</h3>
 								<br>
-								<input type="hidden" value="${question.question_type }">
-								<input type="hidden" value="${question.question_id }">
+								<input type="hidden" name="question_list[${question.question_number-1 }].question_type" value="${question.question_type }">
+								<input type="hidden" name="question_list[${question.question_number-1 }].question_id" value="${question.question_id }">
 							</c:forEach>
 						</c:if>
 
 						<c:if test="${question.question_type == '2'}">
-							<%--��ǰΪ��ѡ�� --%>
+							<%--多选--%>
 							<c:set var="quest" value="${question.answer.answer_info}" />
 							<c:set var="list" value="${question.options_list}" />
 							<%
 								//String str=request.getParameter("question.answer.answer_info");
 										String str = (String) pageContext.getAttribute("quest");
-										if(str!=null){
-// 										System.out.println("dafd" + str);
-										List<Integer> ch = new ArrayList<Integer>();
+										if (str != null) {
+											// 										System.out.println("dafd" + str);
+											List<Integer> ch = new ArrayList<Integer>();
 
-										for (int i = 0; i < str.length(); i++) {
-											ch.add(str.charAt(i) - '0');
-// 											System.out.println("shuzo" + str.charAt(i));
-										}
-										pageContext.setAttribute("ch", ch);
+											for (int i = 0; i < str.length(); i++) {
+												ch.add(str.charAt(i) - '0');
+												// 											System.out.println("shuzo" + str.charAt(i));
+											}
+											pageContext.setAttribute("ch", ch);
 										}
 							%>
 
 							<c:forEach items="${question.options_list}" var="option"
-								varStatus="loop"><h3>
-									<input type="checkbox" value="${option.option_number }"
-										<c:if test="${ch[loop.count-1] eq 1}">checked='checked'</c:if> onclick="return false" />${option.option_number }.&nbsp;&nbsp;&nbsp;${option.option_name}</h3>
+								varStatus="loop">
+								<h3>
+									<input name="question_list[${question.question_number-1 }].answer.answer_info" class="mulChoose" type="checkbox" value="${option.option_number }"
+										<c:if test="${ch[loop.count-1] eq 1}">checked='checked'</c:if>
+										onclick="return false" />${option.option_number }.&nbsp;&nbsp;&nbsp;${option.option_name}</h3>
 								<br>
-								<input type="hidden" value="${question.question_type }">
-								<input type="hidden" value="${question.question_id }">
-								<input type="hidden" value="${option.option_number }">
+								<input type="hidden" name="question_list[${question.question_number-1 }].question_type" value="${question.question_type }">
+								<input type="hidden" name="question_list[${question.question_number-1 }].question_id" value="${question.question_id }">
+								<input type="hidden" name="question_list[${question.question_number-1 }].options_list[${option.option_number-1 }].option_number" value="${option.option_number }">
 							</c:forEach>
 						</c:if>
 						<c:if test="${question.question_type == '3'}">
 							<%--填空 --%>
-							<textarea
+							<textarea class="textarea" name="question_list[${question.question_number-1 }].answer.answer_info"
 								style="overflow: auto; width: 95%; height: 50px; color: black; border: 2px; background-color: rgba(255, 255, 255, 0.40); font-size: 20px;"
 								class="inputtext" disabled>${question.answer.answer_info}</textarea>
 							<input
 								name="question_list[${question.question_number-1 }].question_type"
 								type="hidden" value="${question.question_type }">
-							<input
-								name="question_list[${question.question_number-1 }].answer.question.question_id"
+							<input name="question_list[${question.question_number-1 }].question_id"
 								type="hidden" value="${question.question_id }">
 						</c:if>
 					</c:forEach>
@@ -429,14 +450,18 @@
 						value="${questionnaire.questionnaire_id }"> <input
 						name="user.user_id" type="hidden"
 						value="${sessionScope.user.user_id}">
-					</form>
+
+					<input type="button" class="button blue bigrounded" value="修改问卷" onclick="modifyQn()"/>
+		 			<input type="submit" class="button blue bigrounded" value="重新提交"> 
+				</form>
+
 				
-				
-				</div>
-   			 </div>
+
 			</div>
-<!-- 		<div id="div_blankRight"></div> -->
-<!-- 		<div id="div_right"></div> -->
+		</div>
+	</div>
+	<!-- 		<div id="div_blankRight"></div> -->
+	<!-- 		<div id="div_right"></div> -->
 	<script src="/loginSpecial/js/Particleground.js" type="text/javascript"></script>
 	<script src="/loginSpecial/js/Treatment.js" type="text/javascript"></script>
 	<script src="/loginSpecial/js/controlLogin.js" type="text/javascript"></script>

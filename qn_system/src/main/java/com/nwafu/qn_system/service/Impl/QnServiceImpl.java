@@ -293,4 +293,10 @@ public class QnServiceImpl implements QnService {
 		/****删除user_questionnaire表中的相应记录*****/
 		user_qndao.delete(questionnaire.getQuestionnaire_id());
 	}
+
+	@Override
+	public void updateAnswer(Answer answer) {
+		// TODO Auto-generated method stub
+		answerdao.updateAnswer(answer);
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.nwafu.qn_system.entity.Answer;
 import com.nwafu.qn_system.entity.Questionnaire;
 import com.nwafu.qn_system.entity.User;
 
@@ -66,4 +67,11 @@ public interface QnService {
 	 * @param questionnaire_id
 	 */
 	public void deleteQn(int questionnaire_id);
+	
+	/*
+	 * 用户修改自己已经提交的问卷
+	 * @author 李文雅
+	 * @param int answer_id,Sring answer_info
+	 */
+	public void updateAnswer(Answer answer);
 }
