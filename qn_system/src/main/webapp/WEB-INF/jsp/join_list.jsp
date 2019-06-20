@@ -4,6 +4,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -231,8 +232,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <c:forEach items="${joinquestionnaires }" var="joinquestionnaire">
             	<tr>
                 	<td><a class="color1" href="/qn_system/join/${joinquestionnaire.questionnaire_id}">${joinquestionnaire.questionnaire_name}</a></td>
-                	<td>${joinquestionnaire.questionnaire_cdate}</td>
-                	<td>${joinquestionnaire.questionnaire_fdate}</td>
+                	
+                	<td><fmt:formatDate value="${joinquestionnaire.questionnaire_cdate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+                	<td><fmt:formatDate value="${joinquestionnaire.questionnaire_fdate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
                 	<td>
                 		<c:if test="${joinquestionnaire.questionnaire_type == '0'}">问卷</c:if>
                 		<c:if test="${joinquestionnaire.questionnaire_type == '1'}">投票</c:if>

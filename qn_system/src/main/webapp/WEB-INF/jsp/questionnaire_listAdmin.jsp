@@ -4,7 +4,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -160,8 +160,8 @@ function ToPageNext() {
   					<tr>
   						<td>${qn.questionnaire_id}</td>
   						<td>${qn.questionnaire_name}</td>
-  						<td>${qn.questionnaire_cdate}</td>
-  						<td>${qn.questionnaire_fdate}</td>
+  						<td><fmt:formatDate value="${questionnaire.questionnaire_cdate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+                	<td><fmt:formatDate value="${questionnaire.questionnaire_fdate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
   						<td>${qn.questionnaire_state}</td>
   						<td>${qn.questionnaire_type}</td>
   						<td><a onclick="deletequestionnaire(${qn.questionnaire_id})" class="yellow-xt">删除</a></td>

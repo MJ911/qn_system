@@ -257,17 +257,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	   		</c:if>
  	   		<c:if test="${question.question_type == '1'}"><%--当前为单选题 --%>
 	   			<c:forEach items="${question.options_list }" var="option">
+	   			    <label>
 	   				<h3><input name="question_list[${question.question_number-1 }].answer.answer_info" type="radio" value="${option.option_number }"/>${option.option_number }.&nbsp;&nbsp;&nbsp;&nbsp;${option.option_name}</h3><br>
 	   				<input name="question_list[${question.question_number-1 }].question_type" type="hidden" value="${question.question_type }">
 	   				<input name="question_list[${question.question_number-1 }].answer.question.question_id" type="hidden" value="${question.question_id }">
+	   			    </label>
 	   			</c:forEach>
 	   		</c:if>
 	   		<c:if test="${question.question_type == '2'}"><%--当前为多选题 --%>
 	   			<c:forEach items="${question.options_list }" var="option">
+	   				<label>
 	   				<h3><input name="question_list[${question.question_number-1 }].answer.answer_info" type="checkbox" value="${option.option_number }"/>${option.option_number }.&nbsp;&nbsp;&nbsp;${option.option_name}</h3><br>
 	   				<input name="question_list[${question.question_number-1 }].question_type" type="hidden" value="${question.question_type }">
 	   				<input name="question_list[${question.question_number-1 }].answer.question.question_id" type="hidden" value="${question.question_id }">
 	   				<input name="question_list[${question.question_number-1 }].options_list[${option.option_number-1 }].option_number" type="hidden" value="${option.option_number }">
+	   			    </label>
 	   			</c:forEach>
 	   		</c:if>
 	   		<c:if test="${question.question_type == '3'}"><%--当前为填空题 --%>
