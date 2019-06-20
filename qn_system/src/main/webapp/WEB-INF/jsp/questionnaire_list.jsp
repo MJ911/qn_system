@@ -75,6 +75,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script text="text/javascript">
 	    
 	</script>
+	<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
+<script> 
+	$(function(){
+		var message ='<%=request.getSession().getAttribute("message")%>';
+		var error ='<%=request.getSession().getAttribute("error")%>';
+		 if(message != "null"){
+			 
+			swal("Good!", message, "success");
+			<%
+			request.getSession().removeAttribute("message");
+			%>
+		 }	else if(error != "null"){
+			 swal("OMG!", error, "error");
+			 <%
+			 request.getSession().removeAttribute("error");
+			 %>
+		 } 
+	}); 	
+</script>
 	<script type="text/javascript">
 	function Toquestionnaire_list(index){
 		location.href="/qn_system/questionnaire_list/"+index;
@@ -111,6 +131,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			//alert("请输入跳转页！");
 			swal("请输入跳转页！");
 		}
+	}function ToAdmin(){
+		location.href="/qn_system/admin/3";
 	}
 </script>
 <script type="text/javascript" src="/js/jquery.js"></script> 
@@ -157,7 +179,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li id="qn"style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(1)">投票集</a></li>
 							<li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toquestionnaire_list(0)">问卷集</a></li>
 					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Tomodel_list()">问卷模板</a></li>
-					        <li style="color:white" class=" menu__item"><a class="menu__link" onclick="Toindex()">帮助</a></li>
+					        <c:forEach items="${list_at }" var="at">
+										<c:if test="${at.authority_id==6 }">
+											<li style="color: white" class=" menu__item"><a
+											class="menu__link" onclick="ToAdmin()">管理</a></li>
+										</c:if>
+									</c:forEach>
 
 					    </ul>
 					</div>

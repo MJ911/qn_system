@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +39,7 @@ public class MailRetrieveController {
 	 * @author 宋明桂
 	 */
 	@PostMapping("sendurl")
-	public String produceURL(String user_name, HttpSession session) {
+	public String produceURL(String user_name, HttpSession session,Model model) {
 		// MailRetrieve mailRetieve = mailRetrieveService.findByAccount(user_name);
 		User user = userService.getByUserName(user_name);
 		System.out.println(user_name);
@@ -58,30 +59,41 @@ public class MailRetrieveController {
 			}
 			mailRetrieveService.save(mailRetrieve);
 			String subject = "来自问卷强网站的邮件";
-			String context = "<a target=\"_blank\"href=\"http://localhost:8092/qn_system/checklink/" + 
+			String context = "<a target=\"_blank\"href=\"http://172.29.17.50:8092/qn_system/checklink/" + 
 					EnctryUtils.stringMD5(sid)+ "/"+user_name+"\">激活请点击:" + EnctryUtils.stringMD5(sid)+ "</a>";
 			mailService.sendMimeMail(user.getUser_mail(), subject, context);
-			session.setAttribute("message", "找回密码链接已经发送到邮箱，注意查收");
+			//session.setAttribute("message", "找回密码链接已经发送到邮箱，注意查收");
+			model.addAttribute("message", "找回密码链接已经发送到邮箱，注意查收");
 		}
 		return "login";
 	}
 	
 	@GetMapping("checklink/{sid}/{user_name}")
-	public String checkLink(@PathVariable String user_name,@PathVariable String  sid, HttpSession session) {
+	public String checkLink(@PathVariable String user_name,@PathVariable String  sid, HttpSession session,Model model) {
 		System.out.println(user_name+" "+sid);
 		MailRetrieve mailRetrieve = mailRetrieveService.findByAccount(user_name);
+		if(mailRetrieve == null) {
+			//session.setAttribute("error", "链接已失效");
+			model.addAttribute("error", "链接已失效");
+			return "login";
+		}
 		long outTime = mailRetrieve.getOut_time();
 		Timestamp outDate = new Timestamp(System.currentTimeMillis());
         long nowTime=outDate.getTime();
         System.out.println("nowTime:"+nowTime);
         if(outTime<=nowTime){
-            session.setAttribute("error","verifyMail time is overdue");           
+        	model.addAttribute("error", "链接已超时");
+            //session.setAttribute("error","verifyMail time is overdue");           
         }else if("".equals(sid)){
-            session.setAttribute("error","sid is incomplete content");          
+        	model.addAttribute("error", "链接无效");
+            //session.setAttribute("error","sid is incomplete content");          
         }else if(!sid.equals(mailRetrieve.getSid())){
-            session.setAttribute("error","sid is error");           
+        	model.addAttribute("error", "验证码错误");
+            //session.setAttribute("error","sid is error");           
         }else{
-            session.setAttribute("message", "请输入新密码");   
+        	mailRetrieveService.delete(mailRetrieve);
+            //session.setAttribute("message", "请输入新密码");
+            model.addAttribute("message", "请输入新密码");
             session.setAttribute("username", user_name);
             return "updatepassword";//更改用户更改密码的界面
         }	

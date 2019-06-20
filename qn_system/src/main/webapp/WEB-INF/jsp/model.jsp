@@ -15,7 +15,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="keywords" content="" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
-		
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
+
+<script> 
+	$(function(){
+		var message ='<%=request.getSession().getAttribute("message")%>';
+		var error ='<%=request.getSession().getAttribute("error")%>';
+		 if(message != "null"){
+			 
+			swal("Good!", message, "success");
+			<%
+			request.getSession().removeAttribute("message");
+			%>
+		 }	else if(error != "null"){
+			 swal("OMG!", error, "error");
+			 <%
+			 request.getSession().removeAttribute("error");
+			 %>
+		 } 
+	}); 	
+</script>
 <script type="text/javascript">
 	function Toquestionnaire_list(index){
 		location.href="/qn_system/questionnaire_list/"+index;
@@ -35,7 +56,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}function Toquit() {
 		location.href = "/qn_system/quit";
 	}function ToAdmin(){
-		location.href="/qn_system/user_list";
+		location.href="/qn_system/admin/7";
+	}function ApplyModel(){
+		var id = document.getElementById("mq_id").value;
+		var type = document.getElementById("mq_type").value;
+// 		alert(id+" "+type);
+// 		var path = "/qn_system/create_Frommodel/"+id+"/"+type;
+// 		location.href=path;
+		location.href="/qn_system/create_Frommodel/"+id+"/"+type;
 	}
 </script>
 <!-- //for-mobile-apps -->
@@ -224,7 +252,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        <div id="div_blankLeft"></div>
 	   <div id="div_middleofMiddle">
 	   <h1 style="text-align:center;margin-top:40px;margin-bottom:40px;font-weight:bold;font-size:50px;">${questionnaire.questionnaire_name }</h1>
-	   <form action="/qn_system/create_Frommodel" method="post">
+<!-- 	   <form action="/qn_system/create_Frommodel" method="post"> -->
 	   
 	   	<c:forEach items="${questionnaire.question_list}" var="question">
 	   		<c:if test="${questionnaire.questionnaire_type eq 0 }">
@@ -245,12 +273,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   			<textarea name="question_list[${question.question_number-1 }].answer.answer_info" style="overflow:auto;width:95%;height:50px;color:black;border:2px;background-color:rgba(255,255,255,0.40);font-size:20px;" class="inputtext" disabled="disabled"></textarea>
 	   		</c:if>
 	   	</c:forEach><br>
-	   	<input name="questionnaire_id" type="hidden" value="${questionnaire.questionnaire_id }">
-	   	<input name="questionnaire_type" type="hidden" value="${questionnaire.questionnaire_type }">
-	   	<center><input type="submit" value="应用该模板" style="margin-top:40px;"class="button blue bigrounded"/></center>
+	   	<input id="mq_id" name="questionnaire_id" type="hidden" value="${questionnaire.questionnaire_id }">
+	   	<input id="mq_type" name="questionnaire_type" type="hidden" value="${questionnaire.questionnaire_type }">
+	   	<center><input type="button" onclick="ApplyModel()" value="应用该模板" style="margin-top:40px;"class="button blue bigrounded"/></center>
 	   	
 	   	
-	   </form>
+	   
 	   </div>
 	   <div id="div_blankRight"></div>
     </div>

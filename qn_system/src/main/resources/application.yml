@@ -32,4 +32,4 @@ spring:
       1: classpath:static
 
 headimages:
-  uploaddir: D://headimages/
+  uploaddir: E://headimages/

@@ -199,6 +199,27 @@
 <link rel="stylesheet" href="/css/ImgCropping.css">
 <link rel="stylesheet" type="text/css" href="/css/questionnaire.css">
 <script src="/js/createquestionnaire.js"></script>
+<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
+
+<script> 
+	$(function(){
+		var message ='<%=request.getSession().getAttribute("message")%>';
+		var error ='<%=request.getSession().getAttribute("error")%>';
+		 if(message != "null"){
+			 
+			swal("Good!", message, "success");
+			<%
+			request.getSession().removeAttribute("message");
+			%>
+		 }	else if(error != "null"){
+			 swal("OMG!", error, "error");
+			 <%
+			 request.getSession().removeAttribute("error");
+			 %>
+		 } 
+	}); 	
+</script>
 
 <script type="text/javascript">
 	function Toquestionnaire_list(index) {
@@ -226,7 +247,9 @@
 	}function ToJoinquestionnaireLis() {
 		location.href = "/qn_system/join_list";
 	}function ToAdmin(){
-		location.href="/qn_system/user_list";
+		location.href="/qn_system/admin/1";
+	}function ToEditPassWd(){
+		location.href= "/qn_system/editpwlist"
 	}
 </script>
 </head>
@@ -355,7 +378,7 @@
 							style="border: none; width: 200px; height: 50px; border-radius: 30px; background: orange; color: white; size: 16px; background-color: rgba(250, 128, 114, 0.5);"></li>
 						<li><input type="button" value="更多设置"
 							style="border: none; width: 200px; height: 50px; border-radius: 30px; background: orange; color: white; size: 16px; background-color: rgba(250, 128, 114, 0.5);"></li>
-						<li><input type="button" value="修改密码"
+						<li><input onclick="ToEditPassWd()" type="button" value="修改密码"
 							style="border: none; width: 200px; height: 50px; border-radius: 30px; background: orange; color: white; size: 16px; background-color: rgba(250, 128, 114, 0.5);"></li>
 					</ul>
 				</div>

@@ -23,7 +23,28 @@
 
 
 </script>
+<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
 
+<script> 
+	$(function(){
+		var message ='<%=request.getSession().getAttribute("message")%>';
+		var error ='<%=request.getSession().getAttribute("error")%>';
+		 if(message != "null"){
+			 
+			swal("Good!", message, "success");
+			<%
+			request.getSession().removeAttribute("message");
+			%>
+		 }	else if(error != "null"){
+			 swal("OMG!", error, "error");
+			 <%
+			 request.getSession().removeAttribute("error");
+			 %>
+		 } 
+	}); 	
+</script>
 <script type="text/javascript">
 	function modifyQn() {
 		var signal = document.getElementsByClassName("sigChoose");
@@ -58,7 +79,7 @@
 	}function Toquit() {
 		location.href = "/qn_system/quit";
 	}function ToAdmin(){
-		location.href="/qn_system/user_list";
+		location.href="/qn_system/admin/5";
 	}
 </script>
 <!-- //for-mobile-apps -->

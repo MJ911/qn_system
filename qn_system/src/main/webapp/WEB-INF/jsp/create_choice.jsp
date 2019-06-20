@@ -15,7 +15,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="keywords" content="" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
-		
+
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
+
+<script> 
+	$(function(){
+		var message ='<%=request.getSession().getAttribute("message")%>';
+		var error ='<%=request.getSession().getAttribute("error")%>';
+		 if(message != "null"){
+			 
+			swal("Good!", message, "success");
+			<%
+			request.getSession().removeAttribute("message");
+			%>
+		 }	else if(error != "null"){
+			 swal("OMG!", error, "error");
+			 <%
+			 request.getSession().removeAttribute("error");
+			 %>
+		 } 
+	}); 	
+</script>
+
 <script type="text/javascript">
 	function Toquestionnaire_list(index){
 		location.href="/qn_system/questionnaire_list/"+index;
@@ -37,35 +60,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}function Toquit() {
 		location.href = "/qn_system/quit";
 	}function ToAdmin(){
-		location.href="/qn_system/user_list";
+		location.href="/qn_system/admin/8";
 	}
 </script>
 <!-- //for-mobile-apps -->
-<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- pignose css -->
-<link href="../css/pignose.layerslider.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/css/pignose.layerslider.css" rel="stylesheet" type="text/css" media="all" />
 
 
 <!-- //pignose css -->
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- js -->
-<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
-<link href="../css/css1.css" rel="stylesheet" />
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<link href="/css/css1.css" rel="stylesheet" />
 <!-- <link id="ctl01_cssdefault" rel="stylesheet" type="text/css" href="../css/css2.css" /> -->
 <link id="ctl01_cssmaster" rel="stylesheet" type="text/css"
-	href="../css/css3.css" />
-<link rel="stylesheet" type="text/css" href="../css/css4.css" />
-<script type="text/javascript" src="../js/jquer-1.8.3.min.js" ></script>
+	href="/css/css3.css" />
+<link rel="stylesheet" type="text/css" href="/css/css4.css" />
+<script type="text/javascript" src="/js/jquer-1.8.3.min.js" ></script>
 <!-- //js -->
 <!-- cart -->
-	<script src="../js/simpleCart.min.js"></script>
+	<script src="/js/simpleCart.min.js"></script>
 <!-- cart -->
 <!-- for bootstrap working -->
-	<script type="text/javascript" src="../js/bootstrap-3.1.1.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap-3.1.1.min.js"></script>
 <!-- //for bootstrap working -->
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
-<script src="../js/jquery.easing.min.js"></script>
+<script src="/js/jquery.easing.min.js"></script>
 <style type="text/css">
         #top{background-color:#213d90;background-color: rgba(255,255,255,0.05);}
         #main{left:0;top:0;margin-top=0px;width:100%;height:980px;background:white;background-image:url(./images/ssss.jpg);background-size:100%,100%;background-repeat:none;background:rgba(255,255,255,0.1);position:fixed;}
@@ -129,8 +152,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);*/
 }
 </style>
-    <link href="../loginSpecial/css/demo.css" rel="stylesheet" type="text/css" />
-    <link href="../loginSpecial/css/loaders.css" rel="stylesheet" type="text/css" />
+    <link href="/loginSpecial/css/demo.css" rel="stylesheet" type="text/css" />
+    <link href="/loginSpecial/css/loaders.css" rel="stylesheet" type="text/css" />
 	<script text="text/javascript">
 	    
 	</script>
@@ -304,9 +327,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    </div>
     </div>
 </div>
-<script src="../loginSpecial/js/Particleground.js" type="text/javascript"></script>
-<script src="../loginSpecial/js/Treatment.js" type="text/javascript"></script>
-<script src="../loginSpecial/js/controlLogin.js" type="text/javascript"></script>
+<script src="/loginSpecial/js/Particleground.js" type="text/javascript"></script>
+<script src="/loginSpecial/js/Treatment.js" type="text/javascript"></script>
+<script src="/loginSpecial/js/controlLogin.js" type="text/javascript"></script>
 <script  type="text/javascript">
                  var currentApps="";
                  var qType=1;

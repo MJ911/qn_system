@@ -15,7 +15,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="keywords" content="" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
-		
+<script type="text/javascript" src="/js/jquery.js"></script> 
+<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
+<script> 
+	$(function(){
+		var message ='<%=request.getSession().getAttribute("message")%>';
+		var error ='<%=request.getSession().getAttribute("error")%>';
+		 if(message != "null"){
+			 
+			swal("Good!", message, "success");
+			<%
+			request.getSession().removeAttribute("message");
+			%>
+		 }	else if(error != "null"){
+			 swal("OMG!", error, "error");
+			 <%
+			 request.getSession().removeAttribute("error");
+			 %>
+		 } 
+	}); 	
+</script>
+
 <script type="text/javascript">
 	function Toquestionnaire_list(index){
 		location.href="/qn_system/questionnaire_list/"+index;
@@ -35,9 +56,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}function Toquit() {
 		location.href = "/qn_system/quit";
 	}function ToAdmin(){
-		location.href="/qn_system/user_list";
+		location.href="/qn_system/admin/4";
 	}
 </script>
+
 <!-- //for-mobile-apps -->
 <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- pignose css -->

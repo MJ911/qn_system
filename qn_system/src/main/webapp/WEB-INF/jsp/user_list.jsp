@@ -27,6 +27,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	_height: expression(this.height > 180 ? "180px" : this.height);
 }
 </style>
+
+<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+
+<script> 
+	$(function(){
+		var message ='<%=request.getSession().getAttribute("message")%>';
+		var error ='<%=request.getSession().getAttribute("error")%>';
+		 if(message != "null"){
+			 
+			swal("Good!", message, "success");
+			<%
+			request.getSession().removeAttribute("message");
+			%>
+		 }	else if(error != "null"){
+			 swal("OMG!", error, "error");
+			 <%
+			 request.getSession().removeAttribute("error");
+			 %>
+		 } 
+	}); 	
+</script>
+
 <script type="text/javascript">
 function windowHeight() {
 	var de = document.documentElement;
@@ -75,7 +99,7 @@ function TouserPageNext() {
         <div class="xt-menu-list"></div>
         <ul>
         	<li><a href="/qn_system/user_list" class="hover"><em class="one"></em>用户管理</a></li>
-            <li><a href="/qn_system/questionnaire_list/2"><em class="one"></em>问卷管理</a></li>
+            <li><a href="/qn_system/admin/16"><em class="one"></em>问卷管理</a></li>
             <li><a href="/qn_system/index"><em class="one"></em>返回主页</a></li>
         </ul>
     </div>
@@ -123,7 +147,7 @@ function TouserPageNext() {
   						<td>${user.user_password}</td>
   						<td>${user.user_mail}</td>
   						<td>${user.role.role_name}</td>
-  						<td><a href="user_authority/${user.user_id}" class="yellow-xt">编辑</a></td>
+  						<td><a href="/qn_system/user_authority/${user.user_id}" class="yellow-xt">编辑</a></td>
   					</tr> 
 				</c:forEach>
             </tr>

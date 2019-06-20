@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -64,8 +65,8 @@ public class AdministratorController {
 		return "questionnaire_listAdmin";
 	}
 	
-	@GetMapping("admin")
-	public String admin(Model model, HttpSession session) {
+	@GetMapping("/admin/{page}")
+	public String admin(@PathVariable int page, Model model, HttpSession session, HttpServletRequest request) {
 		List<Authority> list_at = (List<Authority>) session.getAttribute("list_at");
 		boolean flag1 = false;
 		boolean flag2 = false;
@@ -88,6 +89,9 @@ public class AdministratorController {
 			session.setAttribute("pages",pageInfo.getPages());//总页数
 			session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
 			model.addAttribute("userlist", user_list);
+			if(page==16) {
+				return "redirect:/qn_system/questionnaire_list/2";
+			}
 			return "user_list";
 		}else if(flag1==true) {
 			//分页查询设置
@@ -100,7 +104,10 @@ public class AdministratorController {
 			session.setAttribute("pages",pageInfo.getPages());//总页数
 			session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
 			model.addAttribute("questionnairelist", questionnairelist);
-			return "questionnaire_listAdmin";
+			if(page==15) {
+				session.setAttribute("error", "您没有该权限！");
+			}
+			return "redirect:/qn_system/questionnaire_list/2";
 		}else if(flag2==true) {
 			PageHelper.startPage(1,10);// 设置分页，参数1=页数，参数2=每页显示条数
 			List<User> user_list = userdao.getAll(); 
@@ -110,10 +117,76 @@ public class AdministratorController {
 			session.setAttribute("pages",pageInfo.getPages());//总页数
 			session.setAttribute("indexPage",pageInfo.getPageNum());//当前界面
 			model.addAttribute("userlist", user_list);
+			if(page==16) {
+				session.setAttribute("error", "您没有该权限！");
+			}
 			return "user_list";
 		}else {
 			session.setAttribute("error", "您没有该权限！");
-			return "index";
+			User user = (User) session.getAttribute("user");
+			
+			
+			if(page==0)
+				return "index";
+			else if(page==1){
+				return "personal";
+			}
+			else if(page==2) {
+				return "redirect:/qn_system/join_list";
+			}else if(page==3) {
+				int qn_type = (int) session.getAttribute("questionnaire_type");
+				return "redirect:/qn_system/questionnaire_list/"+qn_type;
+			}else if(page==4) {
+				int q_id = (int)session.getAttribute("admin_qn_id");
+				session.removeAttribute("admin_qn_id");
+				return "redirect:/qn_system/questionnaire/"+q_id;
+			}else if(page==5) {
+				int q_id = (int)session.getAttribute("admin_qn_id");
+				session.removeAttribute("admin_qn_id");
+				return "redirect:/qn_system/join/"+q_id;
+			}
+			else if(page==6) {
+				return "redirect:/qn_system/model_list";
+			}
+			else if(page==7) {
+				int q_id = (int)session.getAttribute("admin_qn_id");
+				session.removeAttribute("admin_qn_id");
+				return "redirect:/qn_system/model/"+q_id;
+			}
+			else if(page==8) {
+				return "create_choice";
+			}
+			else if(page==9) {
+				return "redirect:/qn_system/create_questionnaire/0";
+			}
+			else if(page==10) {
+				return "redirect:/qn_system/create_questionnaire/1";
+			}
+			else if(page==11) {
+				int qn_id = (int)session.getAttribute("model_qn_id");
+				int qn_type = (int)session.getAttribute("model_qn_type");
+				session.removeAttribute("model_qn_id");
+				session.removeAttribute("model_qn_type");
+				return "redirect:/qn_system/create_Frommodel/"+qn_id+"/"+qn_type;
+			}
+			else if(page==12) {
+				int qn_id = (int)session.getAttribute("model_qn_id");
+				int qn_type = (int)session.getAttribute("model_qn_type");
+				session.removeAttribute("model_qn_id");
+				session.removeAttribute("model_qn_type");
+				return "redirect:/qn_system/create_Frommodel/"+qn_id+"/"+qn_type;
+			}
+			else if(page==13) {
+				return "redirect:/qn_system/myquestionnaire_list";
+			}
+			else if(page==14) {
+				int qn_id = (int)session.getAttribute("qn_id");
+				session.removeAttribute("qn_id");
+				return "redirect:/qn_system/questionnaire_view/"+qn_id;
+			}
+			else{
+				return "index";
+			}
 		}
 	}
 	

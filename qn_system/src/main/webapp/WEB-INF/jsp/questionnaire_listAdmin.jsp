@@ -29,6 +29,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	_height: expression(this.height > 180 ? "180px" : this.height);
 }
 </style>
+
+<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+
+<script> 
+	$(function(){
+		var message ='<%=request.getSession().getAttribute("message")%>';
+		var error ='<%=request.getSession().getAttribute("error")%>';
+		 if(message != "null"){
+			 
+			swal("Good!", message, "success");
+			<%
+			request.getSession().removeAttribute("message");
+			%>
+		 }	else if(error != "null"){
+			 swal("OMG!", error, "error");
+			 <%
+			 request.getSession().removeAttribute("error");
+			 %>
+		 } 
+	}); 	
+</script>
+
 <script>
 function windowHeight() {
 	var de = document.documentElement;
@@ -89,8 +113,8 @@ function ToPageNext() {
     <div class="xt-menu">
         <div class="xt-menu-list"></div>
         <ul>
-        	<li><a href="/qn_system/user_list" class="hover"><em class="one"></em>用户管理</a></li>
-            <li><a href="/qn_system/questionnaire_list/2"><em class="two"></em>问卷管理</a></li>
+        	<li><a href="/qn_system/admin/15" ><em class="two"></em>用户管理</a></li>
+            <li><a href="/qn_system/questionnaire_list/2" class="hover"><em class="one"></em>问卷管理</a></li>
         	<li><a href="/qn_system/index"><em class="one"></em>返回主页</a></li>
         </ul>
     </div>

@@ -402,6 +402,7 @@ public class PersonalConroller {
 		}
 		questionnaire.setQuestion_list(options);
 		model.addAttribute("questionnaire", questionnaire);
+		session.setAttribute("admin_qn_id", questionnaire.getQuestionnaire_id());
 		return "join";
 	}
 }

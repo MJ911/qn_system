@@ -3,6 +3,7 @@ package com.nwafu.qn_system.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,12 +76,14 @@ public class IndexController {
 	}
 	
 	@GetMapping("/questionnaire/{questionnaire_id}")
-	public String questionnaire(@PathVariable int questionnaire_id,Model model) {
+	public String questionnaire(@PathVariable int questionnaire_id,Model model,HttpSession session) {
 		/*
 		 * 从questionnaire_list或my_questionnaire_list跳转到questionnaire界面
 		 */
 		Questionnaire questionnaire = qnService.getQn(questionnaire_id);
 		model.addAttribute("questionnaire", questionnaire);
+		System.out.println(questionnaire.getQuestionnaire_id());
+		session.setAttribute("admin_qn_id",questionnaire.getQuestionnaire_id());
 		return "questionnaire";
 		
 	}
@@ -107,23 +110,26 @@ public class IndexController {
 
 	}
 	@GetMapping("/model/{model_qn_id}")
-	public String model(@PathVariable int model_qn_id,Model model) {
+	public String model(@PathVariable int model_qn_id,Model model, HttpSession session) {
 		/*
 		 * 把model_qn_id的model问卷对象放入session里
 		 */
 		Questionnaire questionnairemodel = qnService.getQn(model_qn_id);
 		model.addAttribute("questionnaire", questionnairemodel);
+		session.setAttribute("admin_qn_id", model_qn_id);
 		return "model";
 	}
 	
-	@PostMapping("/create_Frommodel")
-	public String create_Frommodel(Questionnaire questionnaire,Model model,HttpSession session) {
+	@GetMapping("/create_Frommodel/{questionnaire_id}/{questionnaire_type}")
+	public String create_Frommodel(@PathVariable int questionnaire_id, @PathVariable int questionnaire_type, HttpServletRequest request, Model model,HttpSession session) {
 		//进入创建问卷界面 create_model_many.jsp
 		//把model_qn_id的model问卷对象放入session里
 		//问卷对象的名字属性要清空
-		model.addAttribute("model_qn_id", questionnaire.getQuestionnaire_id());
-		
-		if(questionnaire.getQuestionnaire_type() == 0) {
+//		model.addAttribute("model_qn_id", questionnaire.getQuestionnaire_id());
+		model.addAttribute("model_qn_id", questionnaire_id);
+		model.addAttribute("model_qn_type",questionnaire_type);
+//		model.addAttribute("model_qn",questionnaire);
+		if(questionnaire_type == 0) {
 			return "create_model_many";
 		}
 		
@@ -153,9 +159,7 @@ public class IndexController {
 	@GetMapping("/personal")
 	public String personal(HttpSession session) {
 		User user = (User) session.getAttribute("user");
-		if(user.getUser_name().equals("admin")) {
-			return "user_list";
-		}
+		
 		return "personal";
 	}
 

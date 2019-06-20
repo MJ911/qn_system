@@ -19,6 +19,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 		
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css"/>
+
+<script> 
+	$(function(){
+		var message ='<%=request.getSession().getAttribute("message")%>';
+		var error ='<%=request.getSession().getAttribute("error")%>';
+		 if(message != "null"){
+			 
+			swal("Good!", message, "success");
+			<%
+			request.getSession().removeAttribute("message");
+			%>
+		 }	else if(error != "null"){
+			 swal("OMG!", error, "error");
+			 <%
+			 request.getSession().removeAttribute("error");
+			 %>
+		 } 
+	}); 	
+</script>
+
+<%
+	int qn_id = (int)request.getAttribute("qn");
+	request.getSession().setAttribute("qn_id", qn_id);
+%>
+
 <script type="text/javascript">
 	function Toquestionnaire_list(index){
 		location.href="/qn_system/questionnaire_list/"+index;
@@ -36,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}function Topersonal() {
 		location.href = "/qn_system/personal";
 	}function ToAdmin(){
-		location.href="/qn_system/user_list";
+		location.href="/qn_system/admin/14";
 	}function Toquit() {
 		location.href = "/qn_system/quit";
 	}
@@ -292,6 +320,7 @@ ul.c {list-style-type:square;}
        <div id="div_blankLeft"></div>
 	   <div id="div_middleofMiddle">
 	   <h1 style="text-align:center;margin-top:40px;margin-bottom:40px;font-weight:bold;font-size:50px;">${questionnaire.questionnaire_name }<br/>(统计结果)</h1>
+	   <input type="hidden" id="qn_id" value="${questionnaire.questionnaire_id }"/>
 	   <form action="/qn_system/questionnaire_list" method="post">
 	   
 	   <c:set var="num" scope="request" value="${questionnaire.question_size}" />

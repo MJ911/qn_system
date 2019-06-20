@@ -28,19 +28,12 @@
 <script type="text/javascript" src="/js/sweetalert.min.js"></script>
 <script> 
 	$(function(){
-		var message ='<%=request.getSession().getAttribute("message")%>';
-		var error ='<%=request.getSession().getAttribute("error")%>';
+		var message ='<%=request.getAttribute("message")%>';
+		var error ='<%=request.getAttribute("error")%>';
 		 if(message != "null"){
 			swal("Good!", message, "success");
-			<%
-			request.getSession().removeAttribute("message");
-			%>
 		 }	else if(error != "null"){
 			 swal("OMG!", error, "error");
-
-			 <%
-			 request.getSession().removeAttribute("error");
-			 %>
 		 } 
 	})
  		 	
@@ -471,7 +464,7 @@
 							</li>
 						</div>
 						<div id="div_label3">
-							<li align="center"><input type="submit" id="button_log"
+							<li align="center"><input type="button" id="button_log"
 								value="已有账号"
 								style="border: none; width: 200px; height: 50px; border-radius: 30px; background: white; color: orange;size=6px" />
 							</li>
