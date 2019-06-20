@@ -354,6 +354,7 @@ public class PersonalConroller {
 		 * 统计信息封装在Questionnaire对象中返回，在用户的该问卷详细信息questionnaire_view.jsp可视化界面显示数据
 		 */
 		Questionnaire questionnaire = statisticsService.exportQn(questionnaire_id);
+		questionnaire.setQuestion_size(questionnaire.getQuestion_list().size());
 		model.addAttribute("questionnaire", questionnaire);
 		model.addAttribute("qn", questionnaire_id);
 		
