@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -107,12 +108,13 @@ public class StatisticsServiceImpl implements StatisticsService{
 		for(int i=0;i<optionsNum;i++) {
 			//optionRate.add(i,(double)everyOptionSum[i]/sum);
 			//该题有回答
+			DecimalFormat df = new DecimalFormat( "0.0000");
 			if(answers.size()>0) {
 				BigDecimal orignal = new BigDecimal((double)everyOptionSum[i]/answers.size());
 				double rate = orignal.setScale(3,BigDecimal.ROUND_HALF_UP).doubleValue();
-				optionRate.add(i,rate);
+				optionRate.add(i,Double.parseDouble(df.format(rate)));
 			} else {
-				optionRate.add(i,0.0);
+				optionRate.add(i,Double.parseDouble(df.format(0.0)));
 			}
 		}
 		return optionRate;
@@ -266,7 +268,13 @@ public class StatisticsServiceImpl implements StatisticsService{
 			
 			//按照question_id从数据库中搜索出该问题的选项列表后，将其赋值给要返回的Questionnaire对象的options_list属性,并初始化每一个选项的统计概率。
 			List<Options> options_list = optionsDAO.getByQuestionId(question.getQuestion_id());
-			List<Double> optionRate = getOptionRate(question);
+			List<Double> optionRate2 = getOptionRate(question);
+			List<Double> optionRate = new ArrayList<Double>();
+			for(int j = 0;j<optionRate2.size();j++) {
+				double temp_rate = optionRate2.get(j);
+				DecimalFormat df = new DecimalFormat( "0.0000");
+				optionRate.add(Double.parseDouble(df.format(100*temp_rate)));
+			}
 			for(int j=0;j<options_list.size();j++) {
 				Options option = options_list.get(j);
 				option.setOption_rate(optionRate.get(j));

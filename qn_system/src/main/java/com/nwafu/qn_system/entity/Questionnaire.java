@@ -16,9 +16,21 @@ public class Questionnaire {
 	private boolean questionnaire_state;
 	private int questionnaire_type; //0代表调查、1代表投票
 	
+	private int question_size;
+	
+	
+	
 	private User user; //创建者或回答者
 	private List<Question> question_list;
 	
+	
+	
+	public int getQuestion_size() {
+		return question_size;
+	}
+	public void setQuestion_size(int question_size) {
+		this.question_size = question_size;
+	}
 	public List<Question> getQuestion_list() {
 		return question_list;
 	}

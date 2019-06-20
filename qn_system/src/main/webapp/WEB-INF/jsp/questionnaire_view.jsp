@@ -42,6 +42,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	
 </script>
+<script src='/js/echarts.js'></script>
+<script src="/js/jquery.min.js"></script>
 <!-- //for-mobile-apps -->
 <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- pignose css -->
@@ -150,8 +152,62 @@ ul.c {list-style-type:square;}
 </style>
     <link href="/loginSpecial/css/demo.css" rel="stylesheet" type="text/css" />
     <link href="/loginSpecial/css/loaders.css" rel="stylesheet" type="text/css" />
-	<script text="text/javascript">
-	    
+	<script type="text/javascript">
+		$(function() {
+		    for(i=1;i<=${questionnaire.question_size};i++){
+				let pie_data = echarts.init(document.getElementById("pie_data_"+i));
+				
+				var question= {
+                	"question_id":$("#xxx1"+i).val(),
+                	"question_type":$("#xxx2"+i).val()
+				};
+				$.ajax({
+					type : "post",
+                	async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                	url : "/qn_system/option",    //请求发送到相应的servlet
+                	data:question,
+                	dataType : "json", 
+                	success:function (result) { 
+                    	pie_data.setOption({
+                    	    title : {
+                    	        text: '同名数量统计',
+                    	        subtext: '纯属虚构',
+                    	        x:'center'
+                    	    },
+                    	    tooltip : {
+                    	        trigger: 'item',
+                    	        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    	    },
+                    	    legend: {
+                    	        type: 'scroll',
+                    	        orient: 'vertical',
+                    	        right: 10,
+                    	        top: 20,
+                    	        bottom: 20,
+                    	        data: result,
+                    	    },
+                    	    series : [
+                    	        {
+                    	            name: '姓名',
+                    	            type: 'pie',
+                    	            radius : '55%',
+                    	            center: ['40%', '50%'],
+                    	            data: result,
+                    	            itemStyle: {
+                    	                emphasis: {
+                    	                    shadowBlur: 10,
+                    	                    shadowOffsetX: 0,
+                    	                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    	                }
+                    	            }
+                    	        }
+                    	    ]
+                    	});
+                },
+		});
+		// 	;
+        }
+	});
 	</script>
 </head>
 
@@ -238,20 +294,28 @@ ul.c {list-style-type:square;}
 	   <h1 style="text-align:center;margin-top:40px;margin-bottom:40px;font-weight:bold;font-size:50px;">${questionnaire.questionnaire_name }<br/>(统计结果)</h1>
 	   <form action="/qn_system/questionnaire_list" method="post">
 	   
-	   	<c:forEach items="${questionnaire.question_list}" var="question">
+	   <c:set var="num" scope="request" value="${questionnaire.question_size}" />
+	   	<c:forEach items="${questionnaire.question_list}" var="question" varStatus="loop">
 	   		<h2 style="margin-top:20px;margin-bottom:20px;">题目${question.question_number }&nbsp;.${question.question_name}</h2>
  	   		<c:if test="${question.question_type == '1'}"><%--当前为单选题 --%>
 	   			<c:forEach items="${question.options_list }" var="option">
 	   				<h3 style="color:pink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${option.option_number }.&nbsp;&nbsp;&nbsp;&nbsp;${option.option_name} &nbsp;&nbsp;
-	   				(${100*option.option_rate } %)<br></h3>
+	   				(${option.option_rate} %)<br></h3>
 	   			</c:forEach>
 	   		</c:if>
 	   		
 	   		<c:if test="${question.question_type == '2'}"><%--当前为多选题 --%>
-	   			<c:forEach items="${question.options_list }" var="option">
+	   			<c:forEach items="${question.options_list }" var="option" >
 	   				<h3 style="color:pink">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${option.option_number }.&nbsp;&nbsp;&nbsp;&nbsp;${option.option_name} &nbsp;&nbsp;
-	   				(${100*option.option_rate } %)<br></h3>
+	   				(${option.option_rate} %)<br></h3>
 	   			</c:forEach>
+	   		</c:if>
+	   		<c:if test="${question.question_type != '3'}">
+	   		     	
+	   		        <div id="pie_data_${loop.count}"  style="width: 800px; height: 300px;"></div>
+	            	<input id="xxx1${loop.count}" type="hidden" value="${question.question_id}"/ >
+	            	<input id="xxx2${loop.count}" type="hidden" value="${question.question_type}" />
+
 	   		</c:if>
 	   		
 	   		<c:if test="${question.question_type == '3'}"><%--当前为填空题 --%>
